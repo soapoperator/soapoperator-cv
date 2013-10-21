@@ -1,2 +1,2 @@
-soapoperator-cv
+soapoperator
 ===============
