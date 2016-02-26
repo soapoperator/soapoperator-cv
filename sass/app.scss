@@ -1,0 +1,10 @@
+// compileOnSave: true, compileCompressed: true, compileExpanded: true
+
+// Vendors
+@import 'vendors/normalize';
+
+@import "layout/content";
+
+body {
+    color: green;
+}
