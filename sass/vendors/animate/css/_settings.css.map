@@ -1,0 +1,9 @@
+{
+	"version": 3,
+	"file": "_settings.css",
+	"sources": [
+		"../helpers/_settings.scss"
+	],
+	"mappings": "",
+	"names": []
+}

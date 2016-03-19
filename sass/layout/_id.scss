@@ -1,0 +1,33 @@
+// main: ../main.scss
+
+#id {
+    width: 100%;
+    padding: 0 10%;
+    font-size: 1rem;
+    line-height: 1;
+    @extend %font-family-sans-serif;
+
+    @include breakpoint-to(S) {
+        padding: 0 3% 1em;
+    }
+
+    div + div {
+        margin-top: 0.5em;
+    }
+
+    #about-name {
+        text-transform: uppercase;
+
+        h1 {
+            font-size: 1.5em;
+            font-weight: normal;
+            letter-spacing: 1px;
+            margin: 0;
+        }
+    }
+
+    #about-telephone {
+        font-size: 1em;
+        color: $color-secondary;
+    }
+}

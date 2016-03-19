@@ -1,0 +1,66 @@
+// main: ../main.scss
+
+$height-button: 1em;
+
+@mixin button-static {
+    padding : 0.25em 0.5em;
+    vertical-align: middle;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+@mixin button($color : $text-color-main) {
+    @include button-static;
+    width: $height-button;
+    height:$height-button;
+    line-height: $height-button * 1.5;
+    color: $color;
+
+    svg {
+        fill: currentColor;
+    }
+
+    &:hover {
+        @extend .flash;
+        @include prefix(animation-delay,0,-webkit);
+    }
+}
+
+@for $i from 1 to 4 {
+    #about-social a:nth($i) {
+        @include prefix(animation-delay,$i * 0.3s,-webkit);
+    }
+}
+
+/// Basic
+.button {
+    @include button($color-secondary);
+}
+
+/// Iconmoon
+.icon {
+    width: 32px;
+    height: 32px;
+    background: url(../images/sprite.png);
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-size: percentage( $height-button / em(32) );
+    background-image: url(../images/sprite.svg);
+}
+.icon-save {
+    background-position: 0 0;
+}
+.icon-email {
+    background-position: -48px 0;
+}
+.icon-download {
+    background-position: 0 -48px;
+}
+.icon-twitter {
+    background-position: -48px -48px;
+}
+.icon-linkedin {
+    background-position: -96px -48px;
+}

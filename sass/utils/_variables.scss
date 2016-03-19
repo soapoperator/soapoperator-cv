@@ -1,0 +1,156 @@
+// main: ../main.scss
+
+$browser-context: 16px !global;
+
+/// Breakpoints
+/// ==========================================================================
+$SM: 34em !global;
+$MD: 48em !global;
+$LG: 62em !global;
+$XL: 75em !global;
+
+$mobile: $SM;
+$tablet: $MD;
+$desktop: $LG;
+$wide: $XL;
+
+$breakpoints: (
+    S: $SM,
+    M: $MD,
+    L: $LG,
+    XL: $XL,
+);
+
+/// Fonts Styles
+/// ==========================================================================
+$fonts:
+    // (
+    //      category
+    //      class-suffix
+    //      name
+    //      file-name
+    //      path
+    //      weight
+    //      style
+    //      extentions
+    // )
+    (
+        sans-serif,
+        sans-serif,
+        'Roboto',
+        Roboto-Medium-webfont,
+        '../../fonts/roboto/',
+        normal,
+        normal,
+        eot eotfix woff ttf svg
+    ),
+    (
+        monospace,
+        monospace,
+        'Ubuntu Mono',
+        ubuntumono-r-webfont,
+        '../../fonts/ubuntu/',
+        normal,
+        normal,
+        eot eotfix woff2 woff ttf svg
+    ),
+    (
+        monospace,
+        monospace,
+        'Ubuntu Mono',
+        ubuntumono-b-webfont,
+        '../../fonts/ubuntu/',
+        bold,
+        normal,
+        eot eotfix woff2 woff ttf svg
+);
+
+$base-font-size: $browser-context !default;
+
+$base-line-height-ratio: 1 !default;
+
+$body-font-sizes: (
+    defaut:(font-size: $base-font-size * .6, line-height: $base-line-height-ratio * 0.8),
+    S:     (font-size: $base-font-size * .6, line-height: $base-line-height-ratio * 0.8),
+    M:     (font-size: $base-font-size * .8, line-height: $base-line-height-ratio * 1),
+    L:     (font-size: $base-font-size * .8 , line-height: $base-line-height-ratio * 1),
+    XL:    (font-size: $base-font-size * .8, line-height: $base-line-height-ratio * 1),
+);
+
+/// Colors Styles
+/// ==========================================================================
+$white: #ffffff;
+$black: #000000;
+$yellow: #fffd76;
+$salmon: #ff5c5c;
+$blue: #76ebff;
+
+$color-primary: $white;
+$color-primary-hover: $blue;
+$color-primary-disabled: rgba($color-primary, .2);
+
+$color-secondary: $yellow;
+$color-secondary-hover: darken($color-secondary, 5);
+$color-secondary-disabled: rgba($color-secondary, .2);
+
+$color-background: $salmon;
+$color-background-shade: rgba($black, .5);
+
+$color-text: $color-primary;
+
+$color-text-link: $color-secondary;
+$color-text-link-visited: $color-secondary;
+$color-text-link-hover: $color-secondary-hover;
+
+$colors-social: (
+    dribbble: #ea4c89,
+    facebook: #3b5998,
+    github: #171515,
+    google: #db4437,
+    twitter: #55acee,
+    bandcamp: #4e9bac,
+    delicious: #248cff,
+    ficly: #b51c2c,
+    flickr: #0063db,
+    instagram: #517fa4,
+    kickstarter: #76cc1e,
+    lanyrd: #152e51,
+    lastfm: #d51007,
+    linkedin: #007bb6,
+    photodrop: #cdb6e3,
+    pinterest: #cb2027,
+    rdio: #0088da,
+    soundcloud: #f60,
+    vimeo: #aad450,
+    youtube: #b00
+);
+
+/// Radius Styles
+/// =========================================================================
+$border-radius-default: 5px;
+$border-radius-rounded: 50%;
+
+/// Image
+///==========================================================================
+$retina-suffix: '@2x';
+
+/// Icon Svg Sprite
+///==========================================================================
+$icons-sprite :
+    (
+
+    ),
+    (
+);
+
+// Use for Iconmoon class
+$icon-map: (
+    dribbble: '\e601',
+    facebook: '\e607',
+    instagram: '\e60c',
+    twitter: '\e602',
+    github: '\e603'
+);
+
+/// Custom for vendors
+/// ==========================================================================

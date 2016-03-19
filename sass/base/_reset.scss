@@ -1,0 +1,16 @@
+// main: ../main.scss
+
+/* Reset
+========================================================================== */
+
+html {
+    @include prefix('box-sizing','border-box', -webkit -moz);
+}
+*,
+*:before,
+*:after {
+    @include prefix('box-sizing','border-box', -webkit -moz);
+}
+@include placeholder{
+    color: #000000;
+};

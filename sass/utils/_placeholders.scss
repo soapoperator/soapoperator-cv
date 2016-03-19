@@ -1,0 +1,59 @@
+// main: ../main.scss
+
+/// Clearfix extend
+/// @access public
+/// @example scss - Usage
+///   .foo {
+///     @extend %clearfix;
+///   }
+%clearfix {
+    *zoom: 1;
+
+    &:before,
+    &:after {
+        content: ' ';
+        display: table;
+    }
+
+    &:after {
+        clear: both;
+    }
+}
+
+/// Hide extend
+/// @access public
+/// @example scss - Usage
+///   .foo {
+///     @extend %hide;
+///   }
+%hide {
+    margin  : -1px;
+    padding : 0;
+    width   : 1px;
+    height  : 1px;
+    overflow: hidden;
+    clip    : rect(0 0 0 0);
+    clip    : rect(0, 0, 0, 0);
+    position: absolute;
+    bottom: 0;
+}
+
+%hideText {
+    overflow   : hidden;
+    text-indent: -9000px;
+    display    : block;
+}
+
+/// Text-align justify
+/// For perfectly aligned grids that don't rely on floating elements and difficult calculations
+/// http://www.barrelny.com/blog/text-align-justify-and-rwd/ */
+%justify {
+    text-align: justify;
+
+    &:after {
+        // adds a false last line to the content so justify is applied
+        content: '';
+        display: inline-block;
+        width  : 100%;
+    }
+}

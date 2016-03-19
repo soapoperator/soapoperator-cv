@@ -1,0 +1,21 @@
+// main: ../main.scss
+
+/* Body
+========================================================================== */
+
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100%;
+    height: 100vh;
+    -ms-text-size-adjust    : 100%;
+    -webkit-text-size-adjust: 100%;
+    background              : $color-background;
+    color                   : $color-text;
+    @extend %font-family-sans-serif;
+    @include breakpoint-to-full($body-font-sizes);
+}

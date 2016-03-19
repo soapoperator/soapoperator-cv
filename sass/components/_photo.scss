@@ -1,0 +1,38 @@
+// main: ../main.scss
+
+$animation-stripe: linear-gradient(
+    45deg,
+    rgba(black, 0.1)  25%,
+    transparent       25%,
+    transparent       50%,
+    rgba(black, 0.1)  50%,
+    rgba(black, 0.1)  75%,
+    transparent       75%,
+    transparent
+);
+
+@include keyframes(stripe){
+    from { background-position: 0 0; }
+    to   { background-position: 60px 30px; }
+};
+
+#about-photo {
+    text-align: center;
+    background-color: $color-background;
+
+    > object {
+        background:#fff;
+        animation: barberpole 0.5s linear infinite;
+        @include prefix(animation-delay,1s,-webkit);
+    }
+}
+
+
+#photo {
+    width:35%;
+
+    @include breakpoint-to(S){
+        height:$height-id-mobile;
+        width: auto;
+    };
+}

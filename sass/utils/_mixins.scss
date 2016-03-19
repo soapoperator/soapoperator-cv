@@ -1,0 +1,1204 @@
+// main: ../main.scss
+
+/// ==========================================================================
+/// ==========================================================================
+///
+/// Basic Powerfull
+/// Mixins
+///
+/// ==========================================================================
+/// ==========================================================================
+
+///  Table of Content
+/// ==================================================
+/// Media Queries
+/// Basic Styles
+/// Typography
+/// Forms
+/// Layout
+/// CSS Animations
+/// Custom / CSS3
+/// Filter
+
+/// ==========================================================================
+/// Media Queries
+/// ==========================================================================
+
+/// Media query helper for declaring media queries by width, and, optionally, ratio.
+/// @access public
+/// @param {Length} $width - Max-width
+/// @param {Number | False} $ratio [false] - Min device pixel ratio
+/// @example scss - Usage
+///   .foo {
+///     @include mquery(350px, 2) {
+///       width: 100%;
+///     }
+///   }
+
+$viewport-increment: 1px; // customize to suite
+
+// Constraints
+$constraints: (
+    to: max-width,
+    from: min-width
+);
+
+@mixin breakpoint( $constraint-value, $breakpoints-value, $ratio: false) {
+
+    @if lenght($breakpoints-value) == '2' {
+
+        @if $ratio {
+
+            @media only screen and (min-width: nth($breakpoints-value,1)) and (max-width: nth($breakpoints-value,2)) and (min--moz-device-pixel-ratio: $ratio),
+            only screen and (min-width: nth($breakpoints-value,1)) and (max-width: nth($breakpoints-value,2)) and (-webkit-min-device-pixel-ratio: $ratio),
+            only screen and (min-width: nth($breakpoints-value,1)) and (max-width: nth($breakpoints-value,2)) and (min-device-pixel-ratio: $ratio) {
+                @content;
+            }
+
+        }
+
+        @else {
+
+            @media screen and (min-width: nth($breakpoints-value,1)) and (max-width: nth($breakpoints-value,2))  {
+                @content;
+            }
+
+        }
+
+    } @else {
+
+        /// desktop-first
+        @if $constraint-value == 'to' {
+
+            $constraint: map-get($constraints, $constraint-value);
+            $width: map-get($breakpoints, $breakpoints-value);
+
+        }
+
+        /// mobile-first
+        @else if $constraint-value == 'from' {
+
+            $constraint: map-get($constraints, $constraint-value);
+            $width: map-get($breakpoints, $breakpoints-value);
+
+        }
+
+        @if $ratio {
+
+            @media only screen and ($constraint: $width) and (min--moz-device-pixel-ratio: $ratio),
+            only screen and ($constraint: $width) and (-webkit-min-device-pixel-ratio: $ratio),
+            only screen and ($constraint: $width) and (min-device-pixel-ratio: $ratio) {
+                @content;
+            }
+
+        }
+
+        @else {
+
+            @media screen and ($constraint: $width) {
+                @content;
+            }
+
+        }
+    }
+}
+
+/// Media queries form desktop-first
+/// @access public
+@mixin breakpoint-to($breakpoints-value, $ratio: false) {
+    @include breakpoint('to', $breakpoints-value, $ratio) {
+        @content;
+    }
+}
+/// Media queries form mobile-first
+/// @access public
+@mixin breakpoint-from($breakpoints-value, $ratio: false) {
+    @include breakpoint('from', $breakpoints-value, $ratio) {
+        @content;
+    }
+}
+
+/// Add a property for all media queries
+/// @access public
+/// @param {map} $values-map - Map with property
+/// @example scss - Usage
+///   .foo {
+///     @include mediaqueries-full( S: (font-size: 14px, line-height: 1) );
+///   }
+@mixin breakpoint-from-full( $values-map ) {
+    @each $breakpoint, $value in $values-map {
+        @if map-has-key($breakpoints,$breakpoint) {
+            @include breakpoint-from($breakpoint) {
+                @each $a, $b in $value {
+                    #{$a}: #{$b};
+                }
+            }
+        }
+        @else {
+            #{nth($value,1)}: #{nth($value,2)};
+        }
+    }
+}
+@mixin breakpoint-to-full( $values-map ) {
+    @each $breakpoint, $value in $values-map {
+        @if map-has-key($breakpoints,$breakpoint) {
+            @include breakpoint-to($breakpoint) {
+                @each $a, $b in $value {
+                    #{$a}: #{$b};
+                }
+            }
+        }
+        @else {
+            #{nth($value,1)}: #{nth($value,2)};
+        }
+    }
+}
+
+/// ==========================================================================
+/// Basic Styles
+/// ==========================================================================
+
+/// Adds a browser prefix to the property
+/// @access public
+/// @param {String} $property - Unprefixed CSS property
+/// @param {*} $value - Raw CSS value
+/// @param {List} $prefixes [()] - List of prefixes to output
+@mixin prefix($property, $value, $exts: -webkit -khtml -moz -ms -o) {
+    $exts: unquote($exts);
+    @each $ext in $exts {
+        #{$ext}-#{$property}: #{$value};
+    }
+        #{$property}: #{$value};
+}
+
+/// Border radius shorthand with vendor prefixing
+/// @access public
+/// @param {String} $radius or $tl $tr $br $bl - Border radius
+/// @example scss - Usage
+///  @include border-radius(10px)
+@mixin border-radius($radius : $border-radius-default) {
+    @include prefix(border-radius, $radius, -webkit -moz -ms) ;
+}
+
+/// Aspect ratio shorthand
+/// @access public
+/// @param {String} $width - Width
+/// @param {String} $height - Height
+/// @example scss - Usage {
+///   @include aspect-ratio(16,9); /* For 16:9 ratio */
+/// }
+@mixin aspect-ratio($width, $height) {
+    position: relative;
+
+    &:before {
+        display    : block;
+        content    : '';
+        width      : 100%;
+        padding-top: ($height / $width) * 100%;
+    }
+
+    > .content {
+        position: absolute;
+        top     : 0;
+        left    : 0;
+        right   : 0;
+        bottom  : 0;
+    }
+}
+
+/// Aspect ratio class
+/// @example scss - Usage {
+/// Output example: .ratio-16x9 {}
+/// }
+@mixin generateRatios($width, $height, $prefix: "ratio-") {
+    $class-name: $prefix + $width + 'x' + $height;
+
+    .#{$class-name} {
+        position: relative;
+
+        &:before {
+            display    : block;
+            content    : '';
+            width      : 100%;
+            padding-top: ($height / $width) * 100%;
+        }
+
+        > .content {
+            position: absolute;
+            top     : 0;
+            left    : 0;
+            right   : 0;
+            bottom  : 0;
+        }
+    }
+}
+
+/// Placeholder - for styling input placeholders in every browser
+/// @access public
+/// @param {sting} $opacity - Opacity
+@mixin opacity($opacity) {
+    $opacity-ie: $opacity * 100;
+    -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$opacity-ie})'; /* for IE8 in IE7 mode */
+    filter: alpha(opacity=#{$opacity-ie}); /* for IE6-IE8 */
+    -moz-opacity: $opacity;
+    opacity: $opacity;
+}
+
+/// ==========================================================================
+/// Typography
+/// ==========================================================================
+
+/// Given the information of a webfont, will generate a font-face declaration with multiple file formats.
+/// @access public
+/// @param {String} $category - Font family type
+/// @param {String} $name - Font family name
+/// @param {String} $file-name - File name (no extension)
+/// @param {String} $path - File path
+/// @param {String | Number} $weight [normal] - Font weight
+/// @param {String} $style [normal] - Font style
+/// @example scss - Usage
+///   @include font-face('monospace', 'Gotham', 'gotham', '/fonts/', 'bold', 'normal', 'svg');
+
+@mixin declare-font-face( $name, $file-name, $path, $weight: normal, $style: normal, $exts: eot eotfix woff2 woff ttf svg ) {
+    $src    : null;
+
+    $extmods: ( eotfix: "?#iefix", svg: "#" + str-replace(to-lower-case($file-name), " ", "_") );
+
+    $formats: ( otf: "opentype", eot: "embedded-opentype", woff2: "woff2", woff: "woff", ttf: "truetype", svg: "svg" );
+
+    @each $ext in $exts {
+        $extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+        $format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+        @if ( $ext == 'eotfix' ) {
+            $extmod: if(map-has-key($extmods, $ext), 'eot' + map-get($extmods, $ext), eot);
+            $format: if(map-has-key($formats, 'eot'), map-get($formats, 'eot'), 'eot');
+        }
+        $src   : append($src, url(quote($path + "" + $file-name + "." + $extmod)) format(quote($format)), comma);
+    }
+
+    @font-face {
+        font-family: quote($name);
+        font-style : $style;
+        font-weight: $weight;
+        src        : $src;
+    }
+}
+
+@mixin font-face($fonts: null) {
+    @if $fonts != null {
+
+        @each $font-category, $font-slug, $font-name, $font-file-name, $font-path, $font-weight, $font-style, $font-exts in $fonts {
+
+            @include declare-font-face( $font-name, $font-file-name, $font-path, $font-weight, $font-style, $font-exts );
+
+            @if ( $font-category == serif ) {
+                %font-family-#{unquote($font-slug)} {
+                    font-family: #{quote($font-name)}, Times, Georgia, serif;
+                }
+            }
+            @else if $font-category == sans-serif {
+                %font-family-#{unquote($font-slug)} {
+                    font-family: #{quote($font-name)}, Arial, Verdana, sans-serif;
+                }
+            }
+            @else if $font-category == monospace {
+                %font-family-#{unquote($font-slug)} {
+                    font-family: #{quote($font-name)}, Monaco, Consolas, Courier, monospace;
+                }
+            }
+
+        }
+
+    }
+}
+
+/// Truncate Text
+/// the mixin is used for shortening long captions
+/// overflowing text is replaced by "..."
+@mixin truncate-text($overflow: ellipsis) {
+    overflow     : hidden;
+    white-space  : nowrap;
+    text-overflow: $overflow; // values are: clip, ellipsis, or a string
+}
+
+/// Rem Font Sizing with fallback-extension
+/// @access public
+/// @param {String} $sizeValue - Font Size in px [Base 16px]
+/// @param {String} $line - Line height in px
+@mixin font-size($sizeValue: 16, $line: $sizeValue * $base-line-height-ratio){
+    font-size: ($sizeValue * 1) + px;
+    line-height: ($line * 1) + px;
+    font-size: ($sizeValue / 10) + rem;
+    line-height: ($line / 10) + rem;
+}
+
+/// Placeholder - for styling input placeholders in every browser
+/// @access public
+/// @param {Content} $placeholders - Vendor extentions
+@mixin placeholder( $placeholders: ':-webkit-input' ':-moz' '-moz' '-ms-input' ) {
+    @each $placeholder in $placeholders {
+        &:#{$placeholder}-placeholder {
+            @content;
+        }
+    }
+}
+
+/// ==========================================================================
+/// Forms
+/// ==========================================================================
+
+/// ==========================================================================
+/// Layout
+/// ==========================================================================
+
+/// Shorthandizes position declarations.
+/// @access public
+/// @param {String} $type - Either `relative`, `absolute` or `fixed`
+/// @param {Length} $left [null] - Left offset
+/// @param {Length} $right [null] - Right offset
+/// @param {Length} $top [null] - Top offset
+/// @param {Length} $bottom [null] - Bottom offset
+/// @example scss - Usage
+///   .foo {
+///     @include position(absolute, $top: 10px, $left: 10px);
+///   }
+/// @example css - Result
+///   .foo {
+///     position: absolute;
+///     left: 10px;
+///     top: 10px;
+///   }
+@mixin position($type, $top: null, $right: null, $bottom: null, $left: null) {
+    position: $type;
+    top     : $top;
+    right   : $right;
+    bottom  : $bottom;
+    left    : $left;
+}
+
+/// Centers block elements
+/// @access public
+/// @param {String} $axis - Either `x`, `y`, `y-fluid`, or `xy`
+/// @param {Length} $height - Height of the DOM  [optional]
+/// @example scss - Usage
+///   .foo {
+///     @include center-block;
+///   }
+@mixin center($axis: 'xy', $height: false) {
+
+    /// Horizontally centers block elements
+    @if $axis == 'x' {
+        display     : block;
+        margin-left : auto;
+        margin-right: auto;
+    }
+
+    /// Vertically centers block elements with known height.
+    @else if $axis == 'y' {
+        position  : absolute;
+        top       : 50%;
+        height    : $height;
+        margin-top: -($height / 2);
+    }
+
+    /// Vertically centers block elements with unknown height.
+    @else if $axis == 'y-fluid' {
+        position: relative;
+        &::before {
+            content       : '';
+            display       : inline-block;
+            vertical-align: middle;
+            height        : 100%;
+            width         : 0.1px;
+        }
+    }
+
+    /// Horizontally and vertically centers block elements
+    @else if $axis == 'xy' {
+        position: absolute;
+        top     : 50%;
+        left    : 50%;
+        @include prefix(transform, translate(-50%, -50%), webkit ms);
+    }
+
+}
+
+/// ==========================================================================
+/// CSS Animations
+/// ==========================================================================
+
+
+/// Mixin helper to prefix `@keyframes`
+/// @access private
+/// @param {String} $name - Animation name
+@mixin keyframes($name) {
+    @-webkit-keyframes #{$name} {
+        @content;
+    }
+    @-moz-keyframes #{$name} {
+        @content;
+    }
+    @-ms-keyframes #{$name} {
+        @content;
+    }
+    @-o-keyframes #{$name} {
+        @content;
+    }
+    @keyframes #{$name} {
+        @content;
+    }
+}
+
+/// Automatically prefix any animation
+/// @access public
+/// @param {String} $str - Animation Properties
+/// @example scss - usage
+///     .foo {
+///         @include animation(animation_name 5s linear 2s infinite alternate);
+///     }
+@mixin animation($str) {
+    @include prefix(animation, $str, -webkit -moz -ms -o);
+}
+
+/// Automatically prefix any transform
+/// @access public
+/// @param {String} $str - Transformation Properties
+/// @example scss - Usage
+///   .foo {
+///     @include transform(translateX(10px));
+///   }
+/// @example css - Result
+///   .foo {
+///     -webkit-transform: translateX(10px);
+///     -ms-transform: translateX(10px);
+///     transform: translateX(10px);
+///   }
+@mixin transform($str) {
+    @include prefix(transform, $str, -webkit -ms);
+}
+
+/// Automatically prefix any transition
+/// @access public
+/// @param {String} $args - Transition Properties
+/// @example scss - usage
+///     .foo {
+///         @include transition(2s linear 1s);
+///     }
+@mixin transition($args) {
+    @include prefix(transition, $args, -webkit -moz -ms -o);
+}
+
+/// Transform Origin
+@mixin transform-origin($origin) {
+    @include prefix(transform-origin, $origin, -webkit -moz -ms -o);
+}
+
+// Rotate
+@mixin rotate($deg) {
+	@include transform(rotate(#{$deg}deg));
+}
+
+// Scale
+@mixin scale($scale) {
+	@include transform(scale($scale));
+}
+
+// Translate
+@mixin translate($x, $y) {
+	@include transform(translate($x, $y));
+}
+
+// Skew
+@mixin skew($x, $y) {
+	@include transform(skew(#{$x}deg, #{$y}deg));
+}
+
+/// Generates a grow-then-shrink (or shrink-then-grow) animation using transform(scale).
+/// @access public
+/// @param {Number} $scale-change [1.1] - The amount to scale by.
+/// @param {List} $animation-properties - Animation properties to apply.
+/// @example scss - Usage
+///   .foo {
+///     @include scale(0.5, 3s ease infinite alternate);
+///   }
+/// @example css - Result
+///   .foo {
+///     -webkit-animation: "scale-0-5" 3s ease infinite alternate;
+///     animation: "scale-0-5" 3s ease infinite alternate;
+///   }
+///  // -webkit- prefixed @keyframes are also generated
+///  @keyframes scale-0-5 {
+///    from, to {
+///      -webkit-transform: scale(1);
+///      -ms-transform: scale(1);
+///      transform: scale(1);
+///    }
+///    50% {
+///      -webkit-transform: scale(0.5);
+///      -ms-transform: scale(0.5);
+///      transform: scale(0.5);
+///    }
+///  }
+@mixin scale($scale-change:1.1, $animation-properties: 1s ease-in-out) {
+    $alias: 'scale-' + str-replace($scale-change + '', '.', '-');
+
+    @include keyframes($alias) {
+        0%,
+        100% {
+            @include transform(scale(1));
+        }
+
+        50% {
+            @include transform(scale($scale-change));
+        }
+    }
+    @include prefix(animation, $alias $animation-properties, -webkit);
+}
+
+/// Given two opacity values, animates an element between those opacity values.
+/// @access public
+/// @param {Number} $fade-from [0] - The beginning opacity value.
+/// @param {Number} $fade-to [1] - The final opacity value.
+/// @param {List} $animation-properties [1s ease] - The animation properties to apply.
+/// @example scss - Usage
+///   .foo {
+///     @include fade(.8, .2, 3s linear);
+///   }
+/// @example css - Result
+///   .foo {
+///     -webkit-animation: fade-0-8-0-2 3s linear;
+///     animation: fade-0-8-0-2 3s linear;
+///   }
+/// // (the @keyframes are also generated with a -webkit- vendor prefix)
+///   @keyframes fade-0-8-0-2 {
+///     from {
+///       opacity: 0.8;
+///       -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+///     }
+///     to {
+///       opacity: 0.2;
+///       -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+///     }
+///   }
+@mixin fade($fade-from: 0, $fade-to: 1, $animation-properties: 1s ease) {
+    $alias: fade- + str-replace($fade-from + '', '.', '-') + '-' + str-replace($fade-to + '', '.', '-');
+
+    @include keyframes($alias) {
+        from {
+            @include opacity($fade-from);
+        }
+
+        to {
+            @include opacity($fade-to);
+        }
+    }
+    @include prefix(animation, $alias $animation-properties, -webkit);
+}
+
+/// Slide-in-from creates and calls an animation that slides an element on a given axis for a given amount of space. The offset is measured in the distance from the location the element would naturally fall in, were transforms not applied to it.
+/// @access public
+/// @param {String} $slide-axis [x] - The axis on which to slide; 'x' or 'y'.
+/// @param {Length} $slide-offset [-100px] - The offset from the natural element position from which to begin the animation.
+/// @param {List} $animation-properties [3s ease-out] - Any animation properties to be included.
+/// @example scss - Usage
+///   .foo {
+///     @include slide-in-from(y, -200px, 3s ease alternate infinite);
+///   }
+/// @example css - Result
+///   .foo {
+///     -webkit-animation: slide-in-y--200px 3s linear infinite alternate;
+///     animation: slide-in-y--200px 3s linear infinite alternate;
+///   }
+///
+/// // (the @keyframes are also generated with a -webkit- vendor prefix)
+///   @keyframes slide-in-y--200px {
+///     0% {
+///       opacity: 0;
+///       -webkit-transform: translateY(-200px);
+///       -ms-transform: translateY(-200px);
+///       transform: translateY(-200px);
+///     }
+///     75% {
+///       -webkit-transform: translateY(0);
+///       -ms-transform: translateY(0);
+///       transform: translateY(0);
+///     }
+///     100% {
+///       opacity: 1;
+///     }
+///   }
+@mixin slide-in-from($slide-axis: x, $slide-offset: -100px, $animation-properties: 1s ease-in-out) {
+    $slide-start: if($slide-axis == x, translateX($slide-offset), translateY($slide-offset));
+    $slide-end  : if($slide-axis == x, translateX(0), translateY(0));
+
+    @include keyframes(slide-in-#{$slide-axis}-#{$slide-offset}) {
+        0% {
+            @include opacity(0);
+            @include transform($slide-start);
+        }
+
+        75% {
+            @include transform($slide-end);
+        }
+
+        100% {
+            @include opacity(1);
+        }
+    }
+    @include prefix(animation, slide-in-#{$slide-axis}-#{$slide-offset} $animation-properties, -webkit);
+}
+
+/// Forces browsers to use hardware acceleration for transforms
+/// @access public
+/// @example scss - Usage
+///   .foo {
+///     @include ha;
+///   }
+/// @example css - Result
+///   .foo {
+///     -webkit-transform: translate3d(0, 0, 0);
+///     -moz-transform: translate3d(0, 0, 0);
+///     transform: translate3d(0, 0, 0);
+///   }
+@mixin acceleration {
+    @include prefix(transform, translateZ(0) translate3d(0, 0, 0), -webkit -moz -o -ms);
+}
+
+/// ==========================================================================
+/// Custom / CSS3
+/// ==========================================================================
+
+/// Triangle
+/// @include triangle within a pseudo element and add positioning properties (ie. top, left)
+/// $direction: up, down, left, right
+@mixin triangle($direction, $size: 8px, $color: #222) {
+    content : '';
+    display : block;
+    position: absolute;
+    height  : 0;
+    width   : 0;
+
+    @if ($direction == 'up') {
+        border-bottom: $size solid $color;
+        border-left  : $size solid transparent;
+        border-right : $size solid transparent;
+        border-top   : none;
+    }
+
+    @else if ($direction == 'down') {
+        border-top   : $size solid $color;
+        border-left  : $size solid transparent;
+        border-right : $size solid transparent;
+        border-bottom: none;
+    }
+
+    @else if ($direction == 'left') {
+        border-top   : $size solid transparent;
+        border-bottom: $size solid transparent;
+        border-right : $size solid $color;
+        border-left  : none;
+    }
+
+    @else if ($direction == 'right') {
+        border-top   : $size solid transparent;
+        border-bottom: $size solid transparent;
+        border-left  : $size solid $color;
+        border-right : none;
+    }
+}
+
+/// Custom scrollbar
+/// @access public
+/// @param {Color} $color - Scrollbar color
+/// @param {Lenght} $width - Scrollbar width
+/// @param {Lenght} $margin - Margin between scrollbar and border
+@mixin custom-scrollbar($color, $width, $margin) {
+    &::-webkit-scrollbar {
+        width: #{$width + $margin};
+    }
+
+    &::-webkit-scrollbar-button {
+        display: none;
+    }
+
+    &::-webkit-scrollbar-track {}
+
+    &::-webkit-scrollbar-thumb {
+        border-left : #{$width} solid;
+        border-color: #{$color};
+    }
+}
+
+/// Background/Stripe builder
+/// @author Hugo Giraudel
+/// @param {Direction} $direction - Gradient direction
+/// @param {List} $colors - List of colors
+/// @param {String} $shape - Spaced Color Stops: ellipse, circle
+/// @param {String} $position - Position center: top left, 25% 50%
+/// @output `background-image` if several colors, `background-color` if only one
+@mixin background-gradient($direction, $colors, $shape: farthest-corner ellipse, $position: center) {
+    $length: length($colors);
+
+    background: nth($colors, 1);
+
+    /// Gradient
+    @if $length > 2 {
+        $list-color: nth($colors, 1);
+
+        @for $i from 2 through $length {
+            $list-color: append($list-color, nth($colors, $i), comma);
+        }
+
+        @if $direction == 'vertical' {
+            background: -webkit-linear-gradient(top, $list-color);
+            background: linear-gradient(to bottom, $list-color);
+        }
+
+        @else if $direction == 'horizontal' {
+            background: -webkit-linear-gradient(left, $list-color);
+            background: linear-gradient(to right, $list-color);
+        }
+
+        @else if $direction == 'radial' {
+            background: -webkit-radial-gradient($position, $shape, $list-color);
+            background: radial-gradient($shape at $position, $list-color);
+        }
+
+        @else {
+            background-image: -webkit-linear-gradient($direction, $list-color);
+            background-image: linear-gradient($direction, $list-color);
+        }
+
+    } @else if $length == 2 {
+        $start-color: nth($colors, 1);
+        $end-color: nth($colors, 2);
+
+        @if $direction == 'vertical' {
+            background: -webkit-linear-gradient(top, $start-color, $end-color);
+            background: linear-gradient(to bottom, $start-color, $end-color);
+        }
+
+        @else if $direction == 'horizontal' {
+            background: -webkit-linear-gradient(left, $start-color, $end-color);
+            background: linear-gradient(to right, $start-color, $end-color);
+        }
+
+        @else if $direction == 'radial' {
+            background: -webkit-radial-gradient($position, $shape, $start-color, $end-color);
+            background: radial-gradient($shape at $position, $start-color, $end-color);
+        }
+
+        @else {
+            background-image: -webkit-linear-gradient($direction, $start-color, $end-color);
+            background-image: linear-gradient($direction, $start-color, $end-color);
+        }
+
+    /// Flat color
+    } @else if $length == 1 {
+        background-color: $colors;
+    }
+}
+@mixin background-stripe($direction, $colors, $shape: farthest-corner ellipse, $position: center) {
+    $length: length($colors);
+
+    background: nth($colors, 1);
+
+    /// Stripe
+    @if $length > 1 {
+        $stripes: ();
+
+        @for $i from 1 through $length {
+            $stripe: (100% / $length) * ($i - 1);
+
+            @if $i > 1 {
+                $stripes: append($stripes, nth($colors, $i - 1) $stripe, comma);
+            }
+
+            $stripes: append($stripes, nth($colors, $i) $stripe, comma);
+        }
+
+        @if $direction == 'vertical' {
+            background-image: -webkit-linear-gradient(top, $stripes);
+            background-image: linear-gradient(to bottom, $stripes);
+        }
+
+        @else if $direction == 'horizontal' {
+            background-image: -webkit-linear-gradient(left, $stripes);
+            background-image: linear-gradient(to right, $stripes);
+        }
+
+        @else if $direction == 'radial' {
+            background-image: -webkit-radial-gradient($position, $shape, $stripes);
+            background-image: radial-gradient($shape at $position, $stripes);
+        }
+
+        @else {
+            background-image: -webkit-linear-gradient($direction, $stripes);
+            background-image: linear-gradient($direction, $stripes);
+        }
+
+    /// Flat color
+    } @else if $length == 1 {
+        background-color: $colors;
+    }
+}
+
+/// Background size helper
+/// @access public
+/// @param {Length} $width - Background width
+/// @param {Length} $height [$width] - Background height
+/// @example scss - Usage
+///   .foo {
+///     @include background-size(100%);
+///   }
+/// @example scss - Result
+///   .foo {
+///     -webkit-background-size: 100% 100%;
+///     -moz-background-size: 100% 100%;
+///     background-size: 100% 100%;
+///   }
+@mixin background-size($width, $height: $width) {
+    @include prefix(background-size, $width $height, -webkit -moz);
+}
+
+/// Retina image media query helper; given an image path with a 2x-sized version of an image, will load that image as a background-image on high-resolution devices.
+/// @access public
+/// @param {String} $image - Image path
+/// @param {Length} $width - Image width
+/// @param {Height} $height - Image height
+/// @example scss - Usage
+///   .foo {
+///     @include background-image('../images/', 'image', png svg, 100%);
+///   }
+@mixin background-image-full($image-path, $image-name, $types, $size: false, $repeat: no-repeat, $position: center) {
+    $svg: false;
+
+    background-repeat: $repeat;
+    background-position: $position;
+
+    @if($size) {
+        background-size: $size;
+    }
+
+    @each $type in $types {
+        background-image: url($image-path + '' + $image-name + '.' + $type);
+        @if $type == svg {
+            $svg : 'yes';
+        }
+    }
+
+    @if ($svg = null ) {
+        @media only screen and (-webkit-min-device-pixel-ratio: 2),
+            only screen and (-moz-min-device-pixel-ratio: 2),
+            only screen and (-o-min-device-pixel-ratio: 2/1),
+            only screen and (min-device-pixel-ratio: 2),
+            only screen and (min-resolution: 192dpi),
+            only screen and (min-resolution: 2dppx){
+            & {
+                @each $type in $types {
+                    background-image: url($image-path + '' + $image-name + '' + $retina-suffix + '.' + $type);
+                }
+            }
+        }
+    }
+}
+
+/// Resize Sprite - for resizing only a single image from a sprite
+/// params: $map = $<name>-sprites (ex. $icon-sprites)
+///         $sprite = file name w/o file type ending (ex. globe)
+///         $percent = number (ex. 50)
+@mixin resize-sprite($sprite, $percent) {
+    $width       : map-get($sprite, 'width');
+    $height      : map-get($sprite, 'height');
+    $total_width : map-get($sprite, 'total_width');
+    $total_height: map-get($sprite, 'total_height');
+    $offset_x    : ceil(map-get($sprite, 'offset_x')*($percent/100));
+    $offset_y    : ceil(map-get($sprite, 'offset_y')*($percent/100));
+
+    .sprite-#{map-get($sprite, 'name')} {
+        background-size    : ceil($total_width * ($percent/100)) ceil($total_height * ($percent/100));
+        width              : ceil($width*($percent/100));
+        height             : ceil($height*($percent/100));
+        background-position: $offset_x $offset_y;
+    }
+}
+
+/*
+* Resizes all images in a given sprite
+* mixin courtesy of Wilker Lúcio https://gist.github.com/wilkerlucio/6442309
+* params: $only = if you want to list specific files instead of regenerating every image (ex. globe, checkmark)
+*/
+@mixin resize-sprite-set($sprite-set, $percent) {
+    @each $name, $sprite in $sprite-set {}
+}
+
+/// Border image mixin
+/// Add a border image to any element
+/// https://github.com/ArunMichaelDsouza/pineapple-sass.git
+@mixin border-image($borderWidth, $url, $mode, $sliceTop, $sliceRight: 0, $sliceBottom: 0, $sliceLeft: 0) {
+    border-width: $borderWidth;
+    @if $sliceRight != 0 and $sliceBottom != 0 and $sliceLeft != 0 {
+        @include prefix(border-image,url($url) $sliceTop $sliceRight $sliceBottom $sliceLeft $mode, -webkit -moz -o);
+    }
+    @else if $sliceRight == 0 and $sliceBottom == 0 and $sliceLeft == 0 {
+        @include prefix(border-image,url($url) $sliceTop $mode, -webkit -moz -o);
+    }
+    @else if $sliceRight != 0 and $sliceBottom != 0 and $sliceLeft == 0 {
+        @include prefix(border-image,url($url) $sliceTop $sliceRight $sliceBottom $mode, -webkit -moz -o);
+    }
+    @else if $sliceRight != 0 and $sliceBottom == 0 and $sliceLeft == 0 {
+        @include prefix(border-image,url($url) $sliceTop $sliceRight $mode, -webkit -moz -o);
+    }
+}
+
+/// Box shadow mixin
+/// Add box shadow to any element
+/// https://github.com/ArunMichaelDsouza/pineapple-sass.git
+@mixin box-shadow($shadows...) {
+    @include prefix(box-shadow, $shadows, -webkit -moz);
+}
+
+/// Inset box shadow mixin
+/// Add inset box shadow to any element
+/// https://github.com/ArunMichaelDsouza/pineapple-sass.git
+@mixin box-shadow-inset($x, $y, $blur, $color) {
+    @include prefix(box-shadow, inset $x $y $blur $color, -webkit -moz);
+}
+
+/// No focus mixin
+/// Remove focus from a button or input field while in focused state
+/// https://github.com/ArunMichaelDsouza/pineapple-sass.git
+@mixin no-focus {
+	&:focus {
+		outline: none;
+		box-shadow: none;
+	}
+}
+
+/// The following mixin is taken and edited from this pen - http://codepen.io/hugo/pen/xzjGB
+/// I have added outlineColor to allow the addition of a text-shadow outline for the text.
+/// http://codepen.io/ashleynolan/pen/QwvKaw
+/// @include shade(text, #aaa, #333, 10, 135deg, true);
+/// @include outline($grayLight);
+@mixin shade($type, $color: #3498db, $depth: 20, $angle: 135deg, $long: false, $fade: false, $borderColor: false) {
+    $angle         : ($angle - 90);
+    $x             : 1.1 * cos($angle) + 0;
+    $y             : 1.1 * sin($angle) + 0;
+    $darken        : (lightness($color)/$depth)/2;
+    $opacify       : 0;
+    $shadow        : ();
+
+    @if $long == true {
+        $darken: 0;
+    }
+
+    @if $fade == true {
+        $opacify: (opacity($color)/$depth);
+        // added this for rendering in some browsers, remove if you like.
+        @include acceleration;
+    }
+
+    @for $i from 1 through $depth {
+        $shadow: $shadow, #{$i*$x}px #{$i*$y}px 0 hsla(hue($color) , saturation($color), (lightness($color) - ($i * $darken)), 1 - ($i * $opacify));
+    }
+    @if ($borderColor) {
+        #{$type}-shadow: 1.5px 1.5px 0 $borderColor, 0 1.5px 0 $borderColor, -1.5px -1.5px 0 $borderColor, -1.5px -1.5px 0 $borderColor, -1.5px 1.5px 0 $borderColor, 1.5px -1.5px 0 $borderColor, $shadow;
+    } @else {
+        #{$type}-shadow: $shadow;
+    }
+}
+/// mixin to provide just a basic outline for the text
+@mixin outline($color: #fff) {
+    text-shadow: 1.5px 1.5px 0 $color, -1.5px -1.5px 0 $color, -1.5px -1.5px 0 $color, -1.5px 1.5px 0 $color, 1.5px -1.5px 0 $color;
+}
+
+/// Fluid Video
+/// https://github.com/stursby/compass-fluid-video.git
+@mixin fluid-video($width: null,$height: null) {
+
+    @extend .video-container;
+
+    @if ($width and $height) {
+        padding-bottom: percentage($height / $width);
+    } @else {
+        padding-bottom: 56.25%;
+    }
+
+    & > iframe, object, embed, video  {
+        @extend .video;
+    }
+}
+
+/// ==========================================================================
+/// Filters
+/// ==========================================================================
+
+/// Use filter
+/// https://css-tricks.com/almanac/properties/f/filter/
+/// @access public
+/// @param {String} $filter - Filter name
+/// @ exemple:  grayscale([ <number> | <percentage> ])
+///             sepia([ <number> | <percentage> ])
+///             saturate([ <number> | <percentage> ])
+///             hue-rotate(<angle>)
+///             invert([ <number> | <percentage> ])
+///             opacity([ <number> | <percentage> ])
+///             brightness([ <number> | <percentage> ])
+///             blur(<length>)
+///             drop-shadow(<length>{2,3} <color>)
+@mixin filter($filter, $config) {
+    $value: $filter + '(' + $config + ')';
+    @include prefix(filter, $value, -webkit);
+}
+
+/// This mixin is based on this code https://coderwall.com/p/mqk9ea
+/// It allows for a crossbrowser partial applying of both effects
+/// $toggle powers on and off the effect, $mode can be 'grayscale' or 'sepia'
+@mixin filter-grayscale( $toggle: "on", $mode:"grayscale", $amount: 1 ) {
+    $svg-type: "matrix";
+    $svg-value-grayscale: "0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0";
+    $svg-value-sepia: (0.393 + 0.607 * (1 - $amount)) + " " + (0.769 - 0.769 * (1 - $amount)) + " " + (0.189 - 0.189 * (1 - $amount)) + " 0 0 " + (0.349 - 0.349 * (1 - $amount)) + " " + (0.686 + 0.314 * (1 - $amount)) + " " + (0.168 - 0.168 * (1 - $amount)) + " 0 0 " + (0.272 - 0.272 * (1 - $amount)) + " " + (0.534 - 0.534 * (1 - $amount)) + " " + (0.131 + 0.869 * (1 - $amount)) + " 0 0 0 0 0 1 0";
+    $ie-alpha: alpha(#{"opacity="}round( $amount * 100 ) );
+
+    @if $amount != 1 and $mode == "grayscale" {
+        $svg-type: "saturate";
+        $svg-value-grayscale: $amount;
+    }
+
+    @if $toggle == "on" {
+    	@if $mode == "grayscale" {
+	        filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'#{$mode}\'><feColorMatrix type=\'#{$svg-type}\' values=\'#{$svg-value-grayscale}\'/></filter></svg>##{$mode}"); // Firefox 10+, Firefox on Android
+	        filter: gray $ie-alpha; // IE6-9
+	        -webkit-filter: grayscale( round( $amount * 100% ) ); // Chrome 19+, Safari 6+, Safari 6+ iOS
+	        filter: grayscale( round( $amount * 100% ) ); // Catch-all
+        }
+        @else if $mode == "sepia" {
+	        filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'#{$mode}\'><feColorMatrix type=\'matrix\' values=\'#{$svg-value-sepia}\'/></filter></svg>##{$mode}");
+	        filter: #5E2612 $ie-alpha;
+	        -webkit-filter: sepia( round( $amount * 100% ) ); // Chrome 19+, Safari 6+, Safari 6+ iOS
+	        filter: sepia( round( $amount * 100% ) ); // Catch-all
+        }
+        @else {
+        	$toggle:"off";
+        }
+    }
+
+    @if $toggle == "off" {
+        @if $svg-type == "saturate" {
+            filter: none;
+        }
+        @else {
+            filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
+        }
+        -webkit-filter: grayscale(0%);
+        filter: grayscale(0);
+    }
+}
+
+/// Use Instagram filters
+/// http://designpieces.com/2014/09/instagram-filters-css3-effects/
+/// @access public
+@mixin filter-special($name) {
+    $name: to-lower-case($name);
+
+    @mixin filter-setup {
+        bottom: 0;
+        content: '';
+        left: 0;
+        opacity: 0.4;
+        position: absolute;
+        right: 0;
+        top:0;
+        z-index: 4;
+    }
+
+    @if $name == 'xpro' {
+        @include prefix(filter, contrast(1.3) brightness(0.8) sepia(0.3) saturate(1.5) hue-rotate(-20deg), -webkit);
+    }
+    @else if $name == 'willow' {
+        @include prefix(filter, saturate(0.02) contrast(0.85) brightness(1.2) sepia(0.02), -webkit);
+    }
+    @else if $name == 'sutro' {
+        @include prefix(filter, brightness(0.75) contrast(1.3) sepia(0.5) hue-rotate(-25deg), -webkit);
+    }
+    @else if $name == 'mayfair' {
+        @include prefix(filter, saturate(1.4) contrast(1.1), -webkit);
+    }
+    @else if $name == 'kelvin' {
+        @include prefix(filter, sepia(0.4) saturate(2.4) brightness(1.3) contrast(1), -webkit);
+    }
+    @else if $name == 'inkwell' {
+        @include prefix(filter, grayscale(1) brightness(1.2) contrast(1.05), -webkit);
+    }
+    @else if $name == 'earlybird' {
+        @include prefix(filter, sepia(0.4) saturate(1.6) contrast(1.1) brightness(0.9) hue-rotate(-10deg), -webkit);
+        position: relative;
+        content: "fake hack";
+        &:after{
+        @include background-gradient(radial, rgba(white,0) rgba(white,0.9));
+        @include filter-setup;
+      }
+    }
+    @else if $name == '1977' {
+        @include prefix(filter, sepia(0.5) hue-rotate(-30deg) saturate(1.2) contrast(0.8), -webkit);
+    }
+    @else if $name == 'washout' {
+        @include prefix(filter, sepia(10%) saturate(0.8) brightness(1.5) contrast(0.8), -webkit);
+        position: relative;
+        content: "fake hack";
+        &:after{
+            @include background-gradient(radial, rgba(white,0) rgba(white,0) rgba(white,0.9));
+            @include filter-setup;
+          }
+    }
+    @else if $name == 'noire' {
+        @include prefix(filter, grayscale(90%) contrast(1.3), -webkit);
+        position: relative;
+        content: "fake hack";
+        &:after{
+            @include background-gradient(radial, rgba(0,0,0,0) rgba(0,0,0,0.3) rgba(0,0,0,0.65) rgba(0,0,0,0.69));
+            @include filter-setup;
+            opacity: 0.7;
+          }
+    }
+    @else if $name == 'casablanca' {
+        @include prefix(filter, grayscale(90%) contrast(0.8) brightness(110%), -webkit);
+        position: relative;
+        content: "fake hack";
+        &:after{
+            @include background-gradient(radial, rgba(white,0) rgba(white,0.9));
+            @include filter-setup;
+        }
+    }
+    @else if $name == 'lomo' {
+        @include prefix(filter, contrast(1.3) saturate(1.2) brightness(140%), -webkit);
+        position: relative;
+        content: "fake hack";
+        &:after{
+            @include background-gradient(radial, rgba(0,0,0,0) rgba(0,0,0,0) rgba(0,0,0,0) rgba(0,0,0,0) rgba(0,0,0,0.65) rgba(0,0,0,0.69) rgba(0,0,0,1));
+            @include filter-setup;
+            opacity: 0.7;
+        }
+    }
+    @else if $name == 'warming' {
+        @include prefix(filter, sepia(10%) saturate(0.9) brightness(140%), -webkit);
+        position: relative;
+        content: "fake hack";
+        &:after{
+            background-color: rgba(236, 138,0,0.2);
+            @include filter-setup;
+            opacity: 0.6;
+          }
+    }
+    @else if $name == 'glassic' {
+        @include prefix(filter, brightness(90%) contrast(1.2), -webkit);
+        position: relative;
+        content: "fake hack";
+        &:after{
+            @include background-gradient(340deg, rgba(244,244,244,0.0) rgba(244,244,244,0.0) rgba(244,244,244,0.0) rgba(244,244,244,0.7) rgba(255,255,255,1));
+            box-shadow: inset 0px 0px 10rem rgba(255,255,255,1);
+            @include filter-setup;
+            opacity: 0.6;
+        }
+    }
+}

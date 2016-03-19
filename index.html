@@ -8,7 +8,7 @@
 
 <head>
 
-    <!-- Basic Page Needs
+<!-- Basic Page Needs
 ================================================== -->
 
     <title>JBO + Curriculum vit&aelig;</title>
@@ -26,14 +26,14 @@
     <meta name="Distribution" content="global">
     <meta name="Category" content="curriculum vitae">
     <meta name="robots" content="index,follow" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <!-- Mobile Specific Metas
+<!-- Mobile Specific Metas
 ================================================== -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <!-- Basic
+<!-- Basic
 ================================================== -->
 
     <!--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
@@ -42,11 +42,7 @@
 		<script type="text/javascript" src="js/css3-mediaqueries.js"></script>
 	<![endif]-->
 
-    <!-- Plugin
-================================================== -->
-
-
-    <!-- Favicons
+<!-- Favicons
 ================================================== -->
 
     <link rel="shortcut icon" href="images/favicon.ico">
@@ -66,16 +62,18 @@
         <meta name="msapplication-TileImage" content="images/ie10-icon-144x144.png">
     <![endif]-->
 
-    <!-- Fonts
+<!-- Fonts
 ================================================== -->
 
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,300,600' rel='stylesheet' type='text/css'>
     <!--<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">-->
 
-    <!-- Custom
+<!-- Plugin
 ================================================== -->
 
-    <link rel="stylesheet" href="css/style.css" media="all">
+<!-- Custom
+================================================== -->
+
+    <link rel="stylesheet" href="css/main.css" media="all">
     <link rel="stylesheet" href="css/media-queries.css" media="all">
     <!--    <script type="text/javascript" src="js/custom.js"></script>-->
 
@@ -83,77 +81,65 @@
 
 <body>
 
-    <!-- Page Layout
+<!-- Page Layout
 ================================================== -->
 
-    <div id="wrapper">
+    <div id="wrapper" class="grid-noGutter-equalHeight-middle">
 
-        <section id="background">
-        </section>
-        <!-- #container -->
-
-        <section id="container" class="container">
-            <div id="animation" class="content-wrapper">
+        <section id="dialogue" class="container col-5_xs-12 animated ">
+            <div id="dial" class="content-wrapper ">
+                <img src="http://lorempixel.com/400/200/fashion" alt="Placeholder">
             </div>
-            <div id="perso" class="content-wrapper">
-                <hgroup id="about-name">
-                    <h1>
-                    <p class="hide">Le Curriculum vit&aelig; de</p>
-                    <p  class="highlight">Jean-Baptiste O.</p>
-                </h1>
-                </hgroup>
-                <div id="about-contact">
-                    <div>
-                        <p class="off">CONTACT</p>
-                        <p class="highlight">+33&bull;(0)6&bull;32&bull;67&bull;80&bull;97</p>
+            <!-- .content-wrapper -->
+        </section>
+        <!-- #container-dialogue -->
+
+        <section id="id" class="container col-6_sm-12-">
+            <article id="perso" class="content-wrapper grid-1_xs-2-noGutter-middle" itemscope itemtype="http://schema.org/Person">
+                <div id="about-photo" class="content col">
+                    <object type="image/svg+xml" data="./images/jbo.svg" id="photo" class="ratio-240x330">
+                        <img src="./images/jbo.svg" alt="Le Curriculum vit&aelig; de Jean-Baptiste O." class="ratio-240x330"><!-- fallback image in CSS -->
+                    </object>
+                </div>
+                <div id="about-info" class="content col">
+                    <div id="about-name">
+                        <h1>
+                            <span class="hide">Le Curriculum vit&aelig; de</span>
+                            <span class="highlight" itemprop="name">Jean-Baptiste O.</span>
+                        </h1>
+                    </div>
+                    <div id="about-telephone">
+                        <span class="hide">CONTACT</span>
+                        <span class="highlight" itemprop="telephone">+33 (0)6 32 67 80 97</span>
+                    </div>
+                    <div id="about-social">
+                        <a class="button icon icon-email animated fadeIn" href="mailto:jbo@soapoperator.com" itemprop="email"><i  class="hide-text">jbo@soapoperator.com</i></a>
+                        <a class="button icon icon-twitter animated fadeIn " href='https://twitter.com/soapoperator/' rel="publisher" target="_blank"><i  class="hide-text">twitter</i></a>
+                        <a class="button icon icon-linkedin animated fadeIn " href="http://fr.linkedin.com/in/jbolivier/" target="_blank"><i  class="hide-text">linkedin</i></a>
+                        <a class="button icon icon-download animated fadeIn visible-S" href="#!" target="_blank"><i  class="hide-text">Télécharger le Curriculum vit&aelig;</i></a>
                     </div>
                 </div>
-            </div>
+            </article>
             <!-- .content-wrapper -->
         </section>
-        <!-- #container -->
+        <!-- #container-id -->
 
-        <section id="timeline" class="box box-timeline slide">
-            <div class="content-wrapper">
-            </div>
-            <!-- .content-wrapper -->
-        </section>
-        <!-- #timeline -->
-
-        <section id="contact" class="box box-contact slide">
-            <div class="content-wrapper">
-                <div class="content col2-set">
-                    <h2>Curriculum vit&aelig; : Contact</h2>
-                    <div id="social" class="col-1">
-                        <div id="content-contact">
-                            <p><a href="mailto:jbo@soapoperator.com">jbo@soapoperator.com</a></p>
-                            <p><a class="fa fa-google-plus-square icon" href='https://plus.google.com/112111943931097254416/' rel="publisher" target="_blank">&nbsp;</a><a class="fa fa-linkedin-square icon" href="http://fr.linkedin.com/in/jbolivier/" target="_blank">&nbsp;</a>
-                                <a
-                                    class="fa fa-twitter-square icon" href="https://twitter.com/chryslervert" target="_blank">&nbsp;</a>
-                            </p>
-                        </div>
-                    </div>
-                    <!-- #social -->
-                </div>
-                <!-- .content -->
-            </div>
-            <!-- .content-wrapper -->
-        </section>
-        <!-- #contact -->
-
-        <footer id="footer">
-        </footer>
-        <!-- #footer -->
+        <section id="background" class="container col-1_xs-12 animated"></section>
+        <!-- #background -->
 
     </div>
     <!-- #wrapper -->
 
-    <!-- End Document
+    <footer id="footer">
+    </footer>
+    <!-- #footer -->
+
+<!-- End Document
 ================================================== -->
 
-    <!-- Piwik
+<!-- Piwik
 ================================================== -->
-    <iframe style="border: 0; height: 200px; width: 600px;" src="https://analytics.soapoperator.com/index.php?module=CoreAdminHome&action=optOut&language=fr"></iframe>
+    <iframe class="hide" style="border: 0; height: 200px; width: 600px;" src="https://analytics.soapoperator.com/index.php?module=CoreAdminHome&action=optOut&language=fr"></iframe>
 
 </body>
 
