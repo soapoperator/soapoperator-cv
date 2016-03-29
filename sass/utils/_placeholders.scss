@@ -6,7 +6,8 @@
 ///   .foo {
 ///     @extend %clearfix;
 ///   }
-%clearfix {
+%clear,
+.clear {
     *zoom: 1;
 
     &:before,
@@ -26,7 +27,8 @@
 ///   .foo {
 ///     @extend %hide;
 ///   }
-%hide {
+%hide,
+.hide {
     margin  : -1px;
     padding : 0;
     width   : 1px;
@@ -38,7 +40,8 @@
     bottom: 0;
 }
 
-%hideText {
+%hideText,
+.hide-text {
     overflow   : hidden;
     text-indent: -9000px;
     display    : block;
@@ -56,4 +59,42 @@
         display: inline-block;
         width  : 100%;
     }
+}
+
+
+// /* Social Class Color */
+// @each $social-network, $social-color in $colors-social {
+//     .social-link-#{$social-network} {
+//         background: $social-color;
+//         &:hover {
+//             background: lighten($social-color, 10%);
+//         }
+//     }
+// }
+
+// /* Icon Stripe */
+// @each $name,$visual in $icon-map {
+//     .icon-#{$name} {
+//         font-size: 0;
+//
+//         &:before {
+//             font-size  : 1rem;
+//             font-family: 'IcoMoon';
+//             content    : $visual;
+//         }
+//     }
+// }
+
+/* Aspect Ratio */
+// @include generateRatios(16,9); // 16x9
+// @include generateRatios(4,3); // 4x3
+@include generateRatios(240,330); // 4x3
+
+/* Vertical align with unknow height */
+.center-vertical {
+    @include center(y-fluid);
+}
+/* Horizontal align */
+.center-horizontal {
+    @include center(x);
 }

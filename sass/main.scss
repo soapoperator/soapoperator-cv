@@ -1,4 +1,4 @@
-// compileOnSave: true, compileCompressed: true, compileExpanded: true, compressedFilenamePattern: ../css/$1.min.css, expandedFilenamePattern: ../css/$1.css
+// compileOnSave: true, compileCompressed: false, compileExpanded: true, compressedFilenamePattern: ../css/$1.min.css, expandedFilenamePattern: ../css/$1.css
 
 /// utils
 /// ==========================================================================
@@ -6,7 +6,6 @@
 @import "utils/functions";
 @import "utils/mixins";
 @import "utils/placeholders";
-@import "utils/class";
 
 /// vendors
 /// ==========================================================================
@@ -27,6 +26,7 @@
 @import "layout/background";
 @import "layout/dialogue";
 @import "layout/id";
+@import "layout/footer";
 
 /// components
 /// ==========================================================================

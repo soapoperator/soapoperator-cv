@@ -2,5 +2,24 @@
 
 #dialogue {
     padding: 0 3%;
-    @extend %font-family-monospace;
+    font-size: 4em;
+    font-size: 4vmax;
+
+    @include breakpoint-to(S){
+        font-size: 4em;
+        font-size: 4vmax;
+        padding: 3rem;
+    };
+
+    .actor {
+        @extend %font-family-monospace;
+    }
+
+    .actor-1 {
+        font-weight: 600;
+    }
+
+    .actor__content--typing:after {
+        content:'_';
+    }
 }

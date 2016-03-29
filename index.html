@@ -2,7 +2,8 @@
 <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
 <!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
 <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!-->
+<!--[if IE 9 ]><html class="ie ie9" lang="en"> <![endif]-->
+<!--[if (gte IE 10)|!(IE)]><!-->
 <html lang="fr">
 <!--<![endif]-->
 
@@ -13,7 +14,7 @@
 
     <title>JBO + Curriculum vit&aelig;</title>
     <meta name="Description" content="chef de projet, webmaster, int&eacute;grateur, graphiste, r&eacute;alisateur, producteur. Mon petit cv pli&eacute; en quatre. Plus joli, plus complet...">
-    <meta name="Content-Type" content="UTF-8">
+    <meta charset="UTF-8"> <!--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> -->
     <meta name="Content-Language" content="fr">
     <meta name="Keywords" content="cv,jbo,soap operator,design, running">
     <meta name="Subject" content="Curriculum vitae">
@@ -36,7 +37,7 @@
 <!-- Basic
 ================================================== -->
 
-    <!--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<script type="text/javascript" src="js/css3-mediaqueries.js"></script>
@@ -75,7 +76,9 @@
 
     <link rel="stylesheet" href="css/main.css" media="all">
     <link rel="stylesheet" href="css/media-queries.css" media="all">
-    <!--    <script type="text/javascript" src="js/custom.js"></script>-->
+    <script type="text/javascript" src="js/jquery.browser.min.js" defer></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/theaterjs/latest/theater.min.js" defer></script>
+    <script type="text/javascript" src="js/custom.js" defer></script>
 
 </head>
 
@@ -86,22 +89,28 @@
 
     <div id="wrapper" class="grid-noGutter-equalHeight-middle">
 
-        <section id="dialogue" class="container col-5_xs-12 animated ">
-            <div id="dial" class="content-wrapper ">
-                <img src="http://lorempixel.com/400/200/fashion" alt="Placeholder">
-            </div>
-            <!-- .content-wrapper -->
-        </section>
-        <!-- #container-dialogue -->
-
-        <section id="id" class="container col-6_sm-12-">
+        <section id="id" class="container col-6_sm-12 animated">
             <article id="perso" class="content-wrapper grid-1_xs-2-noGutter-middle" itemscope itemtype="http://schema.org/Person">
-                <div id="about-photo" class="content col">
-                    <object type="image/svg+xml" data="./images/jbo.svg" id="photo" class="ratio-240x330">
-                        <img src="./images/jbo.svg" alt="Le Curriculum vit&aelig; de Jean-Baptiste O." class="ratio-240x330"><!-- fallback image in CSS -->
-                    </object>
+                <div id="about-photo" class="content col-10_xs-5"push-left="off-2_xs-0">
+                    <div id="photo" class="ratio-240x330">
+                        <object type="image/svg+xml" data="./images/jbo.svg" class="ratio-240x330">
+                            <img src="./images/jbo.png" alt="Le Curriculum vit&aelig; de Jean-Baptiste O." class="ratio-240x330"><!-- fallback image in CSS -->
+                        </object>
+                        <div class="stripes">
+                            <div class="stripe"></div>
+                            <div class="stripe"></div>
+                            <div class="stripe"></div>
+                            <div class="stripe"></div>
+                            <div class="stripe"></div>
+                            <div class="stripe"></div>
+                            <div class="stripe"></div>
+                            <div class="stripe"></div>
+                            <div class="stripe"></div>
+                            <div class="stripe"></div>
+                        </div>
+                    </div>
                 </div>
-                <div id="about-info" class="content col">
+                <div id="about-info" class="content col-10_xs-7" push-left="off-2_xs-0">
                     <div id="about-name">
                         <h1>
                             <span class="hide">Le Curriculum vit&aelig; de</span>
@@ -113,10 +122,22 @@
                         <span class="highlight" itemprop="telephone">+33 (0)6 32 67 80 97</span>
                     </div>
                     <div id="about-social">
-                        <a class="button icon icon-email animated fadeIn" href="mailto:jbo@soapoperator.com" itemprop="email"><i  class="hide-text">jbo@soapoperator.com</i></a>
-                        <a class="button icon icon-twitter animated fadeIn " href='https://twitter.com/soapoperator/' rel="publisher" target="_blank"><i  class="hide-text">twitter</i></a>
-                        <a class="button icon icon-linkedin animated fadeIn " href="http://fr.linkedin.com/in/jbolivier/" target="_blank"><i  class="hide-text">linkedin</i></a>
-                        <a class="button icon icon-download animated fadeIn visible-S" href="#!" target="_blank"><i  class="hide-text">Télécharger le Curriculum vit&aelig;</i></a>
+                        <a class="icon icon-email animated fadeIn" href="mailto:jbo@soapoperator.com" itemprop="email">
+                            <svg class="icon-email"><use xlink:href="#icon-email"></use></svg>
+                            <i class="">Contactez moi par email</i>
+                        </a>
+                        <a class="icon icon-twitter animated fadeIn " href='https://twitter.com/soapoperator/' rel="publisher" target="_blank">
+                            <svg class="icon-twitter"><use xlink:href="#icon-twitter"></use></svg>
+                            <i class="">Contactez moi sur Twitter</i>
+                        </a>
+                        <a class="icon icon-linkedin animated fadeIn " href="http://fr.linkedin.com/in/jbolivier/" target="_blank">
+                            <svg class="icon-linkedin"><use xlink:href="#icon-linkedin"></use></svg>
+                            <i class="">Contactez moi sur Linkedin</i>
+                        </a>
+                        <a class="icon icon-download animated fadeIn" href="#!" target="_blank">
+                            <svg class="icon-download"><use xlink:href="#icon-download"></use></svg>
+                            <i class="">Télécharger le Curriculum vit&aelig;</i>
+                        </a>
                     </div>
                 </div>
             </article>
@@ -124,15 +145,61 @@
         </section>
         <!-- #container-id -->
 
-        <section id="background" class="container col-1_xs-12 animated"></section>
+        <aside id="dialogue" class="container col-5_xs-12 animated">
+            <div id="dial" class="content-wrapper ">
+                <div class="actor actor-1">
+                    <span class="actor__prefix">~$</span>
+                    <span id="vader" class="actor__content"></span>
+                </div>
+                <div class="actor actor-2">
+                    <span class="actor__prefix">~$</span>
+                    <span id="luke" class="actor__content"></span>
+                </div>
+            </div>
+            <!-- .content-wrapper -->
+        </aside>
+        <!-- #container-dialogue -->
+
+        <aside id="background" class="container col-1_xs-12 animated"></aside>
         <!-- #background -->
 
     </div>
     <!-- #wrapper -->
 
-    <footer id="footer">
+    <footer id="footer" class="container grid-noGutter animated fadeInUpBig">
+        <div class="content-wrapper col-6" push-left="off-3">
+            <div class="content">
+                <a class="" href="#!" target="_blank">
+                    <span class="">Télécharger le Curriculum vit&aelig;</span>
+                    <svg class="icon icon-download"><use xlink:href="#icon-download"></use></svg>
+                </a>
+            </div>
+        </div>
     </footer>
     <!-- #footer -->
+
+
+    <svg style="position: absolute; width: 0; height: 0;" width="0" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <symbol id="icon-linkedin" viewBox="0 0 22 26">
+            <title>linkedin</title>
+            <path class="path1" d="M3.439 20.516h3.352v-10.069h-3.352v10.069zM7.008 7.342q-0.014-0.754-0.522-1.248t-1.349-0.493-1.371 0.493-0.53 1.248q0 0.74 0.515 1.241t1.342 0.501h0.014q0.856 0 1.378-0.501t0.522-1.241zM15.496 20.516h3.352v-5.775q0-2.234-1.059-3.381t-2.8-1.146q-1.973 0-3.032 1.698h0.029v-1.465h-3.352q0.044 0.958 0 10.069h3.352v-5.629q0-0.551 0.102-0.813 0.218-0.508 0.653-0.863t1.074-0.355q1.683 0 1.683 2.278v5.383zM22.286 6.036v13.929q0 1.727-1.226 2.953t-2.953 1.226h-13.929q-1.727 0-2.953-1.226t-1.226-2.953v-13.929q0-1.727 1.226-2.953t2.953-1.226h13.929q1.727 0 2.953 1.226t1.226 2.953z"></path>
+        </symbol>
+        <symbol id="icon-twitter" viewBox="0 0 22 26">
+            <title>twitter</title>
+            <path class="path1" d="M18.571 8.85q-0.813 0.363-1.756 0.493 0.987-0.58 1.349-1.698-0.943 0.551-1.944 0.74-0.885-0.958-2.22-0.958-1.262 0-2.155 0.892t-0.892 2.155q0 0.421 0.073 0.696-1.872-0.102-3.511-0.943t-2.786-2.249q-0.421 0.725-0.421 1.538 0 1.654 1.32 2.539-0.682-0.014-1.451-0.377v0.029q0 1.088 0.725 1.937t1.785 1.052q-0.421 0.116-0.74 0.116-0.189 0-0.566-0.058 0.305 0.914 1.081 1.509t1.763 0.609q-1.683 1.306-3.787 1.306-0.377 0-0.725-0.044 2.147 1.364 4.672 1.364 1.625 0 3.047-0.515t2.438-1.378 1.748-1.988 1.088-2.35 0.355-2.445q0-0.261-0.014-0.392 0.914-0.653 1.523-1.581zM22.286 6.036v13.929q0 1.727-1.226 2.953t-2.953 1.226h-13.929q-1.727 0-2.953-1.226t-1.226-2.953v-13.929q0-1.727 1.226-2.953t2.953-1.226h13.929q1.727 0 2.953 1.226t1.226 2.953z"></path>
+        </symbol>
+        <symbol id="icon-email" viewBox="0 0 26 26">
+            <title>email</title>
+            <path class="path1" d="M26 10.301v11.52q0 0.958-0.682 1.639t-1.639 0.682h-21.357q-0.958 0-1.639-0.682t-0.682-1.639v-11.52q0.638 0.711 1.465 1.262 5.252 3.569 7.211 5.006 0.827 0.609 1.342 0.95t1.371 0.696 1.596 0.355h0.029q0.74 0 1.596-0.355t1.371-0.696 1.342-0.95q2.467-1.785 7.225-5.006 0.827-0.566 1.451-1.262zM26 6.036q0 1.146-0.711 2.191t-1.77 1.785q-5.455 3.787-6.79 4.715-0.145 0.102-0.617 0.443t-0.783 0.551-0.754 0.472-0.834 0.392-0.725 0.131h-0.029q-0.334 0-0.725-0.131t-0.834-0.392-0.754-0.472-0.783-0.551-0.617-0.443q-1.32-0.929-3.801-2.648t-2.974-2.068q-0.9-0.609-1.698-1.676t-0.798-1.98q0-1.132 0.602-1.886t1.719-0.754h21.357q0.943 0 1.632 0.682t0.689 1.639z"></path>
+        </symbol>
+        <symbol id="icon-download" viewBox="0 0 26 26">
+            <title>download</title>
+            <path class="path1" d="m 18.688,11.375 -6.5,6.5 -6.5,-6.5 4.063,0 0,-9.75 4.875,0 0,9.75 z m -6.5,6.5 -12.188,0 0,6.5 24.375,0 0,-6.5 -12.188,0 z"></path>
+        </symbol>
+    </defs>
+</svg>
+
 
 <!-- End Document
 ================================================== -->

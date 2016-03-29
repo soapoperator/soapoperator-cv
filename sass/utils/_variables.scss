@@ -69,12 +69,14 @@ $base-font-size: $browser-context !default;
 
 $base-line-height-ratio: 1 !default;
 
+// Use desktop first
+// Be carefull with the order
 $body-font-sizes: (
-    defaut:(font-size: $base-font-size * .6, line-height: $base-line-height-ratio * 0.8),
-    S:     (font-size: $base-font-size * .6, line-height: $base-line-height-ratio * 0.8),
-    M:     (font-size: $base-font-size * .8, line-height: $base-line-height-ratio * 1),
-    L:     (font-size: $base-font-size * .8 , line-height: $base-line-height-ratio * 1),
-    XL:    (font-size: $base-font-size * .8, line-height: $base-line-height-ratio * 1),
+    defaut:(font-size: $base-font-size * 1, line-height: $base-line-height-ratio * 1.1),
+    XL:    (font-size: $base-font-size * 1, line-height: $base-line-height-ratio * 1.1),
+    L:     (font-size: $base-font-size * .875 , line-height: $base-line-height-ratio * 1.1),
+    M:     (font-size: $base-font-size * .75, line-height: $base-line-height-ratio * 1),
+    S:     (font-size: $base-font-size * .75, line-height: $base-line-height-ratio * 1),
 );
 
 /// Colors Styles

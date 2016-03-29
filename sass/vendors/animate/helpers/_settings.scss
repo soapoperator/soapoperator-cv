@@ -47,7 +47,7 @@ $hinge-translate 				: 700px !default;
 // Hugely influenced and inspired by @csswizardry's inuit.css _vars.scss file                       //
 //==================================================================================================//
 
-$use-all                    :   false !default; // all animations status
+$use-all                :   false !default; // all animations status
 $use-fade               :   $use-all !default; // all fades
 $use-bounce             :   $use-all !default; // all bounces
 $use-rotate             :   $use-all !default; // all rotates
@@ -60,8 +60,8 @@ $use-zoom               :   $use-all !default; // all zoom animations
 // Fade Enter
 $use-fade-in            :   $use-fade !default;
 $use-fadeIn 			:	true;
-$use-fadeInUp 			:	$use-fade-in !default;
-$use-fadeInUpBig 		:	$use-fade-in !default;
+$use-fadeInUp 			:	true;
+$use-fadeInUpBig 		:	true;
 $use-fadeInDown 		:	$use-fade-in !default;
 $use-fadeInDownBig 		:	$use-fade-in !default;
 $use-fadeInLeft 		:	$use-fade-in !default;
@@ -123,9 +123,9 @@ $use-rotateOutDownRight : 	$use-rotate-out !default;
 // Slide Enter
 $use-slide-in           :   $use-slide !default;
 $use-slideIn			:   $use-slide-in !default;
-$use-slideInUp			:   true;
+$use-slideInUp			:   $use-fade-in !default
 $use-slideInDown		:   $use-slide-in !default;
-$use-slideInLeft		:   true;
+$use-slideInLeft		:   $use-fade-in !default
 $use-slideInRight		:   $use-slide-in !default;
 
 // Slide Exit

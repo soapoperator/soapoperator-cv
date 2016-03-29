@@ -1,32 +1,40 @@
 // main: ../main.scss
 
-$height-dialogue-mobile: 70vh !default;
+$height-dialogue-mobile: 65vh !default;
+$height-id-mobile: 25vh !default;
 $height-background-mobile: 10vh !default;
-$height-id-mobile: 20vh !default;
 
 #wrapper {
     width:100%;
     height:100%;
 
     #dialogue {
-        @extend .slideInLeft;
+        z-index:1;
         @include prefix(animation-delay,0.3s,-webkit);
 
         @include breakpoint-to(S) {
+            order: -1;
             height:$height-dialogue-mobile;
             @include prefix(animation-delay,1.5s,-webkit);
         }
+        @extend %xs-slideinup;
     }
 
     #id {
+        z-index:2;
+
+        @include breakpoint-from(S) {
+            order: 1;
+        }
         @include breakpoint-to(S) {
             height:$height-id-mobile;
             @include prefix(animation-delay,0.8s,-webkit);
         }
+        @extend %xs-slideinup;
     }
 
     #background {
-        @extend .slideInLeft;
+        z-index:10;
 
         @include breakpoint-from(S) {
             order: -1;
@@ -34,14 +42,12 @@ $height-id-mobile: 20vh !default;
         @include breakpoint-to(S) {
             height:$height-background-mobile;
         }
+        @extend %xs-slideinup;
     }
 
 }
-
 @include breakpoint-to(S) {
-    #dialogue,
-    #id,
-    #background {
-        @extend .slideInUp;
-    }
+    %xs-slideinup {
+        @include animate-prefixer(animation-name, fadeInUpBig);
+    };
 }

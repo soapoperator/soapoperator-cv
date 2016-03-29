@@ -19,6 +19,7 @@
 /// CSS Animations
 /// Custom / CSS3
 /// Filter
+/// Vendors
 
 /// ==========================================================================
 /// Media Queries
@@ -49,9 +50,20 @@ $constraints: (
 
         @if $ratio {
 
-            @media only screen and (min-width: nth($breakpoints-value,1)) and (max-width: nth($breakpoints-value,2)) and (min--moz-device-pixel-ratio: $ratio),
-            only screen and (min-width: nth($breakpoints-value,1)) and (max-width: nth($breakpoints-value,2)) and (-webkit-min-device-pixel-ratio: $ratio),
-            only screen and (min-width: nth($breakpoints-value,1)) and (max-width: nth($breakpoints-value,2)) and (min-device-pixel-ratio: $ratio) {
+            @media
+            only screen and
+                (min-width: nth($breakpoints-value,1))
+                and (max-width: nth($breakpoints-value,2))
+                and (min--moz-device-pixel-ratio: $ratio),
+            only screen
+                and (min-width: nth($breakpoints-value,1)) and
+                (max-width: nth($breakpoints-value,2)) and
+                (-webkit-min-device-pixel-ratio: $ratio),
+            only screen
+                and (min-width: nth($breakpoints-value,1)) and
+                (max-width: nth($breakpoints-value,2)) and
+                (min-device-pixel-ratio: $ratio)
+            {
                 @content;
             }
 
@@ -59,7 +71,11 @@ $constraints: (
 
         @else {
 
-            @media screen and (min-width: nth($breakpoints-value,1)) and (max-width: nth($breakpoints-value,2))  {
+            @media
+            screen and
+                (min-width: nth($breakpoints-value,1)) and
+                (max-width: nth($breakpoints-value,2))
+            {
                 @content;
             }
 
@@ -85,9 +101,17 @@ $constraints: (
 
         @if $ratio {
 
-            @media only screen and ($constraint: $width) and (min--moz-device-pixel-ratio: $ratio),
-            only screen and ($constraint: $width) and (-webkit-min-device-pixel-ratio: $ratio),
-            only screen and ($constraint: $width) and (min-device-pixel-ratio: $ratio) {
+            @media
+            only screen and
+                ($constraint: $width) and
+                (min--moz-device-pixel-ratio: $ratio),
+            only screen and
+                ($constraint: $width) and
+                (-webkit-min-device-pixel-ratio: $ratio),
+            only screen and
+                ($constraint: $width) and
+                (min-device-pixel-ratio: $ratio)
+            {
                 @content;
             }
 
@@ -135,7 +159,9 @@ $constraints: (
             }
         }
         @else {
-            #{nth($value,1)}: #{nth($value,2)};
+            @each $a, $b in $value {
+                #{$a}: #{$b};
+            }
         }
     }
 }
@@ -149,7 +175,9 @@ $constraints: (
             }
         }
         @else {
-            #{nth($value,1)}: #{nth($value,2)};
+            @each $a, $b in $value {
+                #{$a}: #{$b};
+            }
         }
     }
 }
@@ -449,6 +477,7 @@ $constraints: (
     }
 }
 
+/// Automatically prefix any animation
 /// Automatically prefix any animation
 /// @access public
 /// @param {String} $str - Animation Properties
@@ -1014,9 +1043,21 @@ $constraints: (
 
 /// Fluid Video
 /// https://github.com/stursby/compass-fluid-video.git
+%video-container {
+    position: relative;
+    height: 0;
+    overflow: hidden;
+}
+%video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
 @mixin fluid-video($width: null,$height: null) {
 
-    @extend .video-container;
+    @extend %video-container;
 
     @if ($width and $height) {
         padding-bottom: percentage($height / $width);
@@ -1025,7 +1066,7 @@ $constraints: (
     }
 
     & > iframe, object, embed, video  {
-        @extend .video;
+        @extend %video;
     }
 }
 
@@ -1202,3 +1243,7 @@ $constraints: (
         }
     }
 }
+
+/// ==========================================================================
+/// Vendors
+/// ==========================================================================

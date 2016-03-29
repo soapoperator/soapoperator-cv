@@ -1,0 +1,50 @@
+// main: ../main.scss
+
+#footer {
+    position: fixed;
+    bottom: 0;
+    z-index: 100;
+    width: 100%;
+    @include prefix(animation-delay,5s,-webkit);
+
+
+    @include breakpoint-from(S){
+        //display: none;
+    };
+
+    .content-wrapper {
+        background: $color-background;
+
+        a {
+            display: block;
+            color: #000000;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-top: 1px solid $color-primary;
+            padding: 5em 0 3em;
+            padding: 7vh 0 3vh;
+            text-align: center;
+
+            > * {
+                display: block;
+            }
+
+            span {
+                font-size: x-small;
+            }
+
+            .icon {
+                color: #000000;
+                margin: 0.6em auto 0;
+                @include prefix(animation-delay,0s,-webkit);
+            }
+
+            &:hover,
+            &:hover .icon {
+                color: $color-secondary;
+                fill: $color-secondary;
+            }
+        }
+    }
+}

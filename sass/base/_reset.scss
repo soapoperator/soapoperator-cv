@@ -3,6 +3,7 @@
 /* Reset
 ========================================================================== */
 
+// Set box sizing
 html {
     @include prefix('box-sizing','border-box', -webkit -moz);
 }
@@ -11,6 +12,30 @@ html {
 *:after {
     @include prefix('box-sizing','border-box', -webkit -moz);
 }
+
+// Placeholder color
 @include placeholder{
     color: #000000;
 };
+
+// Remove the dashed line on link in Firefox
+a,
+object,
+embed {
+    outline: 0;
+}
+:-moz-any-link:focus,
+a:active {
+    outline: none;
+}
+:focus,
+a:focus{
+    -moz-outline-style: none;
+}
+select:-moz-focusring,
+select:-moz-focusring * {
+  text-shadow:none;
+}
+input::-moz-focus-inner {
+  border: 0;
+}
