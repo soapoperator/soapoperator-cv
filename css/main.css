@@ -2184,80 +2184,80 @@ body {
 
 #photo > .stripes > .stripe:nth-child(1) {
 	top: 0%;
-	-webkit-animation-delay: 0.5s;
-	animation-delay: 0.5s;
+	-webkit-animation-delay: 0.05s;
+	animation-delay: 0.05s;
 	-webkit-animation-timing-function: steps(6, end);
 	animation-timing-function: steps(6, end);
 }
 
 #photo > .stripes > .stripe:nth-child(2) {
 	top: 10%;
-	-webkit-animation-delay: 1s;
-	animation-delay: 1s;
+	-webkit-animation-delay: 0.1s;
+	animation-delay: 0.1s;
 	-webkit-animation-timing-function: steps(6, end);
 	animation-timing-function: steps(6, end);
 }
 
 #photo > .stripes > .stripe:nth-child(3) {
 	top: 20%;
-	-webkit-animation-delay: 1.5s;
-	animation-delay: 1.5s;
+	-webkit-animation-delay: 0.15s;
+	animation-delay: 0.15s;
 	-webkit-animation-timing-function: steps(6, end);
 	animation-timing-function: steps(6, end);
 }
 
 #photo > .stripes > .stripe:nth-child(4) {
 	top: 30%;
-	-webkit-animation-delay: 2s;
-	animation-delay: 2s;
+	-webkit-animation-delay: 0.2s;
+	animation-delay: 0.2s;
 	-webkit-animation-timing-function: steps(6, end);
 	animation-timing-function: steps(6, end);
 }
 
 #photo > .stripes > .stripe:nth-child(5) {
 	top: 40%;
-	-webkit-animation-delay: 2.5s;
-	animation-delay: 2.5s;
+	-webkit-animation-delay: 0.25s;
+	animation-delay: 0.25s;
 	-webkit-animation-timing-function: steps(6, end);
 	animation-timing-function: steps(6, end);
 }
 
 #photo > .stripes > .stripe:nth-child(6) {
 	top: 50%;
-	-webkit-animation-delay: 3s;
-	animation-delay: 3s;
+	-webkit-animation-delay: 0.3s;
+	animation-delay: 0.3s;
 	-webkit-animation-timing-function: steps(6, end);
 	animation-timing-function: steps(6, end);
 }
 
 #photo > .stripes > .stripe:nth-child(7) {
 	top: 60%;
-	-webkit-animation-delay: 3.5s;
-	animation-delay: 3.5s;
+	-webkit-animation-delay: 0.35s;
+	animation-delay: 0.35s;
 	-webkit-animation-timing-function: steps(6, end);
 	animation-timing-function: steps(6, end);
 }
 
 #photo > .stripes > .stripe:nth-child(8) {
 	top: 70%;
-	-webkit-animation-delay: 4s;
-	animation-delay: 4s;
+	-webkit-animation-delay: 0.4s;
+	animation-delay: 0.4s;
 	-webkit-animation-timing-function: steps(6, end);
 	animation-timing-function: steps(6, end);
 }
 
 #photo > .stripes > .stripe:nth-child(9) {
 	top: 80%;
-	-webkit-animation-delay: 4.5s;
-	animation-delay: 4.5s;
+	-webkit-animation-delay: 0.45s;
+	animation-delay: 0.45s;
 	-webkit-animation-timing-function: steps(6, end);
 	animation-timing-function: steps(6, end);
 }
 
 #photo > .stripes > .stripe:nth-child(10) {
 	top: 90%;
-	-webkit-animation-delay: 5s;
-	animation-delay: 5s;
+	-webkit-animation-delay: 0.5s;
+	animation-delay: 0.5s;
 	-webkit-animation-timing-function: steps(6, end);
 	animation-timing-function: steps(6, end);
 }
