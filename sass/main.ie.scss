@@ -1,0 +1,41 @@
+// compileOnSave: true, compileCompressed: true, compileExpanded: true, compressedFilenamePattern: ../css/$1.min.css, expandedFilenamePattern: ../css/$1.css
+
+/// utils
+/// ==========================================================================
+@import "utils/variables";
+@import "utils/functions";
+@import "utils/mixins";
+@import "utils/placeholders";
+
+/// vendors
+/// ==========================================================================
+@import "vendors/gridlex-vars";
+@import "vendors/gridlex";
+@import "vendors/animate/animate";
+
+/// base
+/// ==========================================================================
+@import "base/normalize";
+@import "base/reset";
+@import "base/typography";
+
+/// layout
+/// ==========================================================================
+@import "layout/body";
+@import "layout/grid";
+@import "layout/background";
+@import "layout/id";
+@import "layout/footer";
+
+/// components
+/// ==========================================================================
+@import "components/photo";
+@import "components/buttons";
+
+/// pages
+/// ==========================================================================
+/// Not this time
+
+/// themes
+/// ==========================================================================
+/// Not this time
