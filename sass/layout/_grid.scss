@@ -7,6 +7,12 @@ $height-background-mobile: 10vh !default;
 #wrapper {
     width:100%;
     height:100%;
+    background: $color-background;
+
+    &.blured {
+        @include prefix(filter,blur(2px),-webkit -o -ms -moz);
+        @include acceleration;
+    }
 
     #dialogue {
         z-index:1;

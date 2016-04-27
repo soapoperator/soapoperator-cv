@@ -3,48 +3,95 @@
 #footer {
     position: fixed;
     bottom: 0;
-    z-index: 100;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    opacity: 0;
     width: 100%;
-    @include prefix(animation-delay,5s,-webkit);
+    font-size: 2rem;
+    font-size: 2vmax;
+    background: rgba(0, 0, 0, 0.9);
 
+    &.active {
+        z-index: 99999;
+        opacity: 1;
 
-    @include breakpoint-from(S){
-        //display: none;
-    };
+        .content-wrapper {
 
-    .content-wrapper {
-        background: $color-background;
-
-        a {
-            display: block;
-            color: #000000;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-top: 1px solid $color-primary;
-            padding: 5em 0 3em;
-            padding: 7vh 0 3vh;
-            text-align: center;
-
-            > * {
-                display: block;
-            }
-
-            span {
-                font-size: x-small;
-            }
-
-            .icon {
-                color: #000000;
-                margin: 0.6em auto 0;
-                @include prefix(animation-delay,0s,-webkit);
-            }
-
-            &:hover,
-            &:hover .icon {
-                color: $color-secondary;
-                fill: $color-secondary;
+            a {
+                @extend .animated;
+                @extend .bounceIn;
             }
         }
     }
+
+    @include breakpoint-to(S){
+        display: none;
+    };
+
+    .content-wrapper {
+        display: -webkit-box;
+    	display: -moz-box;
+    	display: -ms-flexbox;
+    	display: -webkit-flex;
+    	display: flex;
+
+        .content {
+            margin: auto;
+            width: 100%;
+
+            p {
+                font-family: cursive;
+                text-align: center;
+                font-style: italic;
+                margin-bottom: 2em;
+            }
+
+            a {
+                display: block;
+                color: $color-text;
+                text-decoration: none;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                text-align: center;
+                font-size: 3em;
+                @include prefix(animation-delay,0s,-webkit);
+
+                > * {
+                    display: block;
+                }
+
+                span {
+                    font-size: smaller;
+                }
+
+                .icon-download {
+                    color: $color-text;
+                    margin: 0.3em auto 0;
+                }
+
+                &:hover,
+                &:hover .icon-download {
+                    color: $color-secondary;
+                    fill: $color-secondary;
+                }
+            }
+        }
+
+    }
+
+    .icon-close-wrapper {
+        position: absolute;
+        right: 0.5em;
+        top: 0.5em;
+
+        .icon-close {
+            &:hover {
+                cursor: no-drop;
+                color: $color-secondary;
+            }
+        }
+    }
+
 }

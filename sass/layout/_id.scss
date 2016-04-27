@@ -25,8 +25,8 @@
         #photo {
             display: inline-block;
             width:10vmax;
-            margin: 0 3em 0.6em;
-            margin: 0 3vmax 0.6em;
+            margin: 0 0 0.6em;
+            margin: 0 0 0.6em;
 
             @include breakpoint-to(S){
                 width: 15vmax;

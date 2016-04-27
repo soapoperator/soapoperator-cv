@@ -19,23 +19,13 @@ html {
 };
 
 // Remove the dashed line on link in Firefox
-a,
-object,
-embed {
-    outline: 0;
+*:focus,
+a:focus {
+outline: 0 !important;
 }
-:-moz-any-link:focus,
-a:active {
-    outline: none;
+input[type="button"]{
+outline:none;
 }
-:focus,
-a:focus{
-    -moz-outline-style: none;
-}
-select:-moz-focusring,
-select:-moz-focusring * {
-  text-shadow:none;
-}
-input::-moz-focus-inner {
-  border: 0;
+input[type="button"]::-moz-focus-inner {
+border: 0;
 }

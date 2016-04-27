@@ -1149,103 +1149,69 @@ body {
 	-webkit-backface-visibility: hidden;
 }
 
-.animated {
+.animated, #footer.active .content-wrapper a {
 	-webkit-animation-duration: 1s;
 	animation-duration: 1s;
 	-webkit-animation-fill-mode: both;
 	animation-fill-mode: both;
 }
 
-.animated.infinite {
+.animated.infinite, #footer.active .content-wrapper a.infinite {
 	animation-iteration-count: infinite;
 }
 
-.animated.hinge {
+.animated.hinge, #footer.active .content-wrapper a.hinge {
 	-webkit-animation-duration: 2s;
 	animation-duration: 2s;
 }
 
-.animated.bounceIn, .animated.bounceOut {
+.animated.bounceIn, #footer.active .content-wrapper a, .animated.bounceOut, #footer.active .content-wrapper a.bounceOut {
 	-webkit-animation-duration: 0.75s;
 	animation-duration: 0.75s;
 }
 
-.animated.flipOutX, .animated.flipOutY {
+.animated.flipOutX, #footer.active .content-wrapper a.flipOutX, .animated.flipOutY, #footer.active .content-wrapper a.flipOutY {
 	-webkit-animation-duration: 0.75s;
 	animation-duration: 0.75s;
 }
 
-@-webkit-keyframes flash {
-	0%, 50%, 100% {
-		opacity: 1;
-	}
-	25%, 75% {
-		opacity: 0;
-	}
-}
-
-@keyframes flash {
-	0%, 50%, 100% {
-		opacity: 1;
-	}
-	25%, 75% {
-		opacity: 0;
-	}
-}
-
-.flash {
-	-webkit-animation-name: flash;
-	animation-name: flash;
-}
-
-@-webkit-keyframes fadeIn {
+@-webkit-keyframes bounceIn {
 	0% {
 		opacity: 0;
+		-webkit-transform: scale(0.3);
+	}
+	50% {
+		opacity: 1;
+		-webkit-transform: scale(1.05);
+	}
+	70% {
+		-webkit-transform: scale(0.9);
 	}
 	100% {
-		opacity: 1;
+		-webkit-transform: scale(1);
 	}
 }
 
-@keyframes fadeIn {
+@keyframes bounceIn {
 	0% {
 		opacity: 0;
+		transform: scale(0.3);
+	}
+	50% {
+		opacity: 1;
+		transform: scale(1.05);
+	}
+	70% {
+		transform: scale(0.9);
 	}
 	100% {
-		opacity: 1;
+		transform: scale(1);
 	}
 }
 
-.fadeIn {
-	-webkit-animation-name: fadeIn;
-	animation-name: fadeIn;
-}
-
-@-webkit-keyframes fadeInUp {
-	0% {
-		opacity: 0;
-		-webkit-transform: translateY(20px);
-	}
-	100% {
-		opacity: 1;
-		-webkit-transform: translateY(0);
-	}
-}
-
-@keyframes fadeInUp {
-	0% {
-		opacity: 0;
-		transform: translateY(20px);
-	}
-	100% {
-		opacity: 1;
-		transform: translateY(0);
-	}
-}
-
-.fadeInUp {
-	-webkit-animation-name: fadeInUp;
-	animation-name: fadeInUp;
+.bounceIn, #footer.active .content-wrapper a {
+	-webkit-animation-name: bounceIn;
+	animation-name: bounceIn;
 }
 
 @-webkit-keyframes fadeInUpBig {
@@ -1710,28 +1676,16 @@ html {
 	color: #000000;
 }
 
-a,
-object,
-embed {
-	outline: 0;
+*:focus,
+a:focus {
+	outline: 0 !important;
 }
 
-:-moz-any-link:focus,
-a:active {
+input[type="button"] {
 	outline: none;
 }
 
-:focus,
-a:focus {
-	-moz-outline-style: none;
-}
-
-select:-moz-focusring,
-select:-moz-focusring * {
-	text-shadow: none;
-}
-
-input::-moz-focus-inner {
+input[type="button"]::-moz-focus-inner {
 	border: 0;
 }
 
@@ -1755,7 +1709,7 @@ body, #id {
 	src: url("../../fonts/ubuntu/ubuntumono-r-webfont.eot") format("embedded-opentype"), url("../../fonts/ubuntu/ubuntumono-r-webfont.eot?#iefix") format("embedded-opentype"), url("../../fonts/ubuntu/ubuntumono-r-webfont.woff2") format("woff2"), url("../../fonts/ubuntu/ubuntumono-r-webfont.woff") format("woff"), url("../../fonts/ubuntu/ubuntumono-r-webfont.ttf") format("truetype"), url("../../fonts/ubuntu/ubuntumono-r-webfont.svg#ubuntumono-r-webfont") format("svg");
 }
 
-#dialogue .actor {
+#dial .sequence {
 	font-family: Ubuntu Mono, Monaco, Consolas, Courier, monospace;
 }
 
@@ -1766,7 +1720,7 @@ body, #id {
 	src: url("../../fonts/ubuntu/ubuntumono-b-webfont.eot") format("embedded-opentype"), url("../../fonts/ubuntu/ubuntumono-b-webfont.eot?#iefix") format("embedded-opentype"), url("../../fonts/ubuntu/ubuntumono-b-webfont.woff2") format("woff2"), url("../../fonts/ubuntu/ubuntumono-b-webfont.woff") format("woff"), url("../../fonts/ubuntu/ubuntumono-b-webfont.ttf") format("truetype"), url("../../fonts/ubuntu/ubuntumono-b-webfont.svg#ubuntumono-b-webfont") format("svg");
 }
 
-#dialogue .actor {
+#dial .sequence {
 	font-family: Ubuntu Mono, Monaco, Consolas, Courier, monospace;
 }
 
@@ -1820,6 +1774,20 @@ body {
 #wrapper {
 	width: 100%;
 	height: 100%;
+	background: #ff5c5c;
+}
+
+#wrapper.blured {
+	-webkit-filter: blur(2px);
+	-o-filter: blur(2px);
+	-ms-filter: blur(2px);
+	-moz-filter: blur(2px);
+	filter: blur(2px);
+	-webkit-transform: translateZ(0) translate3d(0, 0, 0);
+	-moz-transform: translateZ(0) translate3d(0, 0, 0);
+	-o-transform: translateZ(0) translate3d(0, 0, 0);
+	-ms-transform: translateZ(0) translate3d(0, 0, 0);
+	transform: translateZ(0) translate3d(0, 0, 0);
 }
 
 #wrapper #dialogue {
@@ -1895,6 +1863,36 @@ body {
 	}
 }
 
+@-webkit-keyframes blink-caret {
+	50% {
+		opacity: 0;
+	}
+}
+
+@-moz-keyframes blink-caret {
+	50% {
+		opacity: 0;
+	}
+}
+
+@-ms-keyframes blink-caret {
+	50% {
+		opacity: 0;
+	}
+}
+
+@-o-keyframes blink-caret {
+	50% {
+		opacity: 0;
+	}
+}
+
+@keyframes blink-caret {
+	50% {
+		opacity: 0;
+	}
+}
+
 #dialogue {
 	padding: 0 3%;
 	font-size: 4em;
@@ -1909,12 +1907,105 @@ body {
 	}
 }
 
-#dialogue .actor-1 {
+#dial {
+	width: 100%;
+}
+
+#dial .sequence {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	flex-direction: column;
+}
+
+#dial .sequence .sequence__content {
+	position: relative;
+	margin: 0 0 0 2em;
+}
+
+#dial .sequence .sequence__content:before {
+	content: "~$";
+	position: absolute;
+	top: 0;
+	right: 100%;
+	margin-right: 0.5em;
+}
+
+#dial .sequence .sequence__content.no-answer span:after {
+	content: '_';
+	-webkit-animation: blink-caret 0.5s step-end infinite alternate;
+	-moz-animation: blink-caret 0.5s step-end infinite alternate;
+	-ms-animation: blink-caret 0.5s step-end infinite alternate;
+	-o-animation: blink-caret 0.5s step-end infinite alternate;
+	animation: blink-caret 0.5s step-end infinite alternate;
+}
+
+#dial .sequence .sequence__content.actor__content {
 	font-weight: 600;
 }
 
-#dialogue .actor__content--typing:after {
-	content: '_';
+#dial .sequence .answer-form .answer-input,
+#dial .sequence .answer-form .answer-input:focus {
+	border: none;
+	outline: none;
+	background: transparent;
+	color: #ffffff;
+}
+
+#dial .sequence .answer-form .answer-input::-webkit-input-placeholder,
+#dial .sequence .answer-form .answer-input:focus::-webkit-input-placeholder {
+	color: #ffffff;
+}
+
+#dial .sequence .answer-form .answer-input::-moz-placeholder,
+#dial .sequence .answer-form .answer-input:focus::-moz-placeholder {
+	color: #ffffff;
+}
+
+#dial .sequence .answer-form .answer-input:-moz-placeholder,
+#dial .sequence .answer-form .answer-input:focus:-moz-placeholder {
+	color: #ffffff;
+}
+
+#dial .sequence .answer-form .answer-input:-ms-input-placeholder,
+#dial .sequence .answer-form .answer-input:focus:-ms-input-placeholder {
+	color: #ffffff;
+}
+
+#dial .sequence .answer-form .answer-input {
+	width: 100%;
+	box-shadow: none;
+	resize: none;
+}
+
+#dial .sequence .answer-form .answer-input:hover {
+	cursor: text;
+}
+
+#dial .sequence .answer-form .answer-input + pre {
+	visibility: hidden;
+}
+
+#dial .sequence .answer-form .answer-input:focus + pre {
+	visibility: visible;
+}
+
+#dial .sequence .answer-form pre {
+	font-size: 0.2em;
+	color: #000000;
+	display: block;
+	width: auto;
+}
+
+#dial .sequence .answer-form pre b {
+	-webkit-animation: blink-caret 0.5s step-end infinite alternate;
+	-moz-animation: blink-caret 0.5s step-end infinite alternate;
+	-ms-animation: blink-caret 0.5s step-end infinite alternate;
+	-o-animation: blink-caret 0.5s step-end infinite alternate;
+	animation: blink-caret 0.5s step-end infinite alternate;
 }
 
 #id {
@@ -1947,8 +2038,8 @@ body {
 #id #about-photo #photo {
 	display: inline-block;
 	width: 10vmax;
-	margin: 0 3em 0.6em;
-	margin: 0 3vmax 0.6em;
+	margin: 0 0 0.6em;
+	margin: 0 0 0.6em;
 }
 
 @media screen and (max-width: 34em) {
@@ -2062,47 +2153,88 @@ body {
 #footer {
 	position: fixed;
 	bottom: 0;
-	z-index: 100;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: -1;
+	opacity: 0;
 	width: 100%;
-	-webkit-animation-delay: 5s;
-	animation-delay: 5s;
+	font-size: 2rem;
+	font-size: 2vmax;
+	background: rgba(0, 0, 0, 0.9);
+}
+
+#footer.active {
+	z-index: 99999;
+	opacity: 1;
+}
+
+@media screen and (max-width: 34em) {
+	#footer {
+		display: none;
+	}
 }
 
 #footer .content-wrapper {
-	background: #ff5c5c;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
 }
 
-#footer .content-wrapper a {
+#footer .content-wrapper .content {
+	margin: auto;
+	width: 100%;
+}
+
+#footer .content-wrapper .content p {
+	font-family: cursive;
+	text-align: center;
+	font-style: italic;
+	margin-bottom: 2em;
+}
+
+#footer .content-wrapper .content a {
 	display: block;
-	color: #000000;
+	color: #ffffff;
 	text-decoration: none;
 	text-transform: uppercase;
 	letter-spacing: 1px;
-	border-top: 1px solid #ffffff;
-	padding: 5em 0 3em;
-	padding: 7vh 0 3vh;
 	text-align: center;
-}
-
-#footer .content-wrapper a > * {
-	display: block;
-}
-
-#footer .content-wrapper a span {
-	font-size: x-small;
-}
-
-#footer .content-wrapper a .icon {
-	color: #000000;
-	margin: 0.6em auto 0;
+	font-size: 3em;
 	-webkit-animation-delay: 0s;
 	animation-delay: 0s;
 }
 
-#footer .content-wrapper a:hover,
-#footer .content-wrapper a:hover .icon {
+#footer .content-wrapper .content a > * {
+	display: block;
+}
+
+#footer .content-wrapper .content a span {
+	font-size: smaller;
+}
+
+#footer .content-wrapper .content a .icon-download {
+	color: #ffffff;
+	margin: 0.3em auto 0;
+}
+
+#footer .content-wrapper .content a:hover,
+#footer .content-wrapper .content a:hover .icon-download {
 	color: #fffd76;
 	fill: #fffd76;
+}
+
+#footer .icon-close-wrapper {
+	position: absolute;
+	right: 0.5em;
+	top: 0.5em;
+}
+
+#footer .icon-close-wrapper .icon-close:hover {
+	cursor: no-drop;
+	color: #fffd76;
 }
 
 @-webkit-keyframes stripe {
@@ -2302,6 +2434,20 @@ body {
 	width: 1.2em;
 	height: 1.2em;
 	line-height: 1.2em;
+}
+
+.icon-close {
+	padding: 0;
+	vertical-align: middle;
+	color: #ffffff;
+}
+
+.icon-close:hover {
+	cursor: pointer;
+}
+
+.icon-close svg {
+	fill: currentColor;
 }
 
 /*# sourceMappingURL=main.css.map */

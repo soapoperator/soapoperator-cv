@@ -147,7 +147,7 @@ $constraints: (
 /// @param {map} $values-map - Map with property
 /// @example scss - Usage
 ///   .foo {
-///     @include mediaqueries-full( S: (font-size: 14px, line-height: 1) );
+///     @include breakpoint-from-full( S: (font-size: 14px, line-height: 1) );
 ///   }
 @mixin breakpoint-from-full( $values-map ) {
     @each $breakpoint, $value in $values-map {

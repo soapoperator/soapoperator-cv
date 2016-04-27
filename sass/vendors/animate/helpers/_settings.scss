@@ -59,8 +59,8 @@ $use-special            :   $use-all !default; // all special animations
 $use-zoom               :   $use-all !default; // all zoom animations
 // Fade Enter
 $use-fade-in            :   $use-fade !default;
-$use-fadeIn 			:	true;
-$use-fadeInUp 			:	true;
+$use-fadeIn 			:	$use-fade-in !default;
+$use-fadeInUp 			:	$use-fade-in !default;
 $use-fadeInUpBig 		:	true;
 $use-fadeInDown 		:	$use-fade-in !default;
 $use-fadeInDownBig 		:	$use-fade-in !default;
@@ -85,7 +85,7 @@ $use-fadeOutRightBig	:	$use-fade-out !default;
 
 // Bounce Enter
 $use-bounce-in          :   $use-bounce !default;
-$use-bounceIn			:	$use-bounce-in !default;
+$use-bounceIn			:	true;
 $use-bounceInUp			: 	$use-bounce-in !default;
 $use-bounceInDown 		: 	$use-bounce-in !default;
 $use-bounceInLeft 		: 	$use-bounce-in !default;
@@ -151,7 +151,7 @@ $use-lightSpeedOut 		:	$use-light-speed !default;
 
 // Attention Seekers
 $use-bounce				:	$use-attention-seekers !default;
-$use-flash				:	true;
+$use-flash				:	$use-attention-seekers !default;
 $use-pulse				:	$use-attention-seekers !default;
 $use-wiggle				:	$use-attention-seekers !default;
 $use-swing				:	$use-attention-seekers !default;

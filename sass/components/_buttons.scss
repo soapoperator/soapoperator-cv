@@ -56,3 +56,7 @@ $height-button: 1.2em;
 
 .icon-twitter {
 }
+
+.icon-close {
+    @include button($color-text);
+}

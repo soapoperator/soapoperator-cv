@@ -1,5 +1,11 @@
 // main: ../main.scss
 
+@include keyframes(blink-caret){
+    50% {
+        opacity: 0;
+    }
+};
+
 #dialogue {
     padding: 0 3%;
     font-size: 4em;
@@ -11,15 +17,89 @@
         padding: 3rem;
     };
 
-    .actor {
+}
+
+#dial {
+    width: 100%;
+
+    .sequence {
         @extend %font-family-monospace;
-    }
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        @include prefix(flex-direction,column,-webkit);
 
-    .actor-1 {
-        font-weight: 600;
-    }
+        .sequence__content {
+            position: relative;
+            margin: 0 0 0 2em;
 
-    .actor__content--typing:after {
-        content:'_';
+            &:before {
+                content: "~$";
+                position: absolute;
+                top: 0;
+                right: 100%;
+                margin-right: 0.5em;
+            }
+
+            &.no-answer {
+                span:after {
+                    content:'_';
+                    @include animation(blink-caret .5s step-end infinite alternate);
+                }
+            }
+
+            &.actor__content {
+                font-weight: 600;
+            }
+
+        }
+
+        .answer-form {
+            .answer-input,
+            .answer-input:focus {
+                border: none;
+                outline: none;
+                background: transparent;
+                color: $color-text;
+                @include placeholder {
+                    color: $color-text;
+                };
+            }
+
+            .answer-input {
+                width: 100%;
+                box-shadow: none;
+                resize: none;
+
+                &:hover {
+                    cursor: text;
+                }
+
+                & + pre {
+                    visibility: hidden;
+                }
+
+                &:focus {
+
+                    & + pre {
+                        visibility: visible;
+                    }
+
+                }
+            }
+
+            pre {
+                font-size:0.2em;
+                color: #000000;
+                display: block;
+                width: auto;
+
+                b {
+                    @include animation(blink-caret .5s step-end infinite alternate);
+                }
+            }
+        }
     }
 }
