@@ -1800,8 +1800,6 @@ body {
 	#wrapper #dialogue {
 		order: -1;
 		height: 65vh;
-		-webkit-animation-delay: 1.5s;
-		animation-delay: 1.5s;
 	}
 }
 
@@ -1840,7 +1838,7 @@ body {
 }
 
 @media screen and (max-width: 34em) {
-	#wrapper #dialogue, #wrapper #id, #wrapper #background {
+	#wrapper #id, #wrapper #background {
 		-webkit-animation-name: fadeInUpBig;
 		animation-name: fadeInUpBig;
 	}
@@ -1894,16 +1892,16 @@ body {
 }
 
 #dialogue {
-	padding: 0 3%;
-	font-size: 4em;
-	font-size: 4vmax;
+	padding: 0 2%;
+	font-size: 3em;
+	font-size: 3vmax;
 }
 
 @media screen and (max-width: 34em) {
 	#dialogue {
 		font-size: 4em;
 		font-size: 4vmax;
-		padding: 3rem;
+		padding: 3rem 2rem;
 	}
 }
 
@@ -1923,7 +1921,13 @@ body {
 
 #dial .sequence .sequence__content {
 	position: relative;
-	margin: 0 0 0 2em;
+	line-height: 1;
+	margin: 0.2em 0 0 2em;
+	font-weight: 600;
+}
+
+#dial .sequence .sequence__content span {
+	hyphens: auto;
 }
 
 #dial .sequence .sequence__content:before {
@@ -1943,8 +1947,8 @@ body {
 	animation: blink-caret 0.5s step-end infinite alternate;
 }
 
-#dial .sequence .sequence__content.actor__content {
-	font-weight: 600;
+#dial .sequence .sequence__content.guest__content::before {
+	content: "~#";
 }
 
 #dial .sequence .answer-form .answer-input,
@@ -1979,6 +1983,7 @@ body {
 	width: 100%;
 	box-shadow: none;
 	resize: none;
+	text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.6);
 }
 
 #dial .sequence .answer-form .answer-input:hover {
@@ -1986,18 +1991,26 @@ body {
 }
 
 #dial .sequence .answer-form .answer-input + pre {
-	visibility: hidden;
+	display: none;
 }
 
 #dial .sequence .answer-form .answer-input:focus + pre {
-	visibility: visible;
+	display: block;
 }
 
 #dial .sequence .answer-form pre {
-	font-size: 0.2em;
+	font-size: 0.3em;
+	line-height: 1.1;
 	color: #000000;
 	display: block;
 	width: auto;
+	font-weight: normal;
+}
+
+@media screen and (max-width: 34em) {
+	#dial .sequence .answer-form pre {
+		font-size: .4em;
+	}
 }
 
 #dial .sequence .answer-form pre b {
@@ -2098,13 +2111,17 @@ body {
 	}
 }
 
-#id #about-info #about-social a {
+#id #about-info #about-social .icon {
 	position: relative;
 }
 
-#id #about-info #about-social a i {
+#id #about-info #about-social .icon:hover {
+	color: #000000;
+}
+
+#id #about-info #about-social .icon i {
 	position: absolute;
-	top: calc(100% + 20px);
+	top: calc(100% + 25px);
 	left: 50%;
 	-webkit-transform: translateX(-50%);
 	-khtml-transform: translateX(-50%);
@@ -2113,7 +2130,7 @@ body {
 	-o-transform: translateX(-50%);
 	transform: translateX(-50%);
 	width: 10em;
-	color: #FFFFFF;
+	color: #ffffff;
 	background: #000000;
 	height: auto;
 	line-height: 1.1;
@@ -2130,7 +2147,7 @@ body {
 	transition: all 0.3s ease-out;
 }
 
-#id #about-info #about-social a i:after {
+#id #about-info #about-social .icon i:after {
 	content: '';
 	position: absolute;
 	bottom: 100%;
@@ -2143,11 +2160,11 @@ body {
 	border-left: 8px solid transparent;
 }
 
-#id #about-info #about-social a:hover i {
+#id #about-info #about-social .icon:hover i {
 	visibility: visible;
 	opacity: 0.7;
 	z-index: 999;
-	top: calc(100% + 10px);
+	top: calc(100% + 15px);
 }
 
 #footer {
@@ -2322,12 +2339,26 @@ body {
 	animation-timing-function: steps(6, end);
 }
 
+@media screen and (max-width: 34em) {
+	#photo > .stripes > .stripe:nth-child(1) {
+		-webkit-animation-delay: 1.55s;
+		animation-delay: 1.55s;
+	}
+}
+
 #photo > .stripes > .stripe:nth-child(2) {
 	top: 10%;
 	-webkit-animation-delay: 0.1s;
 	animation-delay: 0.1s;
 	-webkit-animation-timing-function: steps(6, end);
 	animation-timing-function: steps(6, end);
+}
+
+@media screen and (max-width: 34em) {
+	#photo > .stripes > .stripe:nth-child(2) {
+		-webkit-animation-delay: 1.6s;
+		animation-delay: 1.6s;
+	}
 }
 
 #photo > .stripes > .stripe:nth-child(3) {
@@ -2338,12 +2369,26 @@ body {
 	animation-timing-function: steps(6, end);
 }
 
+@media screen and (max-width: 34em) {
+	#photo > .stripes > .stripe:nth-child(3) {
+		-webkit-animation-delay: 1.65s;
+		animation-delay: 1.65s;
+	}
+}
+
 #photo > .stripes > .stripe:nth-child(4) {
 	top: 30%;
 	-webkit-animation-delay: 0.2s;
 	animation-delay: 0.2s;
 	-webkit-animation-timing-function: steps(6, end);
 	animation-timing-function: steps(6, end);
+}
+
+@media screen and (max-width: 34em) {
+	#photo > .stripes > .stripe:nth-child(4) {
+		-webkit-animation-delay: 1.7s;
+		animation-delay: 1.7s;
+	}
 }
 
 #photo > .stripes > .stripe:nth-child(5) {
@@ -2354,12 +2399,26 @@ body {
 	animation-timing-function: steps(6, end);
 }
 
+@media screen and (max-width: 34em) {
+	#photo > .stripes > .stripe:nth-child(5) {
+		-webkit-animation-delay: 1.75s;
+		animation-delay: 1.75s;
+	}
+}
+
 #photo > .stripes > .stripe:nth-child(6) {
 	top: 50%;
 	-webkit-animation-delay: 0.3s;
 	animation-delay: 0.3s;
 	-webkit-animation-timing-function: steps(6, end);
 	animation-timing-function: steps(6, end);
+}
+
+@media screen and (max-width: 34em) {
+	#photo > .stripes > .stripe:nth-child(6) {
+		-webkit-animation-delay: 1.8s;
+		animation-delay: 1.8s;
+	}
 }
 
 #photo > .stripes > .stripe:nth-child(7) {
@@ -2370,12 +2429,26 @@ body {
 	animation-timing-function: steps(6, end);
 }
 
+@media screen and (max-width: 34em) {
+	#photo > .stripes > .stripe:nth-child(7) {
+		-webkit-animation-delay: 1.85s;
+		animation-delay: 1.85s;
+	}
+}
+
 #photo > .stripes > .stripe:nth-child(8) {
 	top: 70%;
 	-webkit-animation-delay: 0.4s;
 	animation-delay: 0.4s;
 	-webkit-animation-timing-function: steps(6, end);
 	animation-timing-function: steps(6, end);
+}
+
+@media screen and (max-width: 34em) {
+	#photo > .stripes > .stripe:nth-child(8) {
+		-webkit-animation-delay: 1.9s;
+		animation-delay: 1.9s;
+	}
 }
 
 #photo > .stripes > .stripe:nth-child(9) {
@@ -2386,12 +2459,26 @@ body {
 	animation-timing-function: steps(6, end);
 }
 
+@media screen and (max-width: 34em) {
+	#photo > .stripes > .stripe:nth-child(9) {
+		-webkit-animation-delay: 1.95s;
+		animation-delay: 1.95s;
+	}
+}
+
 #photo > .stripes > .stripe:nth-child(10) {
 	top: 90%;
 	-webkit-animation-delay: 0.5s;
 	animation-delay: 0.5s;
 	-webkit-animation-timing-function: steps(6, end);
 	animation-timing-function: steps(6, end);
+}
+
+@media screen and (max-width: 34em) {
+	#photo > .stripes > .stripe:nth-child(10) {
+		-webkit-animation-delay: 2s;
+		animation-delay: 2s;
+	}
 }
 
 .icon {

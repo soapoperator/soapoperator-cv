@@ -75,24 +75,28 @@
 
             .icon-download {
                 float: right;
-                color: #000000;
+                color: $black;
 
                 @include breakpoint-from(S) {
                     display: none;
                 }
             }
 
-            a {
+            .icon {
                 position: relative;
+
+                &:hover {
+                    color: $black;
+                }
 
                 i {
                     position: absolute;
-                    top: calc(100% + 20px);
+                    top: calc(100% + 25px);
                     left: 50%;
                     @include prefix(transform,translateX(-50%));
                     width:10em;
-                    color: #FFFFFF;
-                    background: #000000;
+                    color: $white;
+                    background: $black;
                     height: auto;
                     line-height: 1.1;
                     font-size: small;
@@ -110,7 +114,7 @@
                         left: 50%;
                         margin-left: -8px;
                         width: 0; height: 0;
-                        border-bottom: 8px solid #000000;
+                        border-bottom: 8px solid $black;
                         border-right: 8px solid transparent;
                         border-left: 8px solid transparent;
                     }
@@ -120,7 +124,7 @@
                     visibility: visible;
                     opacity: 0.7;
                     z-index: 999;
-                    top: calc(100% + 10px);
+                    top: calc(100% + 15px);
                 }
             }
 

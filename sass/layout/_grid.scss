@@ -21,9 +21,9 @@ $height-background-mobile: 10vh !default;
         @include breakpoint-to(S) {
             order: -1;
             height:$height-dialogue-mobile;
-            @include prefix(animation-delay,1.5s,-webkit);
+            //@include prefix(animation-delay,1.5s,-webkit);
         }
-        @extend %xs-slideinup;
+        //@extend %xs-slideinup;
     }
 
     #id {

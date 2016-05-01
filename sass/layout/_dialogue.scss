@@ -7,14 +7,14 @@
 };
 
 #dialogue {
-    padding: 0 3%;
-    font-size: 4em;
-    font-size: 4vmax;
+    padding: 0 2%;
+    font-size: 3em;
+    font-size: 3vmax;
 
     @include breakpoint-to(S){
         font-size: 4em;
         font-size: 4vmax;
-        padding: 3rem;
+        padding: 3rem 2rem;
     };
 
 }
@@ -33,7 +33,13 @@
 
         .sequence__content {
             position: relative;
-            margin: 0 0 0 2em;
+            line-height: 1;
+            margin: 0.2em 0 0 2em;
+            font-weight: 600;
+
+            span {
+                hyphens: auto;
+            }
 
             &:before {
                 content: "~$";
@@ -50,8 +56,14 @@
                 }
             }
 
-            &.actor__content {
-                font-weight: 600;
+            //&.actor__content {
+            //    font-weight: 600;
+            //}
+
+            &.guest__content {
+                &::before {
+                    content: "~#";
+                }
             }
 
         }
@@ -62,7 +74,7 @@
                 border: none;
                 outline: none;
                 background: transparent;
-                color: $color-text;
+                color: $color-text; // $color-text
                 @include placeholder {
                     color: $color-text;
                 };
@@ -72,29 +84,36 @@
                 width: 100%;
                 box-shadow: none;
                 resize: none;
+                text-shadow: 0px 2px 4px rgba(0,0,0,0.6);
 
                 &:hover {
                     cursor: text;
                 }
 
                 & + pre {
-                    visibility: hidden;
+                    display: none;;
                 }
 
                 &:focus {
 
                     & + pre {
-                        visibility: visible;
+                        display: block;
                     }
 
                 }
             }
 
             pre {
-                font-size:0.2em;
-                color: #000000;
+                font-size:0.3em;
+                line-height: 1.1;
+                color: $black;
                 display: block;
                 width: auto;
+                font-weight: normal;
+
+                @include breakpoint-to(S){
+                    font-size:.4em;
+                };
 
                 b {
                     @include animation(blink-caret .5s step-end infinite alternate);
