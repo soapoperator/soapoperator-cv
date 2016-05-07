@@ -88,7 +88,8 @@
 /* Aspect Ratio */
 // @include generateRatios(16,9); // 16x9
 // @include generateRatios(4,3); // 4x3
-@include generateRatios(240,330); // 4x3
+@include ratio-class(240,330); // .ratio-240x330
+@include ratio-class(16,35); // .ratio-16x35
 
 /* Vertical align with unknow height */
 .center-vertical {

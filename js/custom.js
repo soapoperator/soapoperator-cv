@@ -1,3 +1,5 @@
+/* minifyOnSave, minifier:uglify-js, filenamePattern: $1.min.$2 */
+
 jQuery.noConflict();
 
 //===   Redirect Old IE Browser   ===//
@@ -7,6 +9,22 @@ if ( jQuery.browser.msie ) {
     if (version < 10) {
         window.location.href = url;
     }
+}
+
+//== Background with Particules ==//
+function particules() {
+    var canvas = jQuery('#background'),
+        canvasW = canvas.width(),
+        canvasH = canvas.height();
+    var nbH = Math.ceil(canvasH / jQuery('.particule').height()),
+        nbW = Math.ceil(canvasW / jQuery('.particule').width()),
+        nb = nbW * nbH;
+    if (jQuery('.particule').length < nb) {
+        for (var i = 0; i < nb ; i++) {
+            canvas.append('<div class="particule ratio-16x35"><span class="content"></span></div>');
+        }
+    }
+    //console.log(jQuery('.particule').length+' vs '+nb);
 }
 
 //===   On Ready Functions   ===//
@@ -253,16 +271,50 @@ var onready = function () {
     function resetTimer(e) {
         window.clearTimeout(timeoutKick);
         goActive();
-        console.log('reset');
+        //console.log('reset');
     }
     function goInactive() {
         exit();
-        console.log('inactive');
+        //console.log('inactive');
     }
     function goActive() {
-        console.log('active');
         startTimer();
+        //console.log('active');
     }
+
+    // Particule move
+    // ******************************************
+    // Initialise particules
+    // particules();
+    // var mouseX = 0,
+    //     mouseY = 0;
+    // jQuery('.particule').each(function(index, el) {
+    //     var particule = jQuery(el),
+    //         pX = particule.offset().top,
+    //         pY = particule.offset().left;
+    //     particule.attr('data-x',pX).attr('data-y',pY);
+    // });
+    // jQuery(document).mousemove(function(e) {
+    //     // mouse coodinate
+    //     var mX = e.clientX,
+    //         mY = e.clientY;
+    //     //console.log(mouseX + ' - ' + mouseY);
+    //     jQuery('.particule').each(function(index, el) {
+    //         // particule coordinate
+    //         var particule = jQuery(el),
+    //             pX = particule.data('x'),
+    //             pY = particule.data('y');
+    //         //console.log('#'+index+' : '+pX+' - '+pY);
+    //         var b = pX - mX,
+    //             a = pY - mY,
+    //             c = Math.floor(Math.sqrt( a*a + b*b)),
+    //             C = Math.abs(Math.pow( c , -1 ) * 3000); // Probleme with the formula
+    //         console.log('#'+index+' : '+c+' '+C);
+    //         var B = Math.floor(b * C / c),
+    //             A = Math.floor(a * C / c);
+    //         particule.css({'top':A+'px','left':B+'px'});
+    //     });
+    // });
 
 };
 jQuery(document).ready(onready);
@@ -274,5 +326,7 @@ jQuery(document).load(onload);
 
 //===   On Resize Functions   ===//
 var onresize = function () {
+    // Initialise particules
+    //particules();
 };
 jQuery(window).resize(onresize);

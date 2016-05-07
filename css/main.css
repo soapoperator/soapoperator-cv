@@ -61,6 +61,25 @@
 	bottom: 0;
 }
 
+.ratio-16x35 {
+	position: relative;
+}
+
+.ratio-16x35:before {
+	display: block;
+	content: '';
+	width: 100%;
+	padding-top: 218.75%;
+}
+
+.ratio-16x35 > .content {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
 /* Vertical align with unknow height */
 .center-vertical {
 	position: relative;
@@ -1849,10 +1868,15 @@ body {
 	width: 100%;
 	background: url(../images/background.png) repeat;
 	background-color: #ff5c5c;
-	background-position: right center;
 	background-size: 0.8rem;
 	background-size: 1vmax;
 	background-image: url(../images/background.svg);
+	background-position: right center;
+	display: inline-flex;
+	flex-flow: row wrap;
+	align-items: flex-start;
+	justify-content: flex-start;
+	overflow: hidden;
 }
 
 @media screen and (max-width: 34em) {
@@ -2536,5 +2560,3 @@ body {
 .icon-close svg {
 	fill: currentColor;
 }
-
-/*# sourceMappingURL=main.css.map */

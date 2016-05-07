@@ -213,9 +213,9 @@ $constraints: (
 /// @param {String} $width - Width
 /// @param {String} $height - Height
 /// @example scss - Usage {
-///   @include aspect-ratio(16,9); /* For 16:9 ratio */
+///   @include ratio(16,9); /* For 16:9 ratio */
 /// }
-@mixin aspect-ratio($width, $height) {
+@mixin ratio($width, $height) {
     position: relative;
 
     &:before {
@@ -238,7 +238,7 @@ $constraints: (
 /// @example scss - Usage {
 /// Output example: .ratio-16x9 {}
 /// }
-@mixin generateRatios($width, $height, $prefix: "ratio-") {
+@mixin ratio-class($width, $height, $prefix: "ratio-") {
     $class-name: $prefix + $width + 'x' + $height;
 
     .#{$class-name} {
