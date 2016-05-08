@@ -20,31 +20,3 @@
     };
 
 }
-
-// ****************
-// Particule module
-// ****************
-// .particule {
-//     background: url(../images/background.png) repeat;
-//     background-color: $color-background;
-//     background-size: 0.8rem;
-//     background-size: 1vmax;
-//     background-image: url(../images/background.svg);
-//     width: 0.8rem;
-//     width: 1vmax;
-//     background-position: center;
-//     background-repeat: no-repeat;
-//     position: relative;
-//     flex: none;
-//     @include transition(all 0.5s ease-out);
-//
-//     @include breakpoint-to(L){
-//         display: none;
-//     };
-// }
-//
-// #background {
-//     @include breakpoint-from(L){
-//         background: $color-background;
-//     };
-// }

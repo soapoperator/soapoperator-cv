@@ -37,7 +37,7 @@
 <!-- Basic
 ================================================== -->
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
     <!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<script type="text/javascript" src="js/css3-mediaqueries.js"></script>
@@ -122,19 +122,19 @@
                         <span class="highlight" itemprop="telephone">+33 (0)6 32 67 80 97</span>
                     </div>
                     <div id="about-social">
-                        <a class="icon" href="mailto:jbo@soapoperator.com" itemprop="email" data-button="Bouton email">
+                        <a class="icon" href="mailto:jbo@soapoperator.com" itemprop="email" data-button="Bouton email" onclick="javascript:_paq.push(['trackEvent', 'Social', 'Clic', 'Email']);">
                             <svg class="icon-email"><use xlink:href="#icon-email"></use></svg>
                             <i class="">Contactez moi par email</i>
                         </a>
-                        <a class="icon" href='https://twitter.com/soapoperator/' rel="publisher" target="_blank" data-button="Bouton twitter">
+                        <a class="icon" href='https://twitter.com/soapoperator/' rel="publisher" target="_blank" data-button="Bouton twitter" onclick="javascript:_paq.push(['trackEvent', 'Social', 'Clic', 'Twitter']);">
                             <svg class="icon-twitter"><use xlink:href="#icon-twitter"></use></svg>
                             <i class="">Contactez moi sur Twitter</i>
                         </a>
-                        <a class="icon" href="http://fr.linkedin.com/in/jbolivier/" target="_blank" data-button="Bouton linkedin">
+                        <a class="icon" href="http://fr.linkedin.com/in/jbolivier/" target="_blank" data-button="Bouton linkedin" onclick="javascript:_paq.push(['trackEvent', 'Social', 'Clic', 'Linkedin']);">
                             <svg class="icon-linkedin"><use xlink:href="#icon-linkedin"></use></svg>
                             <i class="">Contactez moi sur Linkedin</i>
                         </a>
-                        <a class="icon" href="#!" target="_blank" data-button="Bouton download">
+                        <a class="icon" href="#!" target="_blank" data-button="Bouton download" onclick="javascript:_paq.push(['trackEvent', 'Social', 'Clic', 'Download']);">
                             <svg class="icon-download"><use xlink:href="#icon-download"></use></svg>
                             <i class="">Télécharger sans attendre <sup>bug free</sup></i>
                         </a>
@@ -209,14 +209,14 @@
                     Avant de partir, laissez moi vous dire, une autre fois.<br>
                     Mon CV est disponible.
                 </p>
-                <a class="icon" href="#!" target="_blank" data-button="Bouton download exit">
+                <a class="icon" href="#!" target="_blank" data-button="Bouton download exit" onclick="javascript:_paq.push(['trackEvent', 'Popup', 'Clic', 'Download']);">
                     <span>Téléchargez le<br/>sans attendre <sup>bug free</sup></span>
                     <svg class="icon-download"><use xlink:href="#icon-download"></use></svg>
                 </a>
             </div>
         </div>
         <div class="icon icon-close-wrapper">
-            <svg class="icon-close"><use xlink:href="#icon-close"></use></svg>
+            <svg class="icon-close" onclick="javascript:_paq.push(['trackEvent', 'Popup', 'Clic', 'Close']);"><use xlink:href="#icon-close"></use></svg>
         </div>
     </footer>
     <!-- #footer -->
@@ -253,7 +253,7 @@
 
 <!-- Piwik
 ================================================== -->
-    <iframe class="hide" style="border: 0; height: 200px; width: 600px;" src="https://analytics.soapoperator.com/index.php?module=CoreAdminHome&action=optOut&language=fr"></iframe>
+    <!-- <iframe class="hide" style="border: 0; height: 200px; width: 600px;" src="https://analytics.soapoperator.com/index.php?module=CoreAdminHome&action=optOut&language=fr"></iframe> -->
 
 </body>
 
