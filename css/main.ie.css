@@ -61,6 +61,25 @@
 	bottom: 0;
 }
 
+.ratio-16x35 {
+	position: relative;
+}
+
+.ratio-16x35:before {
+	display: block;
+	content: '';
+	width: 100%;
+	padding-top: 218.75%;
+}
+
+.ratio-16x35 > .content {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
 /* Vertical align with unknow height */
 .center-vertical {
 	position: relative;
@@ -1841,22 +1860,21 @@ body {
 	width: 100%;
 	background: url(../images/background.png) repeat;
 	background-color: #ff5c5c;
-	background-position: right center;
 	background-size: 0.8rem;
 	background-size: 1vmax;
 	background-image: url(../images/background.svg);
+	background-position: right center;
+	display: inline-flex;
+	flex-flow: row wrap;
+	align-items: flex-start;
+	justify-content: flex-start;
+	overflow: hidden;
 }
 
 @media screen and (max-width: 34em) {
 	#background {
 		background-position: center top;
 	}
-}
-
-#background canvas {
-	background-color: #ff5c5c;
-	background: green;
-	position: relative;
 }
 
 #id {
@@ -2022,6 +2040,12 @@ body {
 #footer.active {
 	z-index: 99999;
 	opacity: 1;
+	background: black;
+	-webkit-transition: all 10s ease-out;
+	-moz-transition: all 10s ease-out;
+	-ms-transition: all 10s ease-out;
+	-o-transition: all 10s ease-out;
+	transition: all 10s ease-out;
 }
 
 @media screen and (max-width: 34em) {
@@ -2373,4 +2397,12 @@ body {
 
 .icon-close svg {
 	fill: currentColor;
+}
+
+#photo {
+	background-color: #ffffff;
+}
+
+#about-social a {
+	text-decoration: none;
 }

@@ -37,7 +37,7 @@
 <!-- Basic
 ================================================== -->
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="anonymous"></script>
     <!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<script type="text/javascript" src="js/css3-mediaqueries.js"></script>
@@ -74,9 +74,8 @@
 <!-- Custom
 ================================================== -->
 
-    <link rel="stylesheet" href="css/main.min.css" media="all">
+    <link rel="stylesheet" href="css/main.ie.min.css" media="all">
     <link rel="stylesheet" href="css/media-queries.css" media="all">
-    <script type="text/javascript" src="js/jquery.browser.min.js" defer></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.typeit/3.0.1/typeit.min.js" defer></script>
     <script type="text/javascript" src="js/custom.ie.js" defer></script>
 
@@ -89,25 +88,13 @@
 
     <div id="wrapper" class="grid-noGutter-equalHeight-middle">
 
-        <section id="id" class="container col-6_sm-12 animated">
+        <section id="id" class="container col-10_sm-12">
             <article id="perso" class="content-wrapper grid-1_xs-2-noGutter-middle" itemscope itemtype="http://schema.org/Person">
                 <div id="about-photo" class="content col-10_xs-5"push-left="off-2_xs-0">
                     <div id="photo" class="ratio-240x330">
                         <object type="image/svg+xml" data="./images/jbo.svg" class="ratio-240x330">
-                            <img src="./images/jbo.png" alt="Le Curriculum vit&aelig; de Jean-Baptiste O." class="ratio-240x330"><!-- fallback image in CSS -->
+                            <img src="./images/jbo.png" alt="Le Curriculum vit&aelig; de Jean-Baptiste O."><!-- fallback image in CSS -->
                         </object>
-                        <div class="stripes">
-                            <div class="stripe"></div>
-                            <div class="stripe"></div>
-                            <div class="stripe"></div>
-                            <div class="stripe"></div>
-                            <div class="stripe"></div>
-                            <div class="stripe"></div>
-                            <div class="stripe"></div>
-                            <div class="stripe"></div>
-                            <div class="stripe"></div>
-                            <div class="stripe"></div>
-                        </div>
                     </div>
                 </div>
                 <div id="about-info" class="content col-10_xs-7" push-left="off-2_xs-0">
@@ -122,21 +109,17 @@
                         <span class="highlight" itemprop="telephone">+33 (0)6 32 67 80 97</span>
                     </div>
                     <div id="about-social">
-                        <a class="icon" href="mailto:jbo@soapoperator.com" itemprop="email">
-                            <svg class="icon-email"><use xlink:href="#icon-email"></use></svg>
-                            <i class="">Contactez moi par email</i>
+                        <a class="icon" href="mailto:jbo@soapoperator.com" itemprop="email" data-button="Bouton email" onclick="javascript:_paq.push(['trackEvent', 'Social', 'Clic', 'Email']);">
+                            Email
                         </a>
-                        <a class="icon" href='https://twitter.com/soapoperator/' rel="publisher" target="_blank">
-                            <svg class="icon-twitter"><use xlink:href="#icon-twitter"></use></svg>
-                            <i class="">Contactez moi sur Twitter</i>
+                        <a class="icon" href='https://twitter.com/soapoperator/' rel="publisher" target="_blank" data-button="Bouton twitter" onclick="javascript:_paq.push(['trackEvent', 'Social', 'Clic', 'Twitter']);">
+                            Twitter
                         </a>
-                        <a class="icon" href="http://fr.linkedin.com/in/jbolivier/" target="_blank">
-                            <svg class="icon-linkedin"><use xlink:href="#icon-linkedin"></use></svg>
-                            <i class="">Contactez moi sur Linkedin</i>
+                        <a class="icon" href="http://fr.linkedin.com/in/jbolivier/" target="_blank" data-button="Bouton linkedin" onclick="javascript:_paq.push(['trackEvent', 'Social', 'Clic', 'Linkedin']);">
+                            Linkedin
                         </a>
-                        <a class="icon" href="#!" target="_blank">
-                            <svg class="icon-download"><use xlink:href="#icon-download"></use></svg>
-                            <i class="">Télécharger sans attendre <sup>bug free</sup></i>
+                        <a class="icon" href="#!" target="_blank" data-button="Bouton download" onclick="javascript:_paq.push(['trackEvent', 'Social', 'Clic', 'Download']);">
+                            Mon CV
                         </a>
                     </div>
                 </div>
@@ -145,41 +128,7 @@
         </section>
         <!-- #container-id -->
 
-        <aside id="dialogue" class="container col-5_xs-12 animated">
-            <div id="dial" class="content-wrapper">
-                <div class="sequence sequence-1">
-                    <div class="sequence__content actor__content no-answer"></div>
-                </div>
-                <div class="sequence sequence-2 hide">
-                    <div class="sequence__content actor__content no-answer"></div>
-                    <div class="sequence__content guest__content no-answer hide">
-                        <div class="answer-form">
-                            <span class="answer-input" contentEditable="true"></span>
-                            <pre>Valider avec la touche <b>entrée</b></pre>
-                        </div>
-                    </div>
-                </div>
-                <div class="actor actor-1">
-                    <div id="jbo-3" class="actor__content no-answer hide" data-typeit-strings="How do you bill for your services? How would you describe yourself? "></div>
-                </div>
-                <div class="actor actor-1">
-                    <div id="jbo-3" class="actor__content no-answer hide" data-typeit-strings="How are you able to be responsive to my needs on an ongoing basis? What is your biggest accomplishment? "></div>
-                </div>
-                <div class="actor actor-1">
-                    <div id="jbo-3" class="actor__content no-answer hide" data-typeit-strings="How will you proactively communicate with me on an ongoing basis? Have you read any good books lately?There are lots of different dishes on the dining table. What do you want to eat first? "></div>
-                </div>
-                <div class="actor actor-1">
-                    <div id="jbo-3" class="actor__content no-answer hide" data-typeit-strings="Can I call about any legal problem I have or just about matters within your specialty? What is your dream job? "></div>
-                </div>
-                <div class="actor actor-1">
-                    <div id="jbo-3" class="actor__content no-answer hide" data-typeit-strings="What happens if you die or retire? Who is your personal hero? "></div>
-                </div>
-            </div>
-            <!-- .content-wrapper -->
-        </aside>
-        <!-- #container-dialogue -->
-
-        <aside id="background" class="container col-1_xs-12 animated"></aside>
+        <aside id="background" class="container col-1_xs-12"></aside>
         <!-- #background -->
 
     </div>
@@ -192,14 +141,14 @@
                     Avant de partir, laissez moi vous dire, une autre fois.<br>
                     Mon CV est disponible.
                 </p>
-                <a class="icon" href="#!" target="_blank">
+                <a class="icon" href="#!" target="_blank" data-button="Bouton download exit" onclick="javascript:_paq.push(['trackEvent', 'Popup', 'Clic', 'Download']);">
                     <span>Téléchargez le<br/>sans attendre <sup>bug free</sup></span>
                     <svg class="icon-download"><use xlink:href="#icon-download"></use></svg>
                 </a>
             </div>
         </div>
         <div class="icon icon-close-wrapper">
-            <svg class="icon-close"><use xlink:href="#icon-close"></use></svg>
+            <svg class="icon-close" onclick="javascript:_paq.push(['trackEvent', 'Popup', 'Clic', 'Close']);"><use xlink:href="#icon-close"></use></svg>
         </div>
     </footer>
     <!-- #footer -->
@@ -236,7 +185,7 @@
 
 <!-- Piwik
 ================================================== -->
-    <iframe class="hide" style="border: 0; height: 200px; width: 600px;" src="https://analytics.soapoperator.com/index.php?module=CoreAdminHome&action=optOut&language=fr"></iframe>
+    <!-- <iframe class="hide" style="border: 0; height: 200px; width: 600px;" src="https://analytics.soapoperator.com/index.php?module=CoreAdminHome&action=optOut&language=fr"></iframe> -->
 
 </body>
 

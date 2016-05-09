@@ -11,11 +11,13 @@
     width: 100%;
     font-size: 2rem;
     font-size: 2vmax;
-    background: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.9);
 
     &.active {
         z-index: 99999;
         opacity: 1;
+        background-color: rgba(0, 0, 0, 1);
+        @include transition(background-color 10s ease-out)
 
         .content-wrapper {
 

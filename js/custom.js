@@ -116,7 +116,7 @@ var onready = function () {
 
                         // Callback handler that will be called on success
                         request.done(function (response, textStatus, jqXHR){
-                            _paq.push(['trackEvent', 'Question', 'Validated', question]);
+                            _paq.push(['trackEvent', 'Question', 'Valid', question]);
                             // Log a message to the console
                             console.log( session +" // "+ question +" "+ answer.text() +" // OK" ); //Success message
                             //console.log(response);
