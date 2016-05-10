@@ -38,10 +38,6 @@
 ================================================== -->
 
     <script src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="anonymous"></script>
-    <!--[if lt IE 9]>
-		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<script type="text/javascript" src="js/css3-mediaqueries.js"></script>
-	<![endif]-->
 
 <!-- Favicons
 ================================================== -->
@@ -75,8 +71,6 @@
 ================================================== -->
 
     <link rel="stylesheet" href="css/main.ie.min.css" media="all">
-    <link rel="stylesheet" href="css/media-queries.css" media="all">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.typeit/3.0.1/typeit.min.js" defer></script>
     <script type="text/javascript" src="js/custom.ie.js" defer></script>
 
 </head>
@@ -86,18 +80,21 @@
 <!-- Page Layout
 ================================================== -->
 
-    <div id="wrapper" class="grid-noGutter-equalHeight-middle">
+    <div id="wrapper" class="">
 
-        <section id="id" class="container col-10_sm-12">
-            <article id="perso" class="content-wrapper grid-1_xs-2-noGutter-middle" itemscope itemtype="http://schema.org/Person">
-                <div id="about-photo" class="content col-10_xs-5"push-left="off-2_xs-0">
+        <aside id="background" class="container"></aside>
+        <!-- #background -->
+
+        <section id="id" class="container">
+            <article id="perso" class="content-wrapper" itemscope itemtype="http://schema.org/Person">
+                <div id="about-photo" class="content"push-left="">
                     <div id="photo" class="ratio-240x330">
                         <object type="image/svg+xml" data="./images/jbo.svg" class="ratio-240x330">
                             <img src="./images/jbo.png" alt="Le Curriculum vit&aelig; de Jean-Baptiste O."><!-- fallback image in CSS -->
                         </object>
                     </div>
                 </div>
-                <div id="about-info" class="content col-10_xs-7" push-left="off-2_xs-0">
+                <div id="about-info" class="content" push-left="">
                     <div id="about-name">
                         <h1>
                             <span class="hide">Le Curriculum vit&aelig; de</span>
@@ -128,14 +125,11 @@
         </section>
         <!-- #container-id -->
 
-        <aside id="background" class="container col-1_xs-12"></aside>
-        <!-- #background -->
-
     </div>
     <!-- #wrapper -->
 
-    <footer id="footer" class="container grid-noGutter">
-        <div class="content-wrapper col-8" push-left="off-2">
+    <footer id="footer" class="container">
+        <div class="content-wrapper" push-left="">
             <div class="content">
                 <p>
                     Avant de partir, laissez moi vous dire, une autre fois.<br>

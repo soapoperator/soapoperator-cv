@@ -4,9 +4,11 @@
     background-color: $color-background;
     width: 100%;
     @extend %font-family-sans-serif;
+    font-size: 1.2rem;
     font-size: 1.2vmax;
 
     @include breakpoint-to(S){
+        font-size: 2rem;
         font-size: 2vmax;
     };
 
@@ -24,11 +26,13 @@
 
         #photo {
             display: inline-block;
+            width:8rem;
             width:10vmax;
-            margin: 0 0 0.6em;
-            margin: 0 0 0.6em;
+            margin: 0 0 .6em;
+            margin: 0 0 .6em;
 
             @include breakpoint-to(S){
+                width: 7rem;
                 width: 15vmax;
                 margin: 2em 3em;
                 margin: 2vh 3vmax;

@@ -20,12 +20,27 @@ html {
 
 // Remove the dashed line on link in Firefox
 *:focus,
-a:focus {
+a:focus,
+object,
+embed {
 outline: 0 !important;
 }
 input[type="button"]{
 outline:none;
 }
+input::-moz-focus-inner,
 input[type="button"]::-moz-focus-inner {
 border: 0;
+}
+:-moz-any-link:focus,
+a:active {
+outline: none;
+}
+:focus,
+a:focus{
+-moz-outline-style: none;
+}
+select:-moz-focusring,
+select:-moz-focusring * {
+text-shadow:none;
 }

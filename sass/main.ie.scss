@@ -44,11 +44,42 @@
 /// Custom
 /// ==========================================================================
 
+#wrapper {
+    display: table;
+
+    > * {
+        display: table-cell;
+        width: 50%;
+        vertical-align: middle;
+    }
+
+    #id {
+
+    }
+
+    #background {
+
+    }
+}
+
+#perso {
+    margin-left: 80px;
+}
+
 #photo {
     background-color: $color-primary;
+    width: 148px;
+    height:203px;
 }
+
 #about-social {
     a {
         text-decoration: none;
+    }
+}
+
+#footer {
+    .content-wrapper {
+        margin-top: 80px;
     }
 }
