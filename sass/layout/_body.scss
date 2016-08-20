@@ -19,5 +19,5 @@ body {
     background              : $color-background;
     color                   : $color-text;
     @extend %font-family-sans-serif;
-    @include breakpoint-to-full($body-font-sizes);
+    @include mediaqueries-map($body-font-sizes);
 }

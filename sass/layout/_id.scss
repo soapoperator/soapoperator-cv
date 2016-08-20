@@ -7,7 +7,7 @@
     font-size: 1.2rem;
     font-size: 1.2vmax;
 
-    @include breakpoint-to(S){
+    @include mediaqueries(mobile){
         font-size: 2rem;
         font-size: 2vmax;
     };
@@ -20,7 +20,7 @@
         position: relative;
         text-align: left;
 
-        @include breakpoint-to(S){
+        @include mediaqueries(mobile){
             text-align: right;
         };
 
@@ -31,7 +31,7 @@
             margin: 0 0 .6em;
             margin: 0 0 .6em;
 
-            @include breakpoint-to(S){
+            @include mediaqueries(mobile){
                 width: 7rem;
                 width: 15vmax;
                 margin: 2em 3em;
@@ -72,7 +72,7 @@
             .icon + .icon {
                 margin-left: 0.5em;
 
-                @include breakpoint-to(S) {
+                @include mediaqueries(mobile) {
                     margin-left: 0.8em;
                 };
             }
@@ -80,9 +80,10 @@
             .icon-download {
                 float: right;
                 color: $black;
+                display: none;
 
-                @include breakpoint-from(S) {
-                    display: none;
+                @include mediaqueries(mobile) {
+                    display: inline-block;
                 }
             }
 

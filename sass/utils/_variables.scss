@@ -9,17 +9,15 @@ $MD: 48em !global;
 $LG: 62em !global;
 $XL: 75em !global;
 
-$mobile: $SM;
-$tablet: $MD;
-$desktop: $LG;
-$wide: $XL;
-
 $breakpoints: (
-    S: $SM,
-    M: $MD,
-    L: $LG,
-    XL: $XL,
+    mobile: $SM,
+    tablet: $MD,
+    desktop: $LG,
+    wide: $XL,
 );
+
+// $mediaqueries-option: 'mobile-first';
+$mediaqueries-option: 'desktop-first';
 
 /// Fonts Styles
 /// ==========================================================================
@@ -72,11 +70,11 @@ $base-line-height-ratio: 1 !default;
 // Use desktop first
 // Be carefull with the order
 $body-font-sizes: (
-    defaut:(font-size: $base-font-size * 1, line-height: $base-line-height-ratio * 1.1),
-    XL:    (font-size: $base-font-size * 1, line-height: $base-line-height-ratio * 1.1),
-    L:     (font-size: $base-font-size * .875 , line-height: $base-line-height-ratio * 1.1),
-    M:     (font-size: $base-font-size * .75, line-height: $base-line-height-ratio * 1),
-    S:     (font-size: $base-font-size * .75, line-height: $base-line-height-ratio * 1),
+    defaut:     (font-size: $base-font-size * 1, line-height: $base-line-height-ratio * 1.1),
+    wide:       (font-size: $base-font-size * 1, line-height: $base-line-height-ratio * 1.1),
+    desktop:    (font-size: $base-font-size * .875 , line-height: $base-line-height-ratio * 1.1),
+    tablet:     (font-size: $base-font-size * .75, line-height: $base-line-height-ratio * 1),
+    mobile:     (font-size: $base-font-size * .75, line-height: $base-line-height-ratio * 1),
 );
 
 /// Colors Styles
@@ -135,6 +133,12 @@ $border-radius-rounded: 50%;
 /// Image
 ///==========================================================================
 $retina-suffix: '@2x';
+
+/// Z-index
+///==========================================================================
+$zHeader: 2000;
+$zOverlay: 5000;
+$zMessage: 5050;
 
 /// Icon Svg Sprite
 ///==========================================================================

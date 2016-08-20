@@ -27,119 +27,66 @@
 
 /// Media query helper for declaring media queries by width, and, optionally, ratio.
 /// @access public
-/// @param {Length} $width - Max-width
-/// @param {Number | False} $ratio [false] - Min device pixel ratio
+/// @param {list} $args - Argument of the mediaquery
+/// @param {map} $breakpoints - Value of the breakpoints
 /// @example scss - Usage
 ///   .foo {
-///     @include mquery(350px, 2) {
+///     @include mediaqueries( to mobile portrait 16/9) {
 ///       width: 100%;
 ///     }
 ///   }
+@mixin mediaqueries($args, $breakpoints: $breakpoints) {
 
-$viewport-increment: 1px; // customize to suite
+    // Default Mediaqueries
+    $mediaqueries: 'screen';
 
-// Constraints
-$constraints: (
-    to: max-width,
-    from: min-width
-);
+    // Constraints
+    $constraints: (
+        to: 'max-width', // desktop-first
+        from: 'min-width' // mobile-first
+    );
 
-@mixin breakpoint( $constraint-value, $breakpoints-value, $ratio: false) {
+    @if $mediaqueries-option == 'desktop-first' {
+        $constraint: 'max-width';
+    }
 
-    @if lenght($breakpoints-value) == '2' {
+    @else {
+        $constraint: 'min-width';
+    }
 
-        @if $ratio {
+    @each $arg in $args {
 
-            @media
-            only screen and
-                (min-width: nth($breakpoints-value,1))
-                and (max-width: nth($breakpoints-value,2))
-                and (min--moz-device-pixel-ratio: $ratio),
-            only screen
-                and (min-width: nth($breakpoints-value,1)) and
-                (max-width: nth($breakpoints-value,2)) and
-                (-webkit-min-device-pixel-ratio: $ratio),
-            only screen
-                and (min-width: nth($breakpoints-value,1)) and
-                (max-width: nth($breakpoints-value,2)) and
-                (min-device-pixel-ratio: $ratio)
-            {
-                @content;
-            }
+        @if map-has-key($constraints, $arg) {
+            $constraint: map-get($constraints, $arg);
+        }
 
+        @else if $arg == landscape or $arg == portrait {
+            $mediaqueries: '#{$mediaqueries} and (orientation: #{$arg})';
+        }
+
+        @else if str-index( to-string($arg), '/') {
+            $mediaqueries:  '#{$mediaqueries} and (device-aspect-ratio: #{quote($arg)} )';
+        }
+
+        @else if $arg == retina {
+            $mediaqueries:  '#{$mediaqueries} and (min-resolution: 2dppx)';
         }
 
         @else {
-
-            @media
-            screen and
-                (min-width: nth($breakpoints-value,1)) and
-                (max-width: nth($breakpoints-value,2))
-            {
-                @content;
+            // If $arg is a key that exists in
+            // $breakpoints, get and use the value
+            @if map-has-key($breakpoints, $arg) {
+              $breakpoint: map-get($breakpoints, $arg);
             }
-
+            $mediaqueries: '#{$mediaqueries} and (#{$constraint}: #{$breakpoint})';
         }
 
-    } @else {
-
-        /// desktop-first
-        @if $constraint-value == 'to' {
-
-            $constraint: map-get($constraints, $constraint-value);
-            $width: map-get($breakpoints, $breakpoints-value);
-
-        }
-
-        /// mobile-first
-        @else if $constraint-value == 'from' {
-
-            $constraint: map-get($constraints, $constraint-value);
-            $width: map-get($breakpoints, $breakpoints-value);
-
-        }
-
-        @if $ratio {
-
-            @media
-            only screen and
-                ($constraint: $width) and
-                (min--moz-device-pixel-ratio: $ratio),
-            only screen and
-                ($constraint: $width) and
-                (-webkit-min-device-pixel-ratio: $ratio),
-            only screen and
-                ($constraint: $width) and
-                (min-device-pixel-ratio: $ratio)
-            {
-                @content;
-            }
-
-        }
-
-        @else {
-
-            @media screen and ($constraint: $width) {
-                @content;
-            }
-
-        }
     }
-}
 
-/// Media queries form desktop-first
-/// @access public
-@mixin breakpoint-to($breakpoints-value, $ratio: false) {
-    @include breakpoint('to', $breakpoints-value, $ratio) {
+    @media #{$mediaqueries} {
         @content;
     }
-}
-/// Media queries form mobile-first
-/// @access public
-@mixin breakpoint-from($breakpoints-value, $ratio: false) {
-    @include breakpoint('from', $breakpoints-value, $ratio) {
-        @content;
-    }
+
 }
 
 /// Add a property for all media queries
@@ -147,28 +94,12 @@ $constraints: (
 /// @param {map} $values-map - Map with property
 /// @example scss - Usage
 ///   .foo {
-///     @include breakpoint-from-full( S: (font-size: 14px, line-height: 1) );
+///     @include mediaqueries-map( $map );
 ///   }
-@mixin breakpoint-from-full( $values-map ) {
+@mixin mediaqueries-map( $values-map, $breakpoints: $breakpoints ) {
     @each $breakpoint, $value in $values-map {
         @if map-has-key($breakpoints,$breakpoint) {
-            @include breakpoint-from($breakpoint) {
-                @each $a, $b in $value {
-                    #{$a}: #{$b};
-                }
-            }
-        }
-        @else {
-            @each $a, $b in $value {
-                #{$a}: #{$b};
-            }
-        }
-    }
-}
-@mixin breakpoint-to-full( $values-map ) {
-    @each $breakpoint, $value in $values-map {
-        @if map-has-key($breakpoints,$breakpoint) {
-            @include breakpoint-to($breakpoint) {
+            @include mediaqueries($breakpoint,$breakpoints) {
                 @each $a, $b in $value {
                     #{$a}: #{$b};
                 }

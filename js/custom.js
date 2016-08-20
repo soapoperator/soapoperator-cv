@@ -143,6 +143,10 @@ var onready = function () {
         }
     });
 
+    // Cookies fortune
+    // ******************************************
+
+
     // Sequence
     // ******************************************
     var opt = Math.floor(Math.random() * 3) + 1, // 1 -> 3
@@ -156,6 +160,39 @@ var onready = function () {
             "Can I call about any legal problem I have or just about matters within your specialty? What is your dream job?",
             "What happens if you die or retire? Who is your personal hero?"
         ];
+        
+        // define("conversation", [], function() {
+        //                var e = function(e) {
+        //                    return {
+        //                        greeting: e.hasSeenChat ? [e.welcomeBackGreeting, "Still want to know more or just get in touch now?", {
+        //                            type: "choose",
+        //                            answers: [{
+        //                                text: "Shoot!",
+        //                                path: "tellmemore-second"
+        //                            }, {
+        //                                text: "Get in touch!",
+        //                                path: "contact"
+        //                            }]
+        //                        }] : ["Hi there!", "I'm Adrian, a UX designer living in Zurich, Switzerland.", "Want to know more or do you want to get in touch?", {
+        //                            type: "choose",
+        //                            answers: [{
+        //                                text: "Tell me more!",
+        //                                path: "tellmemore"
+        //                            }, {
+        //                                text: "Get in touch!",
+        //                                path: "contact"
+        //                            }]
+        //                        }],
+        // tellmemore: [e.hasSeenChat ? 'Alright! I\'m going to be honest with you. I learned this whole "introducing myself" stuff by heart, so I might repeat myself from time to time.' : "I feel humbled. 🙂", e.hasSeenChat ? "As mentioned, I write and speak about design and feel fortunate to have worked with incredibly talented people across different companies." : "I write and speak about design and am fortunate to have worked with incredibly talented people across different companies.", {
+        //                     type: "choose",
+        //                     answers: [{
+        //                         text: "Which companies?",
+        //                         path: "companies"
+        //                     }, {
+        //                         text: "You write?!",
+        //                         path: "write"
+        //                     }]
+        //                 }],
     sequence(1,scene);
 
     // Button tracking

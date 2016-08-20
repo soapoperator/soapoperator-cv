@@ -12,10 +12,10 @@
     font-size: 3em;
     font-size: 3vmax;
 
-    @include breakpoint-to(S){
+    @include mediaqueries(mobile){
         font-size: 4em;
         font-size: 4vmax;
-        padding: 3rem 2rem;
+        padding: 3rem 1rem;
     };
 
 }
@@ -105,7 +105,7 @@
 
             .answer-input,
             .answer-input:focus {
-                background-color: darken($color-background, 7%);
+                background-color: mix($color-background, $black, 40%);
             }
 
             pre {
@@ -116,7 +116,7 @@
                 width: auto;
                 font-weight: normal;
 
-                @include breakpoint-to(S){
+                @include mediaqueries(mobile){
                     font-size:.4em;
                 };
 

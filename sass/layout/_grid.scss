@@ -18,21 +18,18 @@ $height-background-mobile: 10vh !default;
         z-index:1;
         @include prefix(animation-delay,0.3s,-webkit);
 
-        @include breakpoint-to(S) {
+        @include mediaqueries(mobile) {
             order: -1;
             height:$height-dialogue-mobile;
-            //@include prefix(animation-delay,1.5s,-webkit);
         }
-        //@extend %xs-slideinup;
     }
 
     #id {
         z-index:2;
+        order: 1;
 
-        @include breakpoint-from(S) {
-            order: 1;
-        }
-        @include breakpoint-to(S) {
+        @include mediaqueries(mobile) {
+            order: 0;
             height:$height-id-mobile;
             @include prefix(animation-delay,0.8s,-webkit);
         }
@@ -41,18 +38,18 @@ $height-background-mobile: 10vh !default;
 
     #background {
         z-index:10;
+        order: -1;
 
-        @include breakpoint-from(S) {
-            order: -1;
-        }
-        @include breakpoint-to(S) {
+        @include mediaqueries(mobile) {
+            order: 2;
             height:$height-background-mobile;
         }
         @extend %xs-slideinup;
+
     }
 
 }
-@include breakpoint-to(S) {
+@include mediaqueries(mobile) {
     %xs-slideinup {
         @include animate-prefixer(animation-name, fadeInUpBig);
     };

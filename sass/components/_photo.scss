@@ -20,7 +20,7 @@
             top: ($i - 1 )* 10%;
             @include prefix(animation-delay,(1.1 * $i - $i ) * 0.5s,-webkit);
             @include prefix(animation-timing-function,steps(6,end),-webkit);
-            @include breakpoint-to(S){
+            @include mediaqueries(mobile){
                 @include prefix(animation-delay,(1.1 * $i - $i ) * 0.5s + 1.5s,-webkit);
             };
         }

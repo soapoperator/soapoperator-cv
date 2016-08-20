@@ -1843,16 +1843,12 @@ body {
 
 #wrapper #id {
 	z-index: 2;
-}
-
-@media screen and (min-width: 34em) {
-	#wrapper #id {
-		order: 1;
-	}
+	order: 1;
 }
 
 @media screen and (max-width: 34em) {
 	#wrapper #id {
+		order: 0;
 		height: 25vh;
 		-webkit-animation-delay: 0.8s;
 		animation-delay: 0.8s;
@@ -1861,16 +1857,12 @@ body {
 
 #wrapper #background {
 	z-index: 10;
-}
-
-@media screen and (min-width: 34em) {
-	#wrapper #background {
-		order: -1;
-	}
+	order: -1;
 }
 
 @media screen and (max-width: 34em) {
 	#wrapper #background {
+		order: 2;
 		height: 10vh;
 	}
 }
@@ -1944,7 +1936,7 @@ body {
 	#dialogue {
 		font-size: 4em;
 		font-size: 4vmax;
-		padding: 3rem 2rem;
+		padding: 3rem 1rem;
 	}
 }
 
@@ -2042,7 +2034,7 @@ body {
 
 #dial .sequence .answer-form .answer-input,
 #dial .sequence .answer-form .answer-input:focus {
-	background-color: #ff3838;
+	background-color: #662525;
 }
 
 #dial .sequence .answer-form pre {
@@ -2154,11 +2146,12 @@ body {
 #id #about-info #about-social .icon-download {
 	float: right;
 	color: #000000;
+	display: none;
 }
 
-@media screen and (min-width: 34em) {
+@media screen and (max-width: 34em) {
 	#id #about-info #about-social .icon-download {
-		display: none;
+		display: inline-block;
 	}
 }
 

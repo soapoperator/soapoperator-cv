@@ -28,7 +28,7 @@
         }
     }
 
-    @include breakpoint-to(S){
+    @include mediaqueries(mobile){
         display: none;
     };
 
