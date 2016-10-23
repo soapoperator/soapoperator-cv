@@ -1,0 +1,218 @@
+// main: ../main.scss
+
+.modal-wrapper {
+    padding: 5rem;
+    padding: 5vh;
+
+    .modal {
+        @include prefix(align-items,center,-webkit);
+    }
+
+    .modal-content {
+        font-size: 2rem;
+        width: 100%;
+        //@include center(xy);
+
+        @include mediaqueries(mobile){
+            width: 100%;
+        };
+
+        a {
+            @extend .animated;
+            @extend .bounceIn;
+        }
+    }
+
+    .modal-close {
+        text-align: right;
+        width: 100%;
+
+        svg {
+            font-size: 1.5rem;
+            margin: 0;
+            color: $white;
+
+            &:hover {
+                cursor: no-drop;
+                color: $color-background;
+            }
+        }
+    }
+}
+
+#exitModal {
+
+    header,
+    .content,
+    footer {
+        font-size: 1.1em;
+
+        @include mediaqueries(tablet){
+            font-size: 0.9em;
+        };
+
+        @include mediaqueries(mobile){
+            font-size: 0.9em;
+        };
+    }
+
+    header {
+        margin-bottom: 2rem;
+    }
+
+    hr {
+        margin-bottom: 2rem;
+        margin-top: 0;
+        border: none;
+        border-bottom: 3px solid $white;
+    }
+
+    .content {
+
+        .download {
+            position: relative;
+            text-decoration: none;
+
+            &:after {
+                content: '';
+                position:absolute;
+                bottom: 0;
+                left: 0;
+                z-index: -1;
+                width: 100%;
+                height: 1px;
+                @include background-stripe(horizontal, transparent black);
+                background-size: 0.4em;
+                background-position: 0.2em 0;
+            }
+
+            &:hover {
+
+                &:after {
+                    @include animation(dashemotion 0.2s infinite linear);
+                }
+            }
+
+            i {
+                text-shadow: 0 2px 0px $color-secondary,1px 1px 0px $color-secondary,-1px 1px 0px $color-secondary;
+            }
+        }
+
+        i {
+            color: $black;
+        }
+    }
+
+    .nb {
+        display: block;
+        background: $white;
+        color: $color-secondary;
+        width: 2.5em;
+        height: 2.5em;
+        line-height: 2.5em;
+        border-radius: 50%;
+        text-align: center;
+
+        @include mediaqueries(tablet){
+            width: 2em;
+            height: 2em;
+            line-height: 2em;
+        };
+
+        @include mediaqueries(mobile){
+            width: 1.5em;
+            height: 1.5em;
+            line-height: 1.5em;
+        };
+
+    }
+
+    .contact-form {
+        position: relative;
+
+        > input,
+        > button {
+            height: 2em;
+            line-height: 2em;
+            margin-top: 0.3em;
+        }
+
+        input {
+            padding: 0 0.5em;
+            border-radius: 0;
+            border: none;
+            z-index: 10;
+            position: relative;
+            width: calc(100% - 2.3em);
+        }
+
+        .icon {
+            color: $white;
+            background: $black;
+            width: 2em;
+            margin-left: 0.3em;
+            float: right;
+            border: none;
+            border-radius: 0;
+            position: relative;
+            z-index: 5;
+            @include prefix(transition,all 0.5s ease-out,-webkit);
+            @include prefix(transform,translate3d(-200%, 0, 0),-webkit);
+
+            .icon-send {
+                margin: 0.4em 0;
+                position: relative;
+                left: 0;
+                @include prefix(transition,all 0.3s ease-out,-webkit);
+            }
+
+            &.half {
+                @include prefix(transform,translate3d(-50%, 0, 0),-webkit);
+            }
+
+            &.ready {
+                @include prefix(transform,translate3d(0, 0, 0),-webkit);
+
+                &:focus {
+                    background: $salmon;
+                }
+
+                &:hover {
+
+                    .icon-send {
+                        left: 40%;
+                    }
+                }
+            }
+        }
+    }
+
+    .result {
+        margin-top: 2rem;
+
+        span {
+            padding: 0.2em;
+            color: $white;
+            background: $salmon;
+        }
+    }
+
+    footer {
+
+        svg {
+            color: $color-background;
+        }
+    }
+}
+
+@include keyframes(dashemotion) {
+    0% {
+      background-position: -0.2em 0em;
+    }
+    50% {
+      background-position: 0em 0em;
+    }
+    100% {
+      background-position: 0.2em 0em;
+    }
+};

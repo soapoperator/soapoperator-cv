@@ -1,0 +1,68 @@
+// main: ../main.scss
+
+.spinner {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 900;
+    @include background-stripe(45deg, transparent $color-secondary transparent $color-secondary);
+    background-size: 0.8em 0.8em;
+    background-position: 0 0;
+    @include animation(spinnermotion 0.4s infinite linear);
+    z-index: 0;
+
+    &.loading {
+        z-index: 10;
+    }
+}
+
+@include keyframes(spinnermotion) {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 0.8em 1.6em;
+    }
+};
+
+// Variables
+// $circleDiam: 3rem;
+// $innerCircleDiam: $circleDiam/3;
+// $rotatingCircleDiam: $circleDiam/5;
+//
+// $innerCirclePos: ($circleDiam - $innerCircleDiam)/2;
+// $rotatingCirclePosLeft: ($circleDiam - $innerCircleDiam)/2 - $rotatingCircleDiam;
+// $rotatingCirclePosTop: $circleDiam/2 - $rotatingCircleDiam/2;
+//
+// //The circle wrapper
+// .spinner {
+//   text-indent: 999em;
+//   width: $circleDiam;
+//   height: $circleDiam;
+//   position: relative;
+//   top: 50%; left: 50%;
+//   margin: -$circleDiam/2;
+//   background-color: $black;
+//   border-radius: 50%;
+//
+// // The inner, rotating circle
+//   &:after {
+//     content: '';
+//     position: absolute;
+//     top: $rotatingCirclePosTop;
+//     left: $rotatingCirclePosLeft;
+//     background-color: #fff;
+//     height: $rotatingCircleDiam;
+//     width: $rotatingCircleDiam;
+//     animation: spin 1s linear infinite;
+//     border-radius: 50%;
+//     transform-origin: $innerCirclePos/2 + $rotatingCircleDiam;
+//   }
+// }
+//
+// // Spin it, baby!
+// @keyframes spin {
+//     100% { transform: rotate(360deg); }
+// }
