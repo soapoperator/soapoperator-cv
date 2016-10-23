@@ -129,8 +129,12 @@
     <!-- #wrapper -->
 
     <footer id="footer" class="container">
-        <div class="content-wrapper" push-left="">
-            <div class="content">
+        <a id="modal" href="#animatedModal">Hop!</a>
+        <div id="animatedModal" class="content-wrapper" push-left="">
+            <div class="icon icon-close-wrapper close-animatedModal">
+                <svg class="icon-close" onclick="javascript:_paq.push(['trackEvent', 'Popup', 'Clic', 'Close']);"><use xlink:href="#icon-close"></use></svg>
+            </div>
+            <div class="content modal-content">
                 <p>
                     Avant de partir, laissez moi vous dire, une autre fois.<br>
                     Mon CV est disponible.
@@ -140,9 +144,6 @@
                     <svg class="icon-download"><use xlink:href="#icon-download"></use></svg>
                 </a>
             </div>
-        </div>
-        <div class="icon icon-close-wrapper">
-            <svg class="icon-close" onclick="javascript:_paq.push(['trackEvent', 'Popup', 'Clic', 'Close']);"><use xlink:href="#icon-close"></use></svg>
         </div>
     </footer>
     <!-- #footer -->
@@ -181,6 +182,10 @@
 ================================================== -->
 <script type="text/javascript">
   var _paq = _paq || [];
+  _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+  _paq.push(["setCookieDomain", "*.cv.soapoperator.com"]);
+  _paq.push(["setDomains", ["*.cv.soapoperator.com","*.cv.soapoperator.com"]]);
+  _paq.push(["setDoNotTrack", true]);
   _paq.push(['trackPageView']);
   _paq.push(['enableLinkTracking']);
   (function() {
@@ -192,7 +197,6 @@
   })();
 </script>
 <noscript><p><img src="//analytics.soapoperator.com/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
-<iframe class="hide" style="border: 0; height: 200px; width: 600px;" src="http://analytics.soapoperator.com/index.php?module=CoreAdminHome&action=optOut&language=fr"></iframe>
 
 </body>
 

@@ -9,9 +9,8 @@
 
 /// vendors
 /// ==========================================================================
-@import "vendors/gridlex-vars";
 @import "vendors/gridlex";
-@import "vendors/animate/animate";
+@import "vendors/animate";
 
 /// base
 /// ==========================================================================
@@ -27,11 +26,13 @@
 @import "layout/dialogue";
 @import "layout/id";
 @import "layout/footer";
+@import "layout/modal";
 
 /// components
 /// ==========================================================================
 @import "components/photo";
 @import "components/buttons";
+@import "components/spinner";
 
 /// pages
 /// ==========================================================================

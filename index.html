@@ -37,9 +37,7 @@
 <!-- Basic
 ================================================== -->
 
-    <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/jquery.browser.min.js" defer></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.typeit/3.0.1/typeit.min.js" defer></script>
+    <script   src="//code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
 
 <!-- Favicons
 ================================================== -->
@@ -69,11 +67,20 @@
 <!-- Plugin
 ================================================== -->
 
+    <script type="text/javascript" src="vendors/jquery-browser-plugin/dist/jquery.browser.min.js" defer></script>
+    <script type="text/javascript" src="vendors/animatedModal.js/animatedModal.min.js" defer></script>
+    <script type="text/javascript" src="vendors/PhotoSwipe/dist/photoswipe.min.js" defer></script>
+    <script type="text/javascript" src="vendors/PhotoSwipe/dist/photoswipe-ui-default.min.js" defer></script>
+    <link rel="stylesheet" href="vendors/PhotoSwipe/dist/photoswipe.css" media="all">
+    <link rel="stylesheet" href="vendors/PhotoSwipe/dist/default-skin/default-skin.css" media="all">
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.typeit/4.2.3/typeit.min.js" defer></script>
+    <script type="text/javascript" src="vendors/I-Miss-You/jquery.iMissYou.min.js" defer></script>
+
 <!-- Custom
 ================================================== -->
 
-    <link rel="stylesheet" href="css/main.css" media="all">
-    <script type="text/javascript" src="js/custom.js" defer></script>
+    <link rel="stylesheet" href="css/main.min.css" media="all">
+    <script type="text/javascript" src="js/custom.min.js" defer></script>
 
 </head>
 
@@ -84,9 +91,9 @@
 
     <div id="wrapper" class="grid-noGutter-equalHeight-middle">
 
-        <section id="id" class="container col-6_xs-12 animated">
+        <section id="id" class="col-6_xs-12 animated">
             <article id="perso" class="content-wrapper grid-1_xs-2-noGutter-middle" itemscope itemtype="http://schema.org/Person">
-                <div id="about-photo" class="content col-10_xs-5"push-left="off-2_xs-0">
+                <div id="about-photo" class="content col-10_xs-5" data-push-left="off-2_xs-0">
                     <div id="photo" class="ratio-240x330">
                         <object type="image/svg+xml" data="./images/jbo.svg" class="ratio-240x330">
                             <img src="./images/jbo.png" alt="Le Curriculum vit&aelig; de Jean-Baptiste O."><!-- fallback image in CSS -->
@@ -105,7 +112,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="about-info" class="content col-10_xs-7" push-left="off-2_xs-0">
+                <div id="about-info" class="content col-10_xs-7" data-push-left="off-2_xs-0">
                     <div id="about-name">
                         <h1>
                             <span class="hide">Le Curriculum vit&aelig; de</span>
@@ -119,15 +126,15 @@
                     <div id="about-social">
                         <a class="icon" href="mailto:jbo@soapoperator.com" itemprop="email" data-button="Bouton email" onclick="javascript:_paq.push(['trackEvent', 'Social', 'Clic', 'Email']);">
                             <svg class="icon-email"><use xlink:href="#icon-email"></use></svg>
-                            <i class="">Contactez moi par email</i>
+                            <i class="">Pour m'envoyez un courriel</i>
                         </a>
                         <a class="icon" href='https://twitter.com/soapoperator/' rel="publisher" target="_blank" data-button="Bouton twitter" onclick="javascript:_paq.push(['trackEvent', 'Social', 'Clic', 'Twitter']);">
                             <svg class="icon-twitter"><use xlink:href="#icon-twitter"></use></svg>
-                            <i class="">Contactez moi sur Twitter</i>
+                            <i class="">Contactez-moi sur Twitter</i>
                         </a>
                         <a class="icon" href="http://fr.linkedin.com/in/jbolivier/" target="_blank" data-button="Bouton linkedin" onclick="javascript:_paq.push(['trackEvent', 'Social', 'Clic', 'Linkedin']);">
                             <svg class="icon-linkedin"><use xlink:href="#icon-linkedin"></use></svg>
-                            <i class="">Contactez moi sur Linkedin</i>
+                            <i class="">Rendez-vous sur Linkedin</i>
                         </a>
                         <a class="icon" href="#!" target="_blank" data-button="Bouton download" onclick="javascript:_paq.push(['trackEvent', 'Social', 'Clic', 'Download']);">
                             <svg class="icon-download"><use xlink:href="#icon-download"></use></svg>
@@ -140,7 +147,7 @@
         </section>
         <!-- #container-id -->
 
-        <aside id="dialogue" class="container col-5_xs-12 animated">
+        <aside id="dialogue" class="col-5_xs-12 animated">
             <div id="dial" class="content-wrapper">
                 <div class="sequence sequence-1 hide">
                     <div class="sequence__content actor__content no-answer"></div>
@@ -154,66 +161,75 @@
                         </div>
                     </div>
                 </div>
-                <div class="sequence sequence-3 hide">
-                    <div class="sequence__content actor__content no-answer"></div>
-                    <div class="sequence__content guest__content no-answer hide">
-                        <div class="answer-form">
-                            <span class="answer-input" contentEditable="true"></span>
-                            <pre>Valider avec la touche <b>entrée</b></pre>
-                        </div>
-                    </div>
-                </div>
-                <div class="sequence sequence-4 hide">
-                    <div class="sequence__content actor__content no-answer"></div>
-                    <div class="sequence__content guest__content no-answer hide">
-                        <div class="answer-form">
-                            <span class="answer-input" contentEditable="true"></span>
-                            <pre>Valider avec la touche <b>entrée</b></pre>
-                        </div>
-                    </div>
-                </div>
-                <div class="sequence sequence-5 hide">
-                    <div class="sequence__content actor__content no-answer"></div>
-                    <div class="sequence__content guest__content no-answer hide">
-                        <div class="answer-form">
-                            <span class="answer-input" contentEditable="true"></span>
-                            <pre>Valider avec la touche <b>entrée</b></pre>
-                        </div>
-                    </div>
-                </div>
-                <div class="sequence sequence-6 hide">
-                    <div class="sequence__content actor__content no-answer"></div>
-                </div>
             </div>
             <!-- .content-wrapper -->
         </aside>
         <!-- #container-dialogue -->
 
-        <aside id="background" class="container col-1_xs-12 animated"></aside>
+        <aside id="background" class="col-1_xs-12 animated"></aside>
         <!-- #background -->
 
     </div>
     <!-- #wrapper -->
 
-    <footer id="footer" class="container grid-noGutter">
-        <div class="content-wrapper col-8" push-left="off-2">
-            <div class="content">
-                <p>
-                    Avant de partir, laissez moi vous dire, une autre fois.<br>
-                    Mon CV est disponible.
-                </p>
-                <a class="icon" href="#!" target="_blank" data-button="Bouton download exit" onclick="javascript:_paq.push(['trackEvent', 'Popup', 'Clic', 'Download']);">
-                    <span>Téléchargez le<br/>sans attendre <sup>bug free</sup></span>
-                    <svg class="icon-download"><use xlink:href="#icon-download"></use></svg>
-                </a>
-            </div>
-        </div>
-        <div class="icon icon-close-wrapper">
-            <svg class="icon-close" onclick="javascript:_paq.push(['trackEvent', 'Popup', 'Clic', 'Close']);"><use xlink:href="#icon-close"></use></svg>
-        </div>
+    <footer id="footer" class="container">
+        <a id="toggle-exitModal" href="#exitModal">Hop!</a>
     </footer>
     <!-- #footer -->
 
+    <div id="exitModal" class="exitModal-off modal-wrapper animated">
+        <div class="modal grid-column-center">
+            <div class="modal-close col">
+                <div class="icon close-exitModal">
+                    <svg class="icon-cancel-circle" onclick="javascript:_paq.push(['trackEvent', 'Popup', 'Clic', 'Close']);"><use xlink:href="#icon-cancel-circle"></use></svg>
+                </div>
+            </div>
+            <div class="modal-content col-9_md-10_xs-12">
+                <header>
+                    Avant de partir, au choix :
+                </header>
+                <hr>
+                <div class="grid-2">
+                    <div class="nb-wrapper col-2">
+                        <div class="nb">
+                            1
+                        </div>
+                    </div>
+                    <div class="content col-10">
+                        <span>Vous pouvez <a class="icon download" href="#!" target="_blank" data-button="Bouton download exit" onclick="javascript:_paq.push(['trackEvent', 'Popup', 'Clic', 'Download']);" title="Bug free"><i>télécharger mon CV</i></a> gratuitement et sans coup férir.</span>
+                    </div>
+                </div>
+                <div class="grid-2">
+                    <div class="nb-wrapper col-2">
+                        <div class="nb">
+                            2
+                        </div>
+                    </div>
+                    <div class="content col-10">
+                        <span>Laissez-moi <i>vos coordonnées</i> (email ou téléphone), je vous recontacterai sous 48 heures.</span>
+                        <form id="modal-form" class="contact-form">
+                            <input id="contact-form-name" type="text" name="name" value="" placeholder="Nom / Prénom / Pseudo*" required>
+                            <input id="contact-form-contact" type="text" name="contact" value="" placeholder="Email / Téléphone*" required>
+                            <button id="contact-form-button" class="icon" type="submit" name="envoyer">
+                                <svg class="icon-send"><use xlink:href="#icon-send"></use></svg>
+                            </button>
+                            <div class="spinner"></div>
+                            <div class="clear"></div>
+                        </form>
+                        <div id="modal-result" class="result"></div>
+                    </div>
+                </div>
+                <hr>
+                <footer>
+                    Bonne journée
+                    <div class="icon">
+                        <svg class="icon-icecream"><use xlink:href="#icon-icecream"></use></svg>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+    <!-- #exitModal -->
 
     <svg style="position: absolute; width: 0; height: 0;" width="0" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs>
@@ -237,9 +253,73 @@
             <title>close</title>
             <path class="path1" d="M15.854 12.854c-0-0-0-0-0-0l-4.854-4.854 4.854-4.854c0-0 0-0 0-0 0.052-0.052 0.090-0.113 0.114-0.178 0.066-0.178 0.028-0.386-0.114-0.529l-2.293-2.293c-0.143-0.143-0.351-0.181-0.529-0.114-0.065 0.024-0.126 0.062-0.178 0.114 0 0-0 0-0 0l-4.854 4.854-4.854-4.854c-0-0-0-0-0-0-0.052-0.052-0.113-0.090-0.178-0.114-0.178-0.066-0.386-0.029-0.529 0.114l-2.293 2.293c-0.143 0.143-0.181 0.351-0.114 0.529 0.024 0.065 0.062 0.126 0.114 0.178 0 0 0 0 0 0l4.854 4.854-4.854 4.854c-0 0-0 0-0 0-0.052 0.052-0.090 0.113-0.114 0.178-0.066 0.178-0.029 0.386 0.114 0.529l2.293 2.293c0.143 0.143 0.351 0.181 0.529 0.114 0.065-0.024 0.126-0.062 0.178-0.114 0-0 0-0 0-0l4.854-4.854 4.854 4.854c0 0 0 0 0 0 0.052 0.052 0.113 0.090 0.178 0.114 0.178 0.066 0.386 0.029 0.529-0.114l2.293-2.293c0.143-0.143 0.181-0.351 0.114-0.529-0.024-0.065-0.062-0.126-0.114-0.178z"></path>
         </symbol>
+        <symbol id="icon-cancel-circle" viewBox="0 0 26 26">
+            <title>cancel-circle</title>
+            <path class="path1" d="M13 0c-7.18 0-13 5.82-13 13s5.82 13 13 13 13-5.82 13-13-5.82-13-13-13zM13 23.563c-5.833 0-10.563-4.729-10.563-10.563s4.729-10.563 10.563-10.563 10.563 4.729 10.563 10.563-4.729 10.563-10.563 10.563z"></path>
+            <path class="path2" d="M17.063 6.5l-4.063 4.063-4.063-4.063-2.438 2.438 4.063 4.063-4.063 4.063 2.438 2.438 4.063-4.063 4.063 4.063 2.438-2.438-4.063-4.063 4.063-4.063z"></path>
+        </symbol>
+        <symbol id="icon-icecream" viewBox="0 0 26 26">
+            <title>icecream</title>
+            <path class="path1" d="M16.903 8.728c1.177-2.941-1.454-3.426-1.454-3.391 0.83-2.077-0.83-3.461-2.353-3.461s-1.454 0.693-1.454 0.693 0.83-0.173 0.83 0.484c0 0.658-0.762 0.623-1.523 1.385-0.762 0.761-0.398 0.658-0.45 0.658 1.583-0.104 2.509 1.532 4.257 0.934-1.731 0.865-2.146-0.51-4.015-0.579-0.242 0-1.627-0.268-1.627 2.379 2.025 0.234 2.907 1.627 5.641 1.315-3.080 1.142-6.939-3.582-7.475 1.592 0 1.107 0.83 1.664 0.83 1.664s9.587 0 9.553 0c1.903-0.83 0.969-3.845-0.761-3.672zM13.058 25.188l4.329-12.244h-8.753l4.424 12.244z"></path>
+        </symbol>
+        <symbol id="icon-send" viewBox="0 0 26 26">
+            <title>send</title>
+            <path class="path1" d="M2.184 22.75v-7.566l16.25-2.184-16.25-2.184v-7.566l22.75 9.75z"></path>
+        </symbol>
+        <symbol id="icon-nature_people" viewBox="0 0 26 26">
+            <title>nature_people</title>
+            <path class="path1" d="M4.875 11.934c-0.914 0-1.625-0.711-1.625-1.625s0.711-1.625 1.625-1.625 1.625 0.711 1.625 1.625-0.711 1.625-1.625 1.625zM24.020 9.953c0 3.91-2.945 7.059-6.703 7.516v4.215h3.25v2.133h-17.316v-5.383h-1.066v-4.367c0-0.609 0.457-1.066 1.066-1.066h3.25c0.609 0 1.066 0.457 1.066 1.066v4.367h-1.066v3.25h8.684v-4.266c-3.605-0.609-6.348-3.707-6.348-7.465 0-4.215 3.402-7.617 7.617-7.617s7.566 3.402 7.566 7.617z"></path>
+        </symbol>
     </defs>
 </svg>
 
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe.
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- End Document
 ================================================== -->
@@ -248,6 +328,10 @@
 ================================================== -->
 <script type="text/javascript">
   var _paq = _paq || [];
+  _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+  _paq.push(["setCookieDomain", "*.cv.soapoperator.com"]);
+  _paq.push(["setDomains", ["*.cv.soapoperator.com","*.cv.soapoperator.com"]]);
+  _paq.push(["setDoNotTrack", true]);
   _paq.push(['trackPageView']);
   _paq.push(['enableLinkTracking']);
   (function() {
@@ -259,7 +343,6 @@
   })();
 </script>
 <noscript><p><img src="//analytics.soapoperator.com/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
-<iframe class="hide" style="border: 0; height: 200px; width: 600px;" src="http://analytics.soapoperator.com/index.php?module=CoreAdminHome&action=optOut&language=fr"></iframe>
 
 </body>
 

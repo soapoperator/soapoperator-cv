@@ -16,6 +16,33 @@
         width: 100%;
     }
 
+    .content {
+
+        > * {
+            width:14em;
+            text-align: center;
+
+            @include mediaqueries(tablet){
+                width:13em;
+            };
+        }
+
+        > #photo {
+            width:10em;
+            text-align: center;
+
+            @include mediaqueries(tablet){
+                width:10em;
+            };
+
+            @include mediaqueries(mobile){
+                width: 9em;
+                text-align: left;
+            };
+        }
+    }
+
+
     #about-photo {
         position: relative;
         text-align: left;
@@ -25,34 +52,38 @@
         };
 
         #photo {
-            display: inline-block;
-            width:8rem;
-            width:10vmax;
-            margin: 0 0 .6em;
-            margin: 0 0 .6em;
-
-            @include mediaqueries(mobile){
-                width: 7rem;
-                width: 15vmax;
-                margin: 2em 3em;
-                margin: 2vh 3vmax;
-            };
+            margin: 0 2em 1.5em;
         }
 
     }
 
     #about-info {
-        padding-right: 3rem;
+        padding-right: 1rem;
+
+        @include mediaqueries(mobile){
+            text-align: left;
+        };
+
+        > * {
+            @include mediaqueries(mobile){
+                width: 100%;
+                text-align: left;
+            };
+        }
 
         div + div {
-            margin-top: 0.6em;
+            margin-top: 0.8em;
+
+            @include mediaqueries(tablet){
+                margin-top: 0.9em;
+            };
         }
 
         #about-name {
             text-transform: uppercase;
 
             h1 {
-                font-size: 1.4em;
+                font-size: 1.39em;
                 font-weight: normal;
                 letter-spacing: 1px;
                 margin: 0;
@@ -61,6 +92,10 @@
 
         #about-telephone {
             color: $color-secondary;
+
+            .highlight {
+                font-size: 1.39em;
+            }
         }
 
         #about-social {
@@ -89,9 +124,12 @@
 
             .icon {
                 position: relative;
+                font-size: 1.5em;
+                color: $white;
+                margin-top: 1em;
 
                 &:hover {
-                    color: $black;
+                    color: $white;
                 }
 
                 i {

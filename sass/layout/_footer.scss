@@ -2,98 +2,11 @@
 
 #footer {
     position: fixed;
-    bottom: 0;
     top: 0;
     left: 0;
-    right: 0;
     z-index: -1;
     opacity: 0;
     width: 100%;
     font-size: 2rem;
     font-size: 2vmax;
-    background-color: rgba(0, 0, 0, 0.8);
-
-    &.active {
-        z-index: 99999;
-        opacity: 1;
-        background-color: rgba(0, 0, 0, 1);
-        @include transition(background-color 10s ease-out)
-
-        .content-wrapper {
-
-            a {
-                @extend .animated;
-                @extend .bounceIn;
-            }
-        }
-    }
-
-    @include mediaqueries(mobile){
-        display: none;
-    };
-
-    .content-wrapper {
-        display: -webkit-box;
-    	display: -moz-box;
-    	display: -ms-flexbox;
-    	display: -webkit-flex;
-    	display: flex;
-
-        .content {
-            margin: auto;
-            width: 100%;
-
-            p {
-                font-family: cursive;
-                text-align: center;
-                font-style: italic;
-                margin-bottom: 2em;
-            }
-
-            a {
-                display: block;
-                color: $color-text;
-                text-decoration: none;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-                text-align: center;
-                font-size: 3em;
-                @include prefix(animation-delay,0s,-webkit);
-
-                > * {
-                    display: block;
-                }
-
-                span {
-                    font-size: smaller;
-                }
-
-                .icon-download {
-                    color: $color-text;
-                    margin: 0.3em auto 0;
-                }
-
-                &:hover,
-                &:hover .icon-download {
-                    color: $color-secondary;
-                    fill: $color-secondary;
-                }
-            }
-        }
-
-    }
-
-    .icon-close-wrapper {
-        position: absolute;
-        right: 0.5em;
-        top: 0.5em;
-
-        .icon-close {
-            &:hover {
-                cursor: no-drop;
-                color: $color-secondary;
-            }
-        }
-    }
-
 }

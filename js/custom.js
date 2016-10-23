@@ -30,11 +30,6 @@ var onready = function () {
     sessionStorage.id = date + '-' + Math.floor((Math.random() * 100) + 1);
     var session = sessionStorage.id;
 
-    // Auto resize textarea
-    // ******************************************
-    //autosize(jQuery('textarea'));
-    //jQuery('textarea').elastic();
-
     // Dial Function
     // ******************************************
     var question;
@@ -55,6 +50,11 @@ var onready = function () {
                     breakLines: false,
                     breakDelay: 400
                 }, function(){
+                    jQuery('.gallery').on('click', function(event) {
+                        console.log('gallery');
+                        gallery.init();
+                        event.preventDefault();
+                    });
                     // Post the answer to google sheet
                     // Check if answer is needed
                     if ( s.find('.guest__content').length ){
@@ -152,7 +152,7 @@ var onready = function () {
     var opt = Math.floor(Math.random() * 3) + 1, // 1 -> 3
         scene = [
             "Bonjour",
-            ["Comment vosu ", "Comment vous appelez-vous?"],
+            ["Comment vosu ", "Comment vous <a href='#' class='gallery'>appelez-vous?</a>"],
             "What is your dream job?",
             "How do you bill for your services? How would you describe yourself?",
             "How are you able to be responsive to my needs on an ongoing basis? What is your biggest accomplishment?",
@@ -160,7 +160,7 @@ var onready = function () {
             "Can I call about any legal problem I have or just about matters within your specialty? What is your dream job?",
             "What happens if you die or retire? Who is your personal hero?"
         ];
-        
+
         // define("conversation", [], function() {
         //                var e = function(e) {
         //                    return {
@@ -243,7 +243,7 @@ var onready = function () {
 
         }
     // Enabled function on click
-    jQuery('.icon').click(function() {
+    jQuery('.icon:not(#contact-form-button)').click(function() {
         var button = jQuery(this).data("button"); //.attr("data-id") .data("id")
         console.log(button);
         tracking(button);
@@ -252,57 +252,200 @@ var onready = function () {
     // Modal Exit Banner
     // ******************************************
     // open function
-    var exit = function() {
-            // Launch MODAL BOX
-            jQuery('#footer').addClass('active');
-            jQuery('#wrapper').addClass('blured');
+    var exitModal = jQuery("#toggle-exitModal").animatedModal({
+            modalTarget:'exitModal',
+            animatedIn:'', //bounceIn
+            animatedOut:'bounceOut',
+            color:'#F9E45B',
+            beforeOpen: function() {
+                jQuery('#wrapper').addClass('blured');
+            },
+            afterClose: function() {
+                jQuery('#wrapper').removeClass('blured');
+            }
+        }),
+        exit = function() {
+            exitModal.open();
         }
-    // close function
-    jQuery('#footer .icon-close, #footer').on('click',function(){
-        jQuery('#footer').removeClass('active');
-        jQuery('#wrapper').removeClass('blured');
+    // click for exit
+    jQuery('.modal-wrapper').on('click', function(event) {
+        exitModal.close();
+        event.preventDefault();
     });
-    //  exit function
+    jQuery('.modal').on('click', function(event) {
+        event.stopPropagation();
+    });
+    // exit banner
     var lastY;
     jQuery(document).mousemove(function(e) {
         var currentY = e.pageY,
-            deltaY = lastY - e.pageY;
-        if( lastY != 'undefined' && e.pageY <= 5 && deltaY > 0 ) {
+            deltaY = lastY - currentY;
+        if( lastY != 'undefined' && currentY <= 5 && deltaY > 0 ) {
             exit();
         }
-        lastY = e.pageY
+        lastY = e.pageY;
     });
-    // inactivity timer function
+    // timer function
     var timeoutKick,
-        kick_timer = 60000;  // kick user after 1 minute
-    function setup() {
-        this.addEventListener("mousemove", resetTimer, false);
-        this.addEventListener("mousedown", resetTimer, false);
-        this.addEventListener("keypress", resetTimer, false);
-        this.addEventListener("DOMMouseScroll", resetTimer, false);
-        this.addEventListener("mousewheel", resetTimer, false);
-        this.addEventListener("touchmove", resetTimer, false);
-        this.addEventListener("MSPointerMove", resetTimer, false);
-        startTimer();
-    }
+        kick_timer = 60000,  // kick user after 1 minute
+        startTimer = function() {
+            // wait before calling goInactive
+            timeoutKick = window.setTimeout(goInactive, kick_timer);
+        },
+        resetTimer = function(e) {
+            window.clearTimeout(timeoutKick);
+            goActive();
+            //console.log('reset');
+        },
+        pauseTimer = function(e) {
+            window.clearTimeout(timeoutKick);
+            console.log('pause');
+        },
+        goInactive = function() {
+            exit();
+            //console.log('inactive');
+        },
+        goActive = function() {
+            startTimer();
+            //console.log('active');
+        },
+        setup = function() {
+            this.addEventListener("mousemove", resetTimer, false);
+            this.addEventListener("mousedown", resetTimer, false);
+            this.addEventListener("keypress", resetTimer, false);
+            this.addEventListener("DOMMouseScroll", resetTimer, false);
+            this.addEventListener("mousewheel", resetTimer, false);
+            this.addEventListener("touchmove", resetTimer, false);
+            this.addEventListener("MSPointerMove", resetTimer, false);
+            startTimer();
+        };
     setup();
-    function startTimer() {
-        // wait 2 seconds before calling goInactive
-        timeoutKick = window.setTimeout(goInactive, kick_timer);
-    }
-    function resetTimer(e) {
-        window.clearTimeout(timeoutKick);
-        goActive();
-        //console.log('reset');
-    }
-    function goInactive() {
-        exit();
-        //console.log('inactive');
-    }
-    function goActive() {
-        startTimer();
-        //console.log('active');
-    }
+
+    // Exit Banner Form
+    // ******************************************
+    var ia = jQuery('#contact-form-name').val(),
+        ib = jQuery('#contact-form-contact').val(),
+        contactFormReady = function(a,b) {
+            if ( a === '' && b === '' ) {
+                jQuery('#contact-form-button').removeClass('ready');
+                jQuery('#contact-form-button').removeClass('half');
+            } else if ( a === '' || b === '' ) {
+                jQuery('#contact-form-button').removeClass('ready');
+                jQuery('#contact-form-button').addClass('half');
+            } else {
+                jQuery('#contact-form-button').addClass('ready');
+                jQuery('#contact-form-button').removeClass('half');
+            }
+            //console.log(a +' + '+ b);
+    };
+
+    // Position initiale
+    contactFormReady(ia,ib);
+
+    // Position retro-active
+    jQuery('#contact-form-name, #contact-form-contact').on('change keyup paste',function() {
+        var ia = jQuery('#contact-form-name').val(),
+            ib = jQuery('#contact-form-contact').val();
+        contactFormReady(ia,ib);
+    });
+
+    // Pushbullet trick
+    // ******************************************
+    jQuery('#modal-form').on('submit',function(event){
+        /* Prevent default posting of form - put here to work in case of errors */
+        event.preventDefault();
+        /* Enable Loading */
+        jQuery('.spinner').addClass('loading');
+        /* Clear result div */
+        jQuery("#result").html('');
+        /* Get from elements values */
+        var values = jQuery(this).serialize() + '&type=note';
+        /* Request */
+        jQuery.ajax({
+            url: "./api/pushbullet/pushbullet.php",
+            type: "post",
+            data: values ,
+            dataType : 'json', // We want json
+            success: function (response) {
+                // you will get response from your php page (what you echo or print)
+                console.log( JSON.stringify(response) );
+                // Remove Loading
+                setTimeout(
+                    function(){
+                        jQuery('.spinner').removeClass('loading');
+                        jQuery('#modal-form').fadeOut('500', function() {
+                            //jQuery('#modal-result').html('<span>' + response.custom.name + ', à bientôt.</span>');
+                            jQuery('#modal-result')
+                                .typeIt({
+                                    speed: 80,
+                                    lifeLike: true,
+                                    cursor: false,
+                                    breakLines: false,
+                                    breakDelay: 400,
+                                })
+                                .tiType('<span>' + response.custom.name + ', à bientôt!!</span>');
+                        });
+                    },500);
+            },
+            error: function(xhr, desc, err) {
+                console.log(xhr);
+                console.log("Details: " + desc + "\nError:" + err);
+            }
+        });
+    });
+
+    // I Miss You Favicon
+    // ******************************************
+    jQuery.iMissYou({
+        title: "Avant de partir...",
+        favicon: {
+            enabled: true,
+            src:'images/iMissYouFavicon.ico'
+        }
+    });
+
+    // Photoswipe
+    // ******************************************
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+
+    // build items array
+    var items = [
+        {
+            src: './images/portfolio/tomiotee-site.jpg',
+            w: 600,
+            h: 400
+        },
+        {
+            src: './images/portfolio/tomiotee-wishing-card.png',
+            w: 1200,
+            h: 900
+        }
+    ];
+
+    // define options (if needed)
+    var options = {
+        index: 0, // start at first slide
+        loop: true,
+        closeOnScroll: false,
+        mouseUsed: true,
+        preload: [1,3],
+    };
+
+    var optionsUI = {
+        closeEl:true,
+        captionEl: true,
+        fullscreenEl: true,
+        zoomEl: true,
+        shareEl: false,
+        counterEl: false,
+        arrowEl: true,
+        preloaderEl: true,
+    };
+
+    // Initializes and opens PhotoSwipe
+    var gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
+
+    //gallery.init();
 
 };
 jQuery(document).ready(onready);
