@@ -9,8 +9,8 @@
 
 #dialogue {
     padding: 0 0 0 4%;
-    font-size: 3em;
-    font-size: 3vmax;
+    font-size: 2.7em;
+    font-size: 2.7vmax;
 
     @include mediaqueries(mobile){
         font-size: 4em;
@@ -21,6 +21,16 @@
 
 #dial {
     width: 100%;
+
+    a {
+        position: relative;
+        text-decoration: none;
+        color: $color-secondary;
+
+        &:hover {
+            text-decoration: line-through;
+        }
+    }
 
     .sequence {
         @extend %font-family-monospace;

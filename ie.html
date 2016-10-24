@@ -37,7 +37,7 @@
 <!-- Basic
 ================================================== -->
 
-    <script src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="anonymous"></script>
+    <script   src="//code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
 
 <!-- Favicons
 ================================================== -->
@@ -66,6 +66,15 @@
 
 <!-- Plugin
 ================================================== -->
+
+    <script type="text/javascript" src="vendors/jquery-browser-plugin/dist/jquery.browser.min.js" defer></script>
+    <script type="text/javascript" src="vendors/animatedModal.js/animatedModal.min.js" defer></script>
+    <script type="text/javascript" src="vendors/PhotoSwipe/dist/photoswipe.min.js" defer></script>
+    <script type="text/javascript" src="vendors/PhotoSwipe/dist/photoswipe-ui-default.min.js" defer></script>
+    <link rel="stylesheet" href="vendors/PhotoSwipe/dist/photoswipe.css" media="all">
+    <link rel="stylesheet" href="vendors/PhotoSwipe/dist/default-skin/default-skin.css" media="all">
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.typeit/4.2.3/typeit.min.js" defer></script>
+    <script type="text/javascript" src="vendors/I-Miss-You/jquery.iMissYou.min.js" defer></script>
 
 <!-- Custom
 ================================================== -->
@@ -107,16 +116,16 @@
                     </div>
                     <div id="about-social">
                         <a class="icon" href="mailto:jbo@soapoperator.com" itemprop="email" data-button="Bouton email" onclick="javascript:_paq.push(['trackEvent', 'Social', 'Clic', 'Email']);">
-                            Email
+                            Pour m'envoyez un courriel
                         </a>
                         <a class="icon" href='https://twitter.com/soapoperator/' rel="publisher" target="_blank" data-button="Bouton twitter" onclick="javascript:_paq.push(['trackEvent', 'Social', 'Clic', 'Twitter']);">
-                            Twitter
+                            Contactez-moi sur Twitter
                         </a>
                         <a class="icon" href="http://fr.linkedin.com/in/jbolivier/" target="_blank" data-button="Bouton linkedin" onclick="javascript:_paq.push(['trackEvent', 'Social', 'Clic', 'Linkedin']);">
-                            Linkedin
+                            Rendez-vous sur Linkedin
                         </a>
                         <a class="icon" href="#!" target="_blank" data-button="Bouton download" onclick="javascript:_paq.push(['trackEvent', 'Social', 'Clic', 'Download']);">
-                            Mon CV
+                            Télécharger sans attendre mon CV
                         </a>
                     </div>
                 </div>
@@ -125,29 +134,89 @@
         </section>
         <!-- #container-id -->
 
+        <aside id="dialogue" class="col-5_xs-12 animated">
+            <div id="dial" class="content-wrapper">
+                <div class="sequence sequence-1 hide">
+                    <div class="sequence__content actor__content no-answer"></div>
+                </div>
+                <div class="sequence sequence-2 hide">
+                    <div class="sequence__content actor__content no-answer"></div>
+                    <div class="sequence__content guest__content no-answer hide">
+                        <div class="answer-form">
+                            <span class="answer-input" contentEditable="true"></span>
+                            <pre>Valider avec la touche <b>entrée</b></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- .content-wrapper -->
+        </aside>
+        <!-- #container-dialogue -->
+
+        <aside id="background" class="col-1_xs-12 animated"></aside>
+        <!-- #background -->
+
     </div>
     <!-- #wrapper -->
 
     <footer id="footer" class="container">
-        <a id="modal" href="#animatedModal">Hop!</a>
-        <div id="animatedModal" class="content-wrapper" push-left="">
-            <div class="icon icon-close-wrapper close-animatedModal">
-                <svg class="icon-close" onclick="javascript:_paq.push(['trackEvent', 'Popup', 'Clic', 'Close']);"><use xlink:href="#icon-close"></use></svg>
-            </div>
-            <div class="content modal-content">
-                <p>
-                    Avant de partir, laissez moi vous dire, une autre fois.<br>
-                    Mon CV est disponible.
-                </p>
-                <a class="icon" href="#!" target="_blank" data-button="Bouton download exit" onclick="javascript:_paq.push(['trackEvent', 'Popup', 'Clic', 'Download']);">
-                    <span>Téléchargez le<br/>sans attendre <sup>bug free</sup></span>
-                    <svg class="icon-download"><use xlink:href="#icon-download"></use></svg>
-                </a>
-            </div>
-        </div>
+        <a id="toggle-exitModal" href="#exitModal">Hop!</a>
     </footer>
     <!-- #footer -->
 
+    <div id="exitModal" class="exitModal-off modal-wrapper animated">
+        <div class="modal grid-column-center">
+            <div class="modal-close col">
+                <div class="icon close-exitModal">
+                    <svg class="icon-cancel-circle" onclick="javascript:_paq.push(['trackEvent', 'Popup', 'Clic', 'Close']);"><use xlink:href="#icon-cancel-circle"></use></svg>
+                </div>
+            </div>
+            <div class="modal-content col-9_md-10_xs-12">
+                <header>
+                    Avant de partir, au choix :
+                </header>
+                <hr>
+                <div class="grid-2">
+                    <div class="nb-wrapper col-2">
+                        <div class="nb">
+                            1
+                        </div>
+                    </div>
+                    <div class="content col-10">
+                        <span>Vous pouvez <a class="icon download" href="#!" target="_blank" data-button="Bouton download exit" onclick="javascript:_paq.push(['trackEvent', 'Popup', 'Clic', 'Download']);" title="Bug free"><i>télécharger mon CV</i></a> gratuitement et sans coup férir.</span>
+                    </div>
+                </div>
+                <div class="grid-2">
+                    <div class="nb-wrapper col-2">
+                        <div class="nb">
+                            2
+                        </div>
+                    </div>
+                    <div class="content col-10">
+                        <span>Laissez-moi <i>vos coordonnées</i> (email ou téléphone), je vous recontacterai sous 48 heures.</span>
+                        <form id="modal-form" class="contact-form">
+                            <input id="contact-form-name" type="text" name="name" value="" placeholder="Nom / Prénom / Pseudo*" required>
+                            <input id="contact-form-contact" type="text" name="contact" value="" placeholder="Email / Téléphone*" required>
+                            <button id="contact-form-button" class="icon" type="submit" name="envoyer">
+                                <svg class="icon-send"><use xlink:href="#icon-send"></use></svg>
+                            </button>
+                            <div class="spinner"></div>
+                            <div class="clear"></div>
+                        </form>
+                        <div id="modal-result" class="result"></div>
+                    </div>
+                </div>
+                <hr>
+                <footer>
+                    Bonne journée
+                    <div class="icon">
+                        <svg class="icon-icecream"><use xlink:href="#icon-icecream"></use></svg>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+    <!-- #exitModal -->
 
     <svg style="position: absolute; width: 0; height: 0;" width="0" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs>
@@ -174,6 +243,53 @@
     </defs>
 </svg>
 
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe.
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- End Document
 ================================================== -->

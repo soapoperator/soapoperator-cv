@@ -2043,8 +2043,8 @@ body {
 
 #dialogue {
 	padding: 0 0 0 4%;
-	font-size: 3em;
-	font-size: 3vmax;
+	font-size: 2.7em;
+	font-size: 2.7vmax;
 }
 
 @media screen and (max-width: 34em) {
@@ -2057,6 +2057,16 @@ body {
 
 #dial {
 	width: 100%;
+}
+
+#dial a {
+	position: relative;
+	text-decoration: none;
+	color: #F9E45B;
+}
+
+#dial a:hover {
+	text-decoration: line-through;
 }
 
 #dial .sequence {
@@ -2478,7 +2488,7 @@ body {
 }
 
 #exitModal .content .download i {
-	text-shadow: 0 2px 0px #F9E45B, 1px 1px 0px #F9E45B, -1px 1px 0px #F9E45B;
+	text-shadow: 0 2px 0px #F9E45B, 2px 2px 0px #F9E45B, -2px 2px 0px #F9E45B;
 }
 
 #exitModal .content i {
