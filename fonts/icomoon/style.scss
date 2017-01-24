@@ -3,9 +3,9 @@
 @font-face {
   font-family: 'icomoon';
   src:
-    url('#{$icomoon-font-path}/icomoon.ttf?4ans3d') format('truetype'),
-    url('#{$icomoon-font-path}/icomoon.woff?4ans3d') format('woff'),
-    url('#{$icomoon-font-path}/icomoon.svg?4ans3d#icomoon') format('svg');
+    url('#{$icomoon-font-path}/icomoon.ttf?7r23dj') format('truetype'),
+    url('#{$icomoon-font-path}/icomoon.woff?7r23dj') format('woff'),
+    url('#{$icomoon-font-path}/icomoon.svg?7r23dj#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -25,9 +25,54 @@ i {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-fullscreen {
+  &:before {
+    content: $icon-fullscreen;
+  }
+}
+.icon-fullscreen_exit {
+  &:before {
+    content: $icon-fullscreen_exit;
+  }
+}
+.icon-keyboard_arrow_left {
+  &:before {
+    content: $icon-keyboard_arrow_left;
+  }
+}
+.icon-keyboard_arrow_right {
+  &:before {
+    content: $icon-keyboard_arrow_right;
+  }
+}
+.icon-nature_people {
+  &:before {
+    content: $icon-nature_people;
+  }
+}
+.icon-send {
+  &:before {
+    content: $icon-send;
+  }
+}
 .icon-icecream {
   &:before {
     content: $icon-icecream;
+  }
+}
+.icon-zoom-in {
+  &:before {
+    content: $icon-zoom-in;
+  }
+}
+.icon-enlarge {
+  &:before {
+    content: $icon-enlarge;
+  }
+}
+.icon-enlarge2 {
+  &:before {
+    content: $icon-enlarge2;
   }
 }
 .icon-cancel-circle {
@@ -38,6 +83,21 @@ i {
 .icon-cross {
   &:before {
     content: $icon-cross;
+  }
+}
+.icon-circle-right {
+  &:before {
+    content: $icon-circle-right;
+  }
+}
+.icon-circle-left {
+  &:before {
+    content: $icon-circle-left;
+  }
+}
+.icon-share2 {
+  &:before {
+    content: $icon-share2;
   }
 }
 .icon-download {

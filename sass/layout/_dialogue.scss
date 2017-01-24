@@ -7,49 +7,71 @@
     }
 };
 
+@mixin option-variation {
+    @for $i from 2 to 4 {
+        &:nth-child(#{$i}) {
+            @include prefix(animation-delay,$i * 0.5s,-webkit);
+            @include prefix(transition-delay,$i * 0.05s,-webkit);
+        }
+    }
+}
+
 #dialogue {
-    padding: 0 0 0 4%;
-    font-size: 2.7em;
-    font-size: 2.7vmax;
+    padding: 0;
+    font-size: 1.7em;
+    font-size: 3vmin;
 
     @include mediaqueries(mobile){
-        font-size: 4em;
-        font-size: 4vmax;
-        padding: 1em;
+        font-size: 1.6em;
+        font-size: 5vmin;
+        padding: 1em 0.5em;
+    };
+}
+
+#dial-wrapper {
+    padding:0;
+
+    @include mediaqueries(mobile){
+        padding:0;
+
     };
 }
 
 #dial {
-    width: 100%;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 
-    a {
-        position: relative;
-        text-decoration: none;
-        color: $color-secondary;
-
-        &:hover {
-            text-decoration: line-through;
-        }
-    }
-
-    .sequence {
+    .sequence,
+    .choose {
         @extend %font-family-monospace;
-        display: -webkit-box;
-        display: -moz-box;
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-        @include prefix(flex-direction,column,-webkit);
 
-        .sequence__content {
+        &__content {
             position: relative;
             line-height: 1;
-            margin: 0.2em 0 0 1.2em;
             font-weight: 600;
 
             span {
                 hyphens: auto;
             }
+        }
+    }
+
+    .sequence {
+
+        a {
+            position: relative;
+            text-decoration: none;
+            background: $color-primary-hover;
+            color: $color-primary;
+
+            &:hover {
+                background: $color-primary;
+                color: $color-primary-hover;
+            }
+        }
+
+        .sequence__content {
+            margin: 0.2em 1em 0 2.2em;
 
             &:before {
                 content: "~$";
@@ -66,72 +88,74 @@
                 }
             }
 
-            //&.actor__content {
-            //    font-weight: 600;
-            //}
-
             &.guest__content {
-                &::before {
+
+                &:before {
                     content: "~#";
                 }
             }
 
         }
 
-        .answer-form {
-            .answer-input,
-            .answer-input:focus {
-                border: none;
-                outline: none;
-                background: transparent;
-                color: $color-text; // $color-text
-                @include placeholder {
-                    color: $color-text;
-                };
-            }
+        + .sequence {
+            margin-top: 0.5em;
+        }
+    }
 
-            .answer-input {
-                width: 100%;
-                box-shadow: none;
-                resize: none;
+    .choose {
+        padding-left: 1em;
 
-                &:hover {
-                    cursor: text;
-                }
+        .choose__content {
+            margin: 1em 0;
 
-                & + pre {
-                    display: none;;
-                }
+            @include mediaqueries(mobile){
+                margin: 1.5em 0;
+            };
 
-                &:focus {
+            &.no-answer {
 
-                    & + pre {
-                        display: block;
-                    }
+                .choose__option {
+                    top: 1em;
 
+                    @include mediaqueries(mobile){
+                        top: 1.5em;
+                    };
                 }
             }
+        }
 
-            .answer-input,
-            .answer-input:focus {
-                background-color: mix($color-background, $black, 40%);
+        .choose__option {
+            position: relative;
+            top: 0;
+            padding: 0.4em;
+            margin: 0 0.2em;
+            color: $black;
+            background: transparent;
+            border: $border-width-default solid $black;
+            border-radius: $border-radius-default;
+            font-size: 0.8em;
+            opacity: 1;
+            min-height: 3em;
+            @include prefix(transition,top 0.3s ease-out,-webkit);
+            @include option-variation;
+
+            span {
+                margin: 0 auto;
             }
 
-            pre {
-                font-size:0.3em;
-                line-height: 1.1;
-                color: $black;
-                display: block;
-                width: auto;
-                font-weight: normal;
+            &:not(.ko):hover {
+                color: $color-primary;
+                background-color: $black;
+            }
 
-                @include mediaqueries(mobile){
-                    font-size:.4em;
-                };
+            &.ko {
+                opacity: 0.3;
+            }
 
-                b {
-                    @include animation(blink-caret .5s step-end infinite alternate);
-                }
+            &.ok {
+                float:right;
+                color: $color-primary;
+                background-color: $black;
             }
         }
     }

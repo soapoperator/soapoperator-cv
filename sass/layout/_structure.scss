@@ -1,0 +1,143 @@
+// main: ../main.scss
+
+$height-id-mobile: 36vh !default;
+$height-dialogue-mobile: 100vh - $height-id-mobile !default;
+
+body {
+    min-height: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: visible;
+}
+
+
+#wrapper {
+    width:100%;
+    min-height: 100%;
+    min-height: 100vh;
+    background: $black;
+
+    &.blured {
+        @include prefix(filter,blur(2px),-webkit -o -ms -moz);
+        @include acceleration;
+    }
+
+    #id,
+    #dialogue {
+        height: 100%;
+    }
+
+    #dialogue {
+        position: relative;
+        min-height: 100%;
+        min-height: 100vh;
+        z-index:1;
+        background: $color-background;
+        border-right: $border-width-slim solid;
+        @include prefix(animation-duration,0.4s,-webkit);
+
+        @include mediaqueries(mobile) {
+            order: 0;
+            min-height: $height-dialogue-mobile;
+            align-items: flex-start;
+            margin-top: $height-id-mobile;
+            border-right: none;
+            border-left: none;
+        }
+
+        &.escapeIn {
+            @extend %dialogueEscapeIn;
+        }
+        &.escapeOut {
+            @extend %dialogueEscapeOut;
+
+            @include mediaqueries(mobile) {
+                border-top: $border-width-slim solid;
+            }
+        }
+
+        #dial-wrapper {
+            background: $color-background;
+        }
+
+        #dial {
+            width: 100%;
+        }
+
+        #background-dialogue {
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            @include mediaqueries(mobile) {
+                position: relative;
+            }
+        }
+    }
+
+    #id {
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index:1;
+        order: 1;
+        background: $color-background;
+        @include prefix(animation-duration,0.4s,-webkit);
+
+        @include mediaqueries(mobile) {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index:2;
+            order: 1;
+            height:$height-id-mobile;
+            border-bottom: $border-width-slim solid;
+        }
+
+        &.escapeIn {
+            @extend %idEscapeIn;
+        }
+        &.escapeOut {
+            @extend %idEscapeOut;
+            border-left: $border-width-slim solid;
+
+            @include mediaqueries(mobile) {
+                border-left: none;
+            }
+        }
+    }
+
+}
+
+@include mediaqueries(from mobile) {
+    %idEscapeIn {
+        @include animate-prefixer(animation-name, slideInRight);
+    };
+    %idEscapeOut {
+        @include animate-prefixer(animation-name, slideOutRight);
+    };
+    %dialogueEscapeIn {
+        @include animate-prefixer(animation-name, slideInLeft);
+    };
+    %dialogueEscapeOut {
+        @include animate-prefixer(animation-name, slideOutLeft);
+    };
+}
+
+@include mediaqueries(mobile) {
+    %xs-slideinup {
+        @include animate-prefixer(animation-name, slideInUp);
+    };
+    %dialogueEscapeIn {
+        @include animate-prefixer(animation-name, slideInUp);
+    };
+    %dialogueEscapeOut {
+        @include animate-prefixer(animation-name, slideOutDown);
+    };
+    %idEscapeIn {
+        @include animate-prefixer(animation-name, slideInDown);
+    };
+    %idEscapeOut {
+        @include animate-prefixer(animation-name, slideOutUp);
+    };
+}

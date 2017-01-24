@@ -1,21 +1,45 @@
 // main: ../main.scss
 
 .modal-wrapper {
-    padding: 5rem;
-    padding: 5vh;
+    padding: 0;
+    border-bottom: $border-width-slim solid;
+    @include prefix(animation-duration,0.3s !important,-webkit);
+
+    &.exitModal-on {
+        z-index: 9999;
+    }
 
     .modal {
+        margin: 0;
         @include prefix(align-items,center,-webkit);
     }
 
     .modal-content {
         font-size: 2rem;
         width: 100%;
+
         //@include center(xy);
+
+        @include mediaqueries(desktop){
+            font-size: 1.6rem;
+        };
 
         @include mediaqueries(mobile){
             width: 100%;
+            font-size: 1.3rem;
         };
+
+        > * {
+            padding: 5rem;
+            padding: 5vh;
+            opacity: 0;
+            @include prefix(animation-duration,0.3s !important,-webkit);
+
+            @include mediaqueries(mobile){
+                padding: 4rem 5rem;
+                padding: 4vh 5vh;
+            };
+        }
 
         a {
             @extend .animated;
@@ -26,10 +50,19 @@
     .modal-close {
         text-align: right;
         width: 100%;
+        height: 44px;
+        padding: 0;
+        border-bottom: $border-width-slim solid;
+
+        .icon {
+            width: 44px;
+            height: 44px;
+            text-align: center;
+        }
 
         svg {
             font-size: 1.5rem;
-            margin: 0;
+            margin: 6px 0 0;
             color: $white;
 
             &:hover {
@@ -42,29 +75,40 @@
 
 #exitModal {
 
-    header,
-    .content,
-    footer {
-        font-size: 1.1em;
-
-        @include mediaqueries(tablet){
-            font-size: 0.9em;
-        };
-
-        @include mediaqueries(mobile){
-            font-size: 0.9em;
-        };
-    }
-
     header {
-        margin-bottom: 2rem;
     }
 
     hr {
-        margin-bottom: 2rem;
-        margin-top: 0;
         border: none;
-        border-bottom: 3px solid $white;
+        border-bottom: $border-width-slim solid $white;
+        padding: 0;
+        margin: 0;
+
+        &.last {
+        }
+
+        @include mediaqueries(mobile){
+        };
+    }
+
+    .modal-content {
+        margin: 0;
+
+        > div {
+
+            .nb-wrapper,
+            .content {
+                padding-bottom: 0;
+            }
+
+            .nb-wrapper {
+                padding: 0;
+            }
+        }
+
+        > div.last {
+            padding-top: 0;
+        }
     }
 
     .content {
@@ -72,29 +116,10 @@
         .download {
             position: relative;
             text-decoration: none;
-
-            &:after {
-                content: '';
-                position:absolute;
-                bottom: 0;
-                left: 0;
-                z-index: -1;
-                width: 100%;
-                height: 1px;
-                @include background-stripe(horizontal, transparent black);
-                background-size: 0.4em;
-                background-position: 0.2em 0;
-            }
-
-            &:hover {
-
-                &:after {
-                    @include animation(dashemotion 0.2s infinite linear);
-                }
-            }
+            @include dashed-border-effect($black);
 
             i {
-                text-shadow: 0 2px 0px $color-secondary,2px 2px 0px $color-secondary,-2px 2px 0px $color-secondary;
+                text-shadow: 0 2px 0px $color-primary-hover,2px 2px 0px $color-primary-hover,-2px 2px 0px $color-primary-hover;
             }
         }
 
@@ -106,12 +131,13 @@
     .nb {
         display: block;
         background: $white;
-        color: $color-secondary;
+        color: $color-primary-hover;
         width: 2.5em;
         height: 2.5em;
         line-height: 2.5em;
         border-radius: 50%;
         text-align: center;
+        margin: 0 auto;
 
         @include mediaqueries(tablet){
             width: 2em;
@@ -135,11 +161,11 @@
             height: 2em;
             line-height: 2em;
             margin-top: 0.3em;
+            border-radius: $border-radius-default;
         }
 
         input {
             padding: 0 0.5em;
-            border-radius: 0;
             border: none;
             z-index: 10;
             position: relative;
@@ -153,7 +179,6 @@
             margin-left: 0.3em;
             float: right;
             border: none;
-            border-radius: 0;
             position: relative;
             z-index: 5;
             @include prefix(transition,all 0.5s ease-out,-webkit);
@@ -174,7 +199,7 @@
                 @include prefix(transform,translate3d(0, 0, 0),-webkit);
 
                 &:focus {
-                    background: $salmon;
+                    background: $color-background;
                 }
 
                 &:hover {
@@ -188,12 +213,15 @@
     }
 
     .result {
-        margin-top: 2rem;
+
+        &.on {
+            margin-top: 2rem;
+        }
 
         span {
             padding: 0.2em;
             color: $white;
-            background: $salmon;
+            background: $color-background;
         }
     }
 
@@ -204,15 +232,3 @@
         }
     }
 }
-
-@include keyframes(dashemotion) {
-    0% {
-      background-position: -0.2em 0em;
-    }
-    50% {
-      background-position: 0em 0em;
-    }
-    100% {
-      background-position: 0.2em 0em;
-    }
-};

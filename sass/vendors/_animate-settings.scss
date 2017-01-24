@@ -62,9 +62,9 @@ $use-zoom               :   $use-all !default; // all zoom animations
 
 // Fade Enter
 $use-fade-in            :   $use-fade !default;
-$use-fadeIn 			:	$use-fade-in !default;
-$use-fadeInUp 			:	$use-fade-in !default;
-$use-fadeInUpBig 		:	true;
+$use-fadeIn 			:	true;
+$use-fadeInUp 			:	true;
+$use-fadeInUpBig 		:	$use-fade-in !default;
 $use-fadeInDown 		:	$use-fade-in !default;
 $use-fadeInDownBig 		:	$use-fade-in !default;
 $use-fadeInLeft 		:	$use-fade-in !default;
@@ -75,7 +75,7 @@ $use-fadeInRightBig 	:	$use-fade-in !default;
 
 // Fade Exit
 $use-fade-out           :   $use-fade !default;
-$use-fadeOut			:   $use-fade-out !default;
+$use-fadeOut			:   true;
 $use-fadeOutUp			:	$use-fade-out !default;
 $use-fadeOutUpBig   	:	$use-fade-out !default;
 $use-fadeOutDown		:	true;
@@ -126,18 +126,18 @@ $use-rotateOutDownRight : 	$use-rotate-out !default;
 // Slide Enter
 $use-slide-in           :   $use-slide !default;
 $use-slideIn			:   $use-slide-in !default;
-$use-slideInUp			:   $use-fade-in !default;
-$use-slideInDown		:   $use-slide-in !default;
+$use-slideInUp			:   true;
+$use-slideInDown		:   true;
 $use-slideInLeft		:   true;
-$use-slideInRight		:   $use-slide-in !default;
+$use-slideInRight		:   true;
 
 // Slide Exit
 $use-slide-out          :   $use-slide !default;
 $use-slideOut			:   $use-slide-out !default;
-$use-slideOutUp			:   $use-slide-out !default;
-$use-slideOutDown		:   $use-slide-out !default;
-$use-slideOutLeft		:   $use-slide-out !default;
-$use-slideOutRight		:   $use-slide-out !default;
+$use-slideOutUp			:   true;
+$use-slideOutDown		:   true;
+$use-slideOutLeft		:   true;
+$use-slideOutRight		:   true;
 
 // Flippers
 $use-flip				:	$use-flipers !default;

@@ -7,11 +7,22 @@
     left: 0;
     right: 0;
     z-index: 900;
-    @include background-stripe(45deg, transparent $color-secondary transparent $color-secondary);
-    background-size: 0.8em 0.8em;
-    background-position: 0 0;
+    background-size: 0.8em 0.8em !important;
+    background-position: 0 0 !important;
     @include animation(spinnermotion 0.4s infinite linear);
     z-index: 0;
+
+    &-classic {
+        @include background-stripe(45deg, transparent $color-secondary transparent $color-secondary);
+    }
+
+    &-white {
+        @include background-stripe(45deg, transparent $white transparent $white);
+    }
+
+    &-modal {
+        @include background-stripe(45deg, transparent $color-primary-hover transparent $color-primary-hover);
+    }
 
     &.loading {
         z-index: 10;

@@ -1,12 +1,14 @@
 // main: ../main.scss
 
-#background {
+$height-background-mobile: 6vh !default;
+
+.background {
     height: 100%;
     width: 100%;
     background: url(../images/background.png) repeat;
     background-color: $color-background;
     background-size: 1rem 1.5rem;
-    background-size: 1vmax;
+    background-size: 1.3vmin;
     background-image: url(../images/background.svg);
     background-position: right center;
     display: inline-flex;
@@ -17,6 +19,34 @@
 
     @include mediaqueries(mobile) {
         background-position: center top;
+        background-size: 1rem 1.5rem;
+        background-size: 2.5vmin;
     };
 
+}
+
+#background-id {
+    z-index:10;
+    order: 2;
+    height: $height-background-mobile;
+    display: none;
+    background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAJCAYAAADzRkbkAAAAFUlEQVQImWP4////f4b/////ZyAMAD78B/mvdZ96AAAAAElFTkSuQmCC);
+    background-position: bottom;
+
+    @include mediaqueries(mobile) {
+        display: block;
+        background-size: 1px 1.5vh;
+    }
+}
+
+#background-dialogue {
+    z-index:-1;
+    order: -1;
+    background-attachment: fixed;
+    background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAABCAYAAAAMwoR9AAAADklEQVQImWP4DwUMeAAAAzAH+c0Pr8MAAAAASUVORK5CYII=);
+    background-position: right;
+
+    @include mediaqueries(mobile) {
+        display: none;
+    }
 }

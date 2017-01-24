@@ -14,10 +14,10 @@ $breakpoints: (
     tablet: $MD,
     desktop: $LG,
     wide: $XL,
-);
+) !default;
 
 // $mediaqueries-option: 'mobile-first';
-$mediaqueries-option: 'desktop-first';
+$mediaqueries-option: 'desktop-first' !default;
 
 /// Fonts Styles
 /// ==========================================================================
@@ -37,7 +37,7 @@ $fonts:
         sans-serif,
         'Roboto',
         Roboto-Medium-webfont,
-        '../../fonts/roboto/',
+        '../fonts/roboto/',
         normal,
         normal,
         eot eotfix woff ttf svg
@@ -47,7 +47,7 @@ $fonts:
         monospace,
         'Ubuntu Mono',
         ubuntumono-r-webfont,
-        '../../fonts/ubuntu/',
+        '../fonts/ubuntu/',
         normal,
         normal,
         eot eotfix woff2 woff ttf svg
@@ -57,11 +57,11 @@ $fonts:
         monospace,
         'Ubuntu Mono',
         ubuntumono-b-webfont,
-        '../../fonts/ubuntu/',
+        '../fonts/ubuntu/',
         bold,
         normal,
         eot eotfix woff2 woff ttf svg
-);
+) !default;
 
 $base-font-size: $browser-context !default;
 
@@ -75,13 +75,13 @@ $body-font-sizes: (
     desktop:    (font-size: $base-font-size * .875 , line-height: $base-line-height-ratio * 1.1),
     tablet:     (font-size: $base-font-size * .75, line-height: $base-line-height-ratio * 1),
     mobile:     (font-size: $base-font-size * .75, line-height: $base-line-height-ratio * 1),
-);
+) !default;
 
 /// Colors Styles
 /// ==========================================================================
 $white: #ffffff;
 $black: #000000;
-$yellow: #F9E45B;
+$yellow: #F2D836; //#F9E45B
 $salmon: #ff5c5c;
 $blue: #76ebff;
 
@@ -127,8 +127,13 @@ $colors-social: (
 
 /// Radius Styles
 /// =========================================================================
-$border-radius-default: 5px;
+$border-radius-default: 3px;
 $border-radius-rounded: 50%;
+
+/// Border Styles
+/// =========================================================================
+$border-width-default: 3px;
+$border-width-slim: 2px;
 
 /// Image
 ///==========================================================================

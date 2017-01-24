@@ -1271,10 +1271,33 @@ body {
 	animation-name: bounceOut;
 }
 
-@-webkit-keyframes fadeInUpBig {
+@-webkit-keyframes fadeIn {
 	0% {
 		opacity: 0;
-		-webkit-transform: translateY(2000px);
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.fadeIn {
+	-webkit-animation-name: fadeIn;
+	animation-name: fadeIn;
+}
+
+@-webkit-keyframes fadeInUp {
+	0% {
+		opacity: 0;
+		-webkit-transform: translateY(20px);
 	}
 	100% {
 		opacity: 1;
@@ -1282,10 +1305,10 @@ body {
 	}
 }
 
-@keyframes fadeInUpBig {
+@keyframes fadeInUp {
 	0% {
 		opacity: 0;
-		transform: translateY(2000px);
+		transform: translateY(20px);
 	}
 	100% {
 		opacity: 1;
@@ -1293,9 +1316,9 @@ body {
 	}
 }
 
-.fadeInUpBig {
-	-webkit-animation-name: fadeInUpBig;
-	animation-name: fadeInUpBig;
+.fadeInUp {
+	-webkit-animation-name: fadeInUp;
+	animation-name: fadeInUp;
 }
 
 @-webkit-keyframes fadeOutDown {
@@ -1348,6 +1371,81 @@ body {
 .slideInLeft {
 	-webkit-animation-name: slideInLeft;
 	animation-name: slideInLeft;
+}
+
+@-webkit-keyframes slideInRight {
+	0% {
+		-webkit-transform: translate3d(100%, 0, 0);
+		visibility: visible;
+	}
+	100% {
+		-webkit-transform: translate3d(0, 0, 0);
+	}
+}
+
+@keyframes slideInRight {
+	0% {
+		transform: translate3d(100%, 0, 0);
+		visibility: visible;
+	}
+	100% {
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+.slideInRight {
+	-webkit-animation-name: slideInRight;
+	animation-name: slideInRight;
+}
+
+@-webkit-keyframes slideOutLeft {
+	0% {
+		-webkit-transform: translate3d(0, 0, 0);
+		visibility: visible;
+	}
+	100% {
+		-webkit-transform: translate3d(-100%, 0, 0);
+	}
+}
+
+@keyframes slideOutLeft {
+	0% {
+		transform: translate3d(0, 0, 0);
+		visibility: visible;
+	}
+	100% {
+		transform: translate3d(-100%, 0, 0);
+	}
+}
+
+.slideOutLeft {
+	-webkit-animation-name: slideOutLeft;
+	animation-name: slideOutLeft;
+}
+
+@-webkit-keyframes slideOutRight {
+	0% {
+		-webkit-transform: translate3d(0, 0, 0);
+		visibility: visible;
+	}
+	100% {
+		-webkit-transform: translate3d(100%, 0, 0);
+	}
+}
+
+@keyframes slideOutRight {
+	0% {
+		transform: translate3d(0, 0, 0);
+		visibility: visible;
+	}
+	100% {
+		transform: translate3d(100%, 0, 0);
+	}
+}
+
+.slideOutRight {
+	-webkit-animation-name: slideOutRight;
+	animation-name: slideOutRight;
 }
 
 @-webkit-keyframes zoomIn {
@@ -1937,8 +2035,6 @@ body {
 
 #wrapper #dialogue {
 	z-index: 1;
-	-webkit-animation-delay: 0.3s;
-	animation-delay: 0.3s;
 }
 
 @media screen and (max-width: 34em) {
@@ -2010,7 +2106,7 @@ body {
 	font-size: 1.2vmax;
 }
 
-@media screen and (max-width: 34em) {
+@media screen and (max-width: 48em) {
 	#id {
 		font-size: 2rem;
 		font-size: 2vmax;
@@ -2026,7 +2122,7 @@ body {
 	text-align: center;
 }
 
-@media screen and (max-width: 48em) {
+@media screen and (max-width: 62em) {
 	#id .content > * {
 		width: 13em;
 	}
@@ -2037,7 +2133,7 @@ body {
 	text-align: center;
 }
 
-@media screen and (max-width: 48em) {
+@media screen and (max-width: 62em) {
 	#id .content > #photo {
 		width: 10em;
 	}
@@ -2104,7 +2200,7 @@ body {
 }
 
 #id #about-info #about-telephone {
-	color: #F9E45B;
+	color: #F2D836;
 }
 
 #id #about-info #about-telephone .highlight {
@@ -2210,6 +2306,8 @@ body {
 .modal-wrapper {
 	padding: 5rem;
 	padding: 5vh;
+	-webkit-animation-duration: 0.3s !important;
+	animation-duration: 0.3s !important;
 }
 
 .modal-wrapper .modal {
@@ -2219,18 +2317,26 @@ body {
 
 .modal-wrapper .modal-content {
 	font-size: 2rem;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	webkit-transform: translate(-50%, -50%);
-	ms-transform: translate(-50%, -50%);
-	transform: translate(-50%, -50%);
+	width: 100%;
+}
+
+@media screen and (max-width: 62em) {
+	.modal-wrapper .modal-content {
+		font-size: 1.6rem;
+	}
 }
 
 @media screen and (max-width: 34em) {
 	.modal-wrapper .modal-content {
 		width: 100%;
+		font-size: 1.3rem;
 	}
+}
+
+.modal-wrapper .modal-content > * {
+	opacity: 0;
+	-webkit-animation-duration: 0.5s !important;
+	animation-duration: 0.5s !important;
 }
 
 .modal-wrapper .modal-close {
@@ -2249,33 +2355,28 @@ body {
 	color: #ff5c5c;
 }
 
-#exitModal header,
-#exitModal .content,
-#exitModal footer {
-	font-size: 1.1em;
-}
-
-@media screen and (max-width: 48em) {
-	#exitModal header,
-	#exitModal .content,
-	#exitModal footer {
-		font-size: 0.9em;
-	}
-}
-
-@media screen and (max-width: 34em) {
-	#exitModal header,
-	#exitModal .content,
-	#exitModal footer {
-		font-size: 0.9em;
-	}
-}
-
 #exitModal hr {
-	margin-bottom: 1em;
+	margin-bottom: 1.5em;
 	margin-top: 1em;
 	border: none;
 	border-bottom: 3px solid #ffffff;
+}
+
+#exitModal hr.last {
+	margin-bottom: 1em;
+	margin-top: 1.5em;
+}
+
+@media screen and (max-width: 34em) {
+	#exitModal hr {
+		margin-bottom: 1em;
+		margin-top: 1em;
+	}
+}
+
+#exitModal .modal-content > div.last .nb-wrapper,
+#exitModal .modal-content > div.last .content {
+	padding-bottom: 0;
 }
 
 #exitModal .content .download {
@@ -2288,6 +2389,7 @@ body {
 	position: absolute;
 	bottom: 0;
 	left: 0;
+	z-index: -1;
 	width: 100%;
 	height: 1px;
 	background: transparent;
@@ -2305,6 +2407,10 @@ body {
 	animation: dashemotion 0.2s infinite linear;
 }
 
+#exitModal .content .download i {
+	text-shadow: 0 2px 0px #F2D836, 2px 2px 0px #F2D836, -2px 2px 0px #F2D836;
+}
+
 #exitModal .content i {
 	color: #000000;
 }
@@ -2312,7 +2418,7 @@ body {
 #exitModal .nb {
 	display: block;
 	background: #ffffff;
-	color: #F9E45B;
+	color: #F2D836;
 	width: 2.5em;
 	height: 2.5em;
 	line-height: 2.5em;
@@ -2336,18 +2442,32 @@ body {
 	}
 }
 
+#exitModal .contact-form {
+	position: relative;
+}
+
+#exitModal .contact-form > input,
+#exitModal .contact-form > button {
+	height: 2em;
+	line-height: 2em;
+	margin-top: 0.3em;
+}
+
 #exitModal .contact-form input {
-	margin-top: 0.2em;
-	padding: 0.3em;
+	padding: 0 0.5em;
 	border-radius: 0;
 	border: none;
 	z-index: 10;
 	position: relative;
+	width: calc(100% - 2.3em);
 }
 
 #exitModal .contact-form .icon {
-	color: black;
-	background: transparent;
+	color: #ffffff;
+	background: #000000;
+	width: 2em;
+	margin-left: 0.3em;
+	float: right;
 	border: none;
 	border-radius: 0;
 	position: relative;
@@ -2359,6 +2479,7 @@ body {
 }
 
 #exitModal .contact-form .icon .icon-send {
+	margin: 0.4em 0;
 	position: relative;
 	left: 0;
 	-webkit-transition: all 0.3s ease-out;
@@ -2375,8 +2496,22 @@ body {
 	transform: translate3d(0, 0, 0);
 }
 
+#exitModal .contact-form .icon.ready:focus {
+	background: #ff5c5c;
+}
+
 #exitModal .contact-form .icon.ready:hover .icon-send {
-	left: 30%;
+	left: 40%;
+}
+
+#exitModal .result.on {
+	margin-top: 2rem;
+}
+
+#exitModal .result span {
+	padding: 0.2em;
+	color: #ffffff;
+	background: #ff5c5c;
 }
 
 #exitModal footer svg {
@@ -2673,7 +2808,7 @@ body {
 .icon {
 	padding: 0;
 	vertical-align: middle;
-	color: #F9E45B;
+	color: #F2D836;
 	display: inline-block;
 }
 
@@ -2724,6 +2859,75 @@ body {
 
 .icon-close svg {
 	fill: currentColor;
+}
+
+.spinner {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 900;
+	background: transparent;
+	background-image: -webkit-linear-gradient(45deg, transparent 0%, transparent 25%, #F2D836 25%, #F2D836 50%, transparent 50%, transparent 75%, #F2D836 75%);
+	background-image: linear-gradient(45deg, transparent 0%, transparent 25%, #F2D836 25%, #F2D836 50%, transparent 50%, transparent 75%, #F2D836 75%);
+	background-size: 0.8em 0.8em;
+	background-position: 0 0;
+	-webkit-animation: spinnermotion 0.4s infinite linear;
+	-moz-animation: spinnermotion 0.4s infinite linear;
+	-ms-animation: spinnermotion 0.4s infinite linear;
+	-o-animation: spinnermotion 0.4s infinite linear;
+	animation: spinnermotion 0.4s infinite linear;
+	z-index: 0;
+}
+
+.spinner.loading {
+	z-index: 10;
+}
+
+@-webkit-keyframes spinnermotion {
+	0% {
+		background-position: 0 0;
+	}
+	100% {
+		background-position: 0.8em 1.6em;
+	}
+}
+
+@-moz-keyframes spinnermotion {
+	0% {
+		background-position: 0 0;
+	}
+	100% {
+		background-position: 0.8em 1.6em;
+	}
+}
+
+@-ms-keyframes spinnermotion {
+	0% {
+		background-position: 0 0;
+	}
+	100% {
+		background-position: 0.8em 1.6em;
+	}
+}
+
+@-o-keyframes spinnermotion {
+	0% {
+		background-position: 0 0;
+	}
+	100% {
+		background-position: 0.8em 1.6em;
+	}
+}
+
+@keyframes spinnermotion {
+	0% {
+		background-position: 0 0;
+	}
+	100% {
+		background-position: 0.8em 1.6em;
+	}
 }
 
 #wrapper {

@@ -47,17 +47,17 @@
     );
 
     @if $mediaqueries-option == 'desktop-first' {
-        $constraint: 'max-width';
+        $constraint: 'max-width' !global;
     }
 
     @else {
-        $constraint: 'min-width';
+        $constraint: 'min-width' !global;
     }
 
     @each $arg in $args {
 
         @if map-has-key($constraints, $arg) {
-            $constraint: map-get($constraints, $arg);
+            $constraint: map-get($constraints, $arg) !global;
         }
 
         @else if $arg == landscape or $arg == portrait {
@@ -76,15 +76,18 @@
             // If $arg is a key that exists in
             // $breakpoints, get and use the value
             @if map-has-key($breakpoints, $arg) {
-              $breakpoint: map-get($breakpoints, $arg);
+              $breakpoint: map-get($breakpoints, $arg) !global;
             }
+
             $mediaqueries: '#{$mediaqueries} and (#{$constraint}: #{$breakpoint})';
         }
 
     }
 
     @media #{$mediaqueries} {
+
         @content;
+
     }
 
 }
@@ -883,11 +886,9 @@
     }
 }
 
-/*
-* Resizes all images in a given sprite
-* mixin courtesy of Wilker Lúcio https://gist.github.com/wilkerlucio/6442309
-* params: $only = if you want to list specific files instead of regenerating every image (ex. globe, checkmark)
-*/
+/// Resizes all images in a given sprite
+/// mixin courtesy of Wilker Lúcio https://gist.github.com/wilkerlucio/6442309
+/// params: $only = if you want to list specific files instead of regenerating every image (ex. globe, checkmark)
 @mixin resize-sprite-set($sprite-set, $percent) {
     @each $name, $sprite in $sprite-set {}
 }
@@ -1000,6 +1001,44 @@
         @extend %video;
     }
 }
+
+/// Add dashed border for link with animation
+/// @param {String} $color - Color of the border
+@mixin dashed-border-effect( $color: currentcolor ) {
+
+    &:after {
+        content: '';
+        position:absolute;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+        width: 100%;
+        height: 1px;
+        @include background-stripe(horizontal, transparent $color);
+        background-size: 0.4em;
+        background-position: 0.2em 0;
+    }
+
+    &:hover {
+
+        &:after {
+            @include animation(dashemotion 0.2s infinite linear);
+        }
+    }
+
+}
+
+@include keyframes(dashemotion) {
+    0% {
+      background-position: -0.2em 0em;
+    }
+    50% {
+      background-position: 0em 0em;
+    }
+    100% {
+      background-position: 0.2em 0em;
+    }
+};
 
 /// ==========================================================================
 /// Filters

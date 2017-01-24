@@ -1,13 +1,12 @@
 // main: ../main.scss
 
 #id {
-    background-color: $color-background;
     width: 100%;
     @extend %font-family-sans-serif;
     font-size: 1.2rem;
     font-size: 1.2vmax;
 
-    @include mediaqueries(mobile){
+    @include mediaqueries(tablet){
         font-size: 2rem;
         font-size: 2vmax;
     };
@@ -22,7 +21,7 @@
             width:14em;
             text-align: center;
 
-            @include mediaqueries(tablet){
+            @include mediaqueries(desktop){
                 width:13em;
             };
         }
@@ -31,7 +30,7 @@
             width:10em;
             text-align: center;
 
-            @include mediaqueries(tablet){
+            @include mediaqueries(desktop){
                 width:10em;
             };
 
@@ -52,22 +51,33 @@
         };
 
         #photo {
-            margin: 0 2em 1.5em;
-        }
+            margin: 0 auto 1.5em;
 
+            @include mediaqueries(mobile){
+                margin:1em auto;
+                margin:1.5vh auto;
+            };
+        }
     }
 
     #about-info {
-        padding-right: 1rem;
 
         @include mediaqueries(mobile){
             text-align: left;
+            padding-right: 1rem;
         };
 
         > * {
+
+            @include mediaqueries(from tablet){
+                margin-left: auto;
+                margin-right: auto;
+            };
+
             @include mediaqueries(mobile){
                 width: 100%;
                 text-align: left;
+
             };
         }
 
@@ -114,11 +124,13 @@
 
             .icon-download {
                 float: right;
-                color: $black;
+                color: $color-primary;
                 display: none;
 
                 @include mediaqueries(mobile) {
                     display: inline-block;
+                    position: relative;
+                    top: -0.1em;
                 }
             }
 
@@ -170,7 +182,6 @@
                     top: calc(100% + 15px);
                 }
             }
-
         }
     }
 }

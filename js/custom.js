@@ -49,7 +49,7 @@ var opt = Math.floor(Math.random() * 3) + 1, // 1 -> 3
         text: [
             {
                 type      :   "string",
-                value     :   readCookie('name')? "Bonjour <i>" + readCookie('name') + "</i>" : "Bonjour",
+                value     :   readCookie('name')? "Bonjour <i>" + readCookie('name') + "</i>," : "Bonjour,",
             },
         ],
         answer: [
@@ -101,27 +101,60 @@ var opt = Math.floor(Math.random() * 3) + 1, // 1 -> 3
             },
             {
                 type      :   "string",
-                value     :   " Voici <a id='gallery-project' href='#' class='gallery'>quelques projets</a> auxquels j'ai contribué.",
+                value     :   " Voici <a id='gallery-project-current' href='#' class='gallery'>quelques projets</a> auxquels j'ai contribué. <a id='gallery-project-old' href='#' class='gallery'>Ou les vieux</a> .",
             },
-        ],
-        answer: [
             {
-                type: "next",
-                path: "4",
+                type      :   "pause",
+                value     :   "2570",
+            },
+            {
+                type      :   "break",
+                value     :   " ",
+            },
+            {
+                type      :   "break",
+                value     :   " ",
+            },
+            {
+                type      :   "string",
+                value     :   "C'est tout pour le moment...",
+            },
+            {
+                type      :   "pause",
+                value     :   "1070",
+            },
+            {
+                type      :   "delete",
+                value     :   "3",
+            },
+            {
+                type      :   "string",
+                value     :   ", le site est en construction. ☭",
             },
         ],
         // answer: [
-        //     type: "choose",
-        //     option: [
         //     {
-        //         text: "Shoot!",
-        //         path: "3",
-        //     }, {
-        //         text: "Get in touch!",
-        //         path: "4",
-        //     }
-        //     ]
+        //         type: "stop",
+        //     },
         // ],
+        answer: [
+            {
+                type: "choose",
+                name: "test",
+                option: [
+                {
+                    text: readCookie('test') === "ok" ? "Chout!" : "Shoot!",
+                    path: "3",
+                    value: "ok",
+                },
+                {
+                    text: "Get in touch! Get in touch!",
+                    path: "4",
+                    value: "ko",
+                }
+                ]
+            }
+        ],
     },
     scene4 = {
         text: [
@@ -146,7 +179,7 @@ var opt = Math.floor(Math.random() * 3) + 1, // 1 -> 3
 
             {
                 type      :   "string",
-                value     :   "Le site est toujours en construction.",
+                value     :   "→ → Le site est toujours en construction. ☭",
             },
         ],
         answer: [
@@ -172,7 +205,7 @@ var opt = Math.floor(Math.random() * 3) + 1, // 1 -> 3
             },
             {
                 type      :   "string",
-                value     :   ", le site est en construction.",
+                value     :   ", le site est en construction. ☭",
             },
         ],
         answer: [
@@ -199,7 +232,7 @@ function sequence(n,sc) {
 
     // TypeIt sequence
     s = jQuery('.sequence-' + n).find('.sequence__content').typeIt({
-        speed: 100,
+        speed: 70,
         lifeLike: true,
         cursor: false,
         breakLines: false,
@@ -207,6 +240,7 @@ function sequence(n,sc) {
         callback: function(){
             sq.find('.sequence__content').removeClass('no-answer');
             answer(n,sc);
+            return false;
         },
     });
     for (var i = 0; i < sc.text.length; i++) {
@@ -231,6 +265,9 @@ function sequence(n,sc) {
                 break;
         };
     };
+
+    // Keep to bottom
+    updateScroll('body',1000,(sc.text.length + 3));
 };
 function answer(n,sc){
     //console.log('answer > ' + JSON.stringify(sc));
@@ -245,13 +282,64 @@ function answer(n,sc){
                 sc = eval('scene'+ j); // eval convert string to variable
             sequence(n,sc);
             break;
-        case "option":
+        case "choose":
             console.log('option');
+            // Add button
+            var btn = '',
+                m = n + 1,
+                cn = sc.answer[0].name, // For cookie
+                opt = sc.answer[0].option;
+            for (var i = 0; i < opt.length; i++){
+                var j = opt[i].path,
+                    w = 12 / opt.length,
+                    cv = opt[i].value, // For cookie
+                    sc = 'scene'+ j; // need string
+                btn = btn + '<button class="choose__option choose__option-'+ (i+1) +' col-'+ (w-1) +' animated zoomIn fadeIn" data-path="'+ sc +'" data-nth="'+ m +'" data-cn="'+ cn +'" data-cv="'+ cv +'"><span>'+ opt[i].text +'</span></button>'
+            }
+            // Add a new choose
+            var aw = jQuery('.sequence-wrapper').append('<div class="choose choose-' + n + '"><p class="choose__content no-answer grid-row-noGutter-equalHeight-center-middle">'+ btn +'</p></div>');
+            // Keep to bottom
+            updateScroll('body',1000,1);
             break;
         default:
             break;
     };
-}
+};
+// Answer click Function
+jQuery('#dial').on('click','.choose__option:not(.stop)',function(event){
+    event.preventDefault();
+    var sc = eval(jQuery(this).data('path')),
+        n = eval(jQuery(this).data('nth')),
+        cn = jQuery(this).data('cn'),
+        cv = jQuery(this).data('cv');
+    jQuery(this).addClass('ok stop')
+        .siblings('.choose__option').addClass('ko stop')
+        .parents('.choose__content').removeClass('no-answer');
+    //console.log(readCookie(cn));
+    eraseCookie(cn);
+    createCookie(cn,cv,'30');
+    sequence(n,sc);
+});
+// Keep overflow div scrolled to bottom
+function toBottom(id){
+    var e = jQuery('#'+id),
+        eH = e.prop('scrollHeight');
+    e.animate({ scrollTop: eH }, '200');
+    //console.log(JSON.stringify(e, null, 4));
+    //console.log(eH);
+};
+function updateScroll(id,delay,repetitions){
+    var x = 0,
+        intervalID = window.setInterval(function () {
+           toBottom(id);
+           //console.log(delay+ ' = ' +repetitions+'-'+x);
+           if (++x === repetitions) {
+               window.clearInterval(intervalID);
+           }
+        }, delay);
+    //console.log(jQuery('#dial')[0].scrollHeight +' = '+element.prop('scrollHeight'));
+    //console.log(element.prop('scrollHeight')+' = '+element.scrollHeight);
+};
 
 
 // ******************************************
@@ -360,6 +448,7 @@ function tracking(n) {
 
     // Callback handler that will be called on success
     request.done(function (response, textStatus, jqXHR){
+        _paq.push(['trackEvent', 'Question', 'Valid', question]);
         // Log a message to the console
         console.log( session +" // "+ n +" // clic" ); //Success message
         console.log(response);
@@ -419,15 +508,31 @@ function eraseCookie(name) {
 // ******************************************
 function modal(){
     var exitModal = jQuery("#toggle-exitModal").animatedModal({
-            modalTarget:'exitModal',
-            animatedIn:'', //bounceIn
-            animatedOut:'bounceOut',
-            color:'#F9E45B',
+            modalTarget:        'exitModal',
+            animatedIn:         'slideInDown', //bounceIn
+            animatedOut:        'slideOutUp', //bounceOut
+            color:              '#76ebff',
+            animationDuration:  '0.6s',
             beforeOpen: function() {
-                jQuery('#wrapper').addClass('blured');
+                //jQuery('#wrapper').addClass('blured');
+
+                // Children animation
+                var children = jQuery('.modal-content > *');
+                var index = 0;
+
+                function addClassNextChild() {
+                    if (index == children.length) return;
+                    children.eq(index++).addClass('animated fadeInUp');
+                    window.setTimeout(addClassNextChild, 50);
+                }
+
+                addClassNextChild();
+            },
+            afterOpen: function() {
             },
             afterClose: function() {
-                jQuery('#wrapper').removeClass('blured');
+                //jQuery('#wrapper').removeClass('blured');
+                jQuery('.modal-content > *').removeClass('animated fadeInUp')
             }
         }),
         exit = function() {
@@ -443,53 +548,33 @@ function modal(){
         event.stopPropagation();
     });
 
-    // exit banner
-    var lastY;
-    jQuery(document).mousemove(function(e) {
-        var currentY = e.pageY,
-            deltaY = lastY - currentY;
-        if( lastY != 'undefined' && currentY <= 5 && deltaY > 0 ) {
-            exit();
+    // launch modal on exit
+    // https://github.com/drei01/jquery-exit-popup
+    var last_position = {};
+    jQuery(document).on('mousemove', function (event) {
+        if (typeof(last_position.x) != 'undefined') {
+            var deltaX = last_position.x - event.offsetX,
+                deltaY = last_position.y - event.offsetY;
+            if (Math.abs(deltaY) > Math.abs(deltaX) && deltaY > 0) {
+                //upward movement
+    			if(event.pageY <= 5){
+    				exit();
+    			}
+            }
+            //console.log(deltaX+' x '+deltaY);
         }
-        lastY = e.pageY;
-    });
-
-    // timer function
-    var timeoutKick,
-        kick_timer = 120000,  // kick user after 1 minute
-        startTimer = function() {
-            // wait before calling goInactive
-            timeoutKick = window.setTimeout(goInactive, kick_timer);
-        },
-        resetTimer = function(e) {
-            window.clearTimeout(timeoutKick);
-            goActive();
-            //console.log('reset');
-        },
-        pauseTimer = function(e) {
-            window.clearTimeout(timeoutKick);
-            console.log('pause');
-        },
-        goInactive = function() {
-            exit();
-            //console.log('inactive');
-        },
-        goActive = function() {
-            startTimer();
-            //console.log('active');
-        },
-        setup = function() {
-            this.addEventListener("mousemove", resetTimer, false);
-            this.addEventListener("mousedown", resetTimer, false);
-            this.addEventListener("keypress", resetTimer, false);
-            this.addEventListener("DOMMouseScroll", resetTimer, false);
-            this.addEventListener("mousewheel", resetTimer, false);
-            this.addEventListener("touchmove", resetTimer, false);
-            this.addEventListener("MSPointerMove", resetTimer, false);
-            startTimer();
+        last_position = {
+            x : event.offsetX,
+            y : event.offsetY
         };
-    setup();
-}
+    });
+    // launch exit modal if windows loose focus
+    jQuery(window).focus(function() {
+        // focus
+    }).blur(function() {
+        //exit();
+    });
+};
 
 
 // ******************************************
@@ -533,7 +618,7 @@ function modalFormPushbullet(){
         event.preventDefault();
 
         // Enable Loading
-        jQuery('.spinner').addClass('loading');
+        jQuery('.modal-content .spinner').addClass('loading');
 
         // Clear result div
         jQuery("#result").html('');
@@ -548,16 +633,17 @@ function modalFormPushbullet(){
             data: values ,
             dataType : 'json', // We want json
             success: function (response) {
-                // you will get response from your php page (what you echo or print)
+                // You will get response from your php page (what you echo or print)
                 //console.log( JSON.stringify(response) );
                 // Add cookie
                 createCookie('name',response.custom.name,'30');
                 // Remove Loading
                 setTimeout(
                     function(){
-                        jQuery('.spinner').removeClass('loading');
+                        jQuery('.modal-content .spinner').removeClass('loading');
                         jQuery('#modal-form').fadeOut('500', function() {
                             jQuery('#modal-result')
+                                .addClass('on')
                                 .typeIt({
                                     speed: 80,
                                     lifeLike: true,
@@ -595,110 +681,208 @@ function missYou(){
 // ******************************************
 // Photoswipe
 // ******************************************
-var pswpElement = document.querySelectorAll('.pswp')[0];
+var galleryCurrentOpen = document.getElementById('open-gallery-current-btn'), //open-gallery-btn
+    galleryOldOpen = document.getElementById('open-gallery-old-btn'), //open-gallery-btn
+    openCurrentGallery = function() {
 
-// build items array
-var items = [
-    {
-        src: './images/portfolio/tomiotee-site.jpg',
-        w: 600,
-        h: 400,
-        msrc: './images/portfolio/thumbnail/tomiotee-site.jpg', // small image placeholder,
-        title: 'Image Caption',  // used by Default PhotoSwipe UI
-        author: 'jbo',
-    },
-    {
-        src: './images/portfolio/tomiotee-salon.jpg',
-        msrc: './images/portfolio/thumbnail/tomiotee-salon.jpg', // small image placeholder,
-        w: 1200,
-        h: 900
-    },
-    {
-        src: './images/portfolio/restov-site.jpg',
-        msrc: './images/portfolio/thumbnail/restov-site.jpg', // small image placeholder,
-        w: 1200,
-        h: 900
-    },
-    {
-        src: './images/portfolio/ellop-logo.png',
-        msrc: './images/portfolio/thumbnail/ellop-logo.png', // small image placeholder,
-        w: 1200,
-        h: 900
-    },
-    {
-        src: './images/portfolio/netdevices-site.png',
-        msrc: './images/portfolio/thumbnail/netdevices-site.png', // small image placeholder,
-        w: 1200,
-        h: 900
-    },
-    {
-        src: './images/portfolio/itmize-site2.png',
-        msrc: './images/portfolio/thumbnail/itmize-site2.png', // small image placeholder,
-        w: 1200,
-        h: 900
-    },
-    {
-        src: './images/portfolio/xl-site.jpg',
-        msrc: './images/portfolio/thumbnail/xl-site.jpg', // small image placeholder,
-        w: 1200,
-        h: 900
-    },
-    {
-        src: './images/portfolio/mariage-site.jpg',
-        msrc: './images/portfolio/thumbnail/mariage-site.jpg', // small image placeholder,
-        w: 1200,
-        h: 900
-    },
-    {
-        src: './images/portfolio/mds-slogan.png',
-        msrc: './images/portfolio/thumbnail/mds-slogan.png', // small image placeholder,
-        w: 1200,
-        h: 900
-    },
-    {
-        src: './images/portfolio/easylife-carte-recto.jpg',
-        msrc: './images/portfolio/thumbnail/easylife-carte-recto.jpg', // small image placeholder,
-        w: 1200,
-        h: 900
-    }
-];
+        var pswpElement = document.querySelectorAll('.pswp')[0];
 
-// define options (if needed)
-var options = {
-    index: 0, // start at first slide
-    loop: true,
-    closeOnScroll: false,
-    mouseUsed: true,
-    preload: [1,3],
-};
+        // build items array
+        var itemsCurrent = [
+            {
+                src: './images/portfolio/optimized/dico-du-lait.fr.png',
+                w: 1545,
+                h: 853,
+                title: '<b>2016</b><br><a href="http://dico-du-lait.fr/" rel="nofollow">Site à destination des professionnels de la filière laitière.</a><br/>Réalisé en interne de A à Z sur Wordpress.',
+            },
+            {
+                src: './images/portfolio/optimized/www.cerin.org.png',
+                w: 1545,
+                h: 853,
+                title: '<b>2016</b><br><a href="http://www.cerin.org/" rel="nofollow">Site à destination des professionnels de santé et de santé publique.</a><br/>Gestion de projet. Site réalisé par <a href="http://www.cosavostra.com/" rel="nofollow" class="alt">CosaVostra</a> sur Wordpress.',
+            },
+            {
+                src: './images/portfolio/optimized/qrpl.fr.png',
+                w: 1545,
+                h: 853,
+                title: '<b>2016</b><br><a href="http://qrpl.fr/" rel="nofollow">Site prébicité par les professionnels de la filière laitière.</a><br/>Projet réalisé de A à Z en interne sur Dokuwiki, choisi pour la rapidité de mise en place. Les besoins évoluent rapidement et la plateforme ne semble plus adaptée... Affaire à suivre.',
+            },
+            {
+                src: './images/portfolio/optimized/les-mammites-j-anticipe.fr.jpg',
+                w: 1545,
+                h: 853,
+                title: '<b>2015</b><br><a href="http://les-mammites-j-anticipe.fr" rel="nofollow">Site à destination des professionnels de la filière.</a><br/>Gestion de projet pour commencer, nous avons internalisé la maintenance et la réalisation des évolutions.',
+            },
+            {
+                src: './images/portfolio/optimized/www.produits-laitiers.com.png',
+                w: 1545,
+                h: 853,
+                title: '<b>2015</b><br><a href="http://www.produits-laitiers.com" rel="nofollow">Site d\'information complète à déstination du grand public.</a><br/>Gestion de projet. Site réalisé par <a href="https://beapi.fr/" rel="nofollow" class="alt">Beapi</a> sur Wordpress. Mise-en-place de stratégie inbound par <a href="https://www.mychefcom.com/" rel="nofollow" class="alt">mychefcom.com</a> et suivi SEO par <a href="https://www.powertrafic.fr/" rel="nofollow" class="alt">Powertrafic</a>.',
+            },
+            {
+                html: '<div class="pswp__html grid-column-center"><p class="col-6_xs-10" data-push-left="off-3_xs-1">VOUS SOUHAITEZ ME CONTACTER ?<br/><a class="icon" href="mailto:jbo@soapoperator.com" itemprop="email" data-button="Bouton email" onclick="javascript:_paq.push([\'trackEvent\', \'Gallery - Current\', \'Clic\', \'Email\']);">Envoyez-moi un email</a></p><div class="clear"></div></div>'
+            },
+        ];
 
-var optionsUI = {
-    closeEl:true,
-    captionEl: true,
-    fullscreenEl: true,
-    zoomEl: false,
-    shareEl: false,
-    counterEl: false,
-    arrowEl: true,
-    preloaderEl: true,
-};
+        // define options (if needed)
+        var options = {
+            index: 0, // start at first slide
+            showHideOpacity: true,
+            bgOpacity: 1,
+            maxSpreadZoom: 3,
+            loop: true,
+            closeOnScroll: false,
+            mouseUsed: true,
+            preload: [1,3],
+            mainClass: '',
+            errorMsg : '<div class="pswp__error-msg"><a href="%url%" target="_blank">L\'image</a> n\'a pas pu être chargée.</div>',
+        };
 
-// Initializes and opens PhotoSwipe
-var gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
+        // Initializes and opens PhotoSwipe
+        var galleryCurrent = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, itemsCurrent, options);
 
-var openPhotoSwipe = function() {
+        galleryCurrent.init();
 
+        // After gallery is closed and closing animation finished.
+        galleryCurrent.listen('destroy', function() {
+            console.log('Gallery is closed!');
+            jQuery('#dialogue').addClass('escapeIn').removeClass('escapeOut');
+            jQuery('#id').addClass('escapeIn').removeClass('escapeOut');
+        });
+    },
+    openOldGallery = function() {
 
+        var pswpElement = document.querySelectorAll('.pswp')[0];
 
-    // Gallery starts closing
-    gallery.listen('close', function() { });
-};
-// Open Gallery
-jQuery('#dial').on('click','.gallery',function(event){
+        // build items array
+        var itemsOld = [
+            {
+                src: './images/portfolio/optimized/www.franckbarros.com.png',
+                w: 1499,
+                h: 903,
+                title: '<b>2014</b><br>Site contruit de A à Z pour le chanteur et musicien <a href="http://www.franckbarros.com" rel="nofollow">Franck Barros</a>',
+            },
+            {
+                src: './images/portfolio/optimized/resopharma.site.png',
+                w: 3200,
+                h: 2300,
+                title: '<b>2013</b><br>Template d\'étude.',
+            },
+            {
+                src: './images/portfolio/optimized/tomiotee.com.v2.1.png',
+                w: 1632,
+                h: 1035,
+                title: '<b>2011 - 2012</b><br>Pour le lancement d\'une marque de prêt-à-porter, conception et développement d\'une boutique. Sur Magento dans un premier temps. Ici la V2 sur Wordpress, jamais mise en ligne. <a href="#&gid=1&pid=13" rel="nofollow">Envie de savoir pourquoi?</a>',
+            },
+            {
+                src: './images/portfolio/optimized/tomiotee.salon.jpg',
+                w: 900,
+                h: 720,
+                title: '<b>2011 - 2012</b><br>En complément du site, accompagnement et réalisation des identités visuelles pour la marque.',
+            },
+            {
+                src: './images/portfolio/optimized/helios.site.png',
+                w: 1020,
+                h: 1020,
+                title: '<b>2011 - 2012</b><br>Démarrage d\'une stratup : conception d\'un manuel pédagogique personnalisable et interactif sur iPad, à destination des enseignants. Création d\'un prototype. Accompagnement du développement chez un prestataire.',
+            },
+            {
+                src: './images/portfolio/optimized/ellop.logo.png',
+                w: 550,
+                h: 247,
+                title: '<b>2011</b><br>Refonte des sites internet sous Wordpress du groupe.<br> Création et intégration de la charte graphique.',
+            },
+            {
+                src: './images/portfolio/optimized/restov.site.jpg',
+                w: 1220,
+                h: 1020,
+                title: '<b>2011</b><br>Projet de site.',
+            },
+            {
+                src: './images/portfolio/optimized/itmize.site.png',
+                w: 3400,
+                h: 3400,
+                title: '<b>2011</b><br>Etude pour un réseau social professionnel',
+            },
+            {
+                src: './images/portfolio/optimized/mariage.site.png',
+                w: 1020,
+                h: 1020,
+                title: '<b>2011</b><br>Design pour une opération marketing.',
+            },
+            {
+                src: './images/portfolio/optimized/www.xl.com.jpg',
+                w: 1299,
+                h: 903,
+                title: '<b>2010 - 2011</b><br>Refonte de plusieurs sites B2B et B2C : définition de fonctionnalités et suivi des prestataires.<br>Mise en place d\'une stratégie d\'emailing relationnel.',
+            },
+            {
+                src: './images/portfolio/optimized/easylife.carte-recto.jpg',
+                w: 680,
+                h: 959,
+                title: '<b>2010</b><br>Réalisation de visuels pour une innovation présentée au concours Lépine.',
+            },
+            {
+                src: './images/portfolio/optimized/mds.slogan.png',
+                w: 7016,
+                h: 4961,
+                title: '<b>2009</b><br>Réalisation de diverses visuels, d\'un site, etc.',
+            },
+            {
+                html: '<div class="pswp__html grid-column-center"><p class="col-6_xs-10" data-push-left="off-3_xs-1">VOUS SOUHAITEZ ME CONTACTER?<br/><a class="icon" href="mailto:jbo@soapoperator.com" itemprop="email" data-button="Bouton email" onclick="javascript:_paq.push([\'trackEvent\', \'Gallery - Current\', \'Clic\', \'Email\']);">Envoyez-moi un email</a></p><div class="clear"></div></div>'
+            },
+        ];
+
+        // define options (if needed)
+        var options = {
+            index: 0, // start at first slide
+            showHideOpacity: true,
+            bgOpacity: 1,
+            maxSpreadZoom: 3,
+            loop: true,
+            closeOnScroll: false,
+            mouseUsed: true,
+            preload: [1,3],
+            mainClass: '',
+            errorMsg : '<div class="pswp__error-msg"><a href="%url%" target="_blank">L\'image</a> n\'a pas pu être chargée.</div>',
+        };
+
+        // Initializes and opens PhotoSwipe
+        var galleryOld = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, itemsOld, options);
+
+        galleryOld.init();
+
+        // After gallery is closed and closing animation finished.
+
+        galleryOld.listen('destroy', function() {
+            console.log('Gallery is closed!');
+            jQuery('#dialogue').addClass('escapeIn').removeClass('escapeOut');
+            jQuery('#id').addClass('escapeIn').removeClass('escapeOut');
+        });
+    };
+
+// Button to open the gallery
+galleryCurrentOpen.onclick = openCurrentGallery;
+galleryOldOpen.onclick = openOldGallery;
+
+// Open Gallery Function
+jQuery('#dial').on('click','#gallery-project-current',function(event){
     event.preventDefault();
-    console.log('gallery');
-    gallery.init();
+    jQuery('#dialogue').removeClass('escapeIn').addClass('animated escapeOut');
+    jQuery('#id').removeClass('escapeIn').addClass('animated escapeOut');
+    setTimeout(function () {
+        jQuery('#open-gallery-current-btn').trigger( 'click' );
+    }, 400);
 });
+jQuery('#dial').on('click','#gallery-project-old',function(event){
+    event.preventDefault();
+    jQuery('#dialogue').removeClass('escapeIn').addClass('animated escapeOut');
+    jQuery('#id').removeClass('escapeIn').addClass('animated escapeOut');
+    setTimeout(function () {
+        jQuery('#open-gallery-old-btn').trigger( 'click' );
+    }, 400);
+});
+
 
 //===   On Ready Functions   ===//
 var onready = function () {
@@ -706,7 +890,7 @@ var onready = function () {
     modalFormAnimation();
     modalFormPushbullet();
     missYou();
-    createCookie('visit','1','30')
+    createCookie('visit','1','30');
 };
 jQuery(document).ready(onready);
 

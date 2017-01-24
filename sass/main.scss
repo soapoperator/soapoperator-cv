@@ -11,6 +11,8 @@
 /// ==========================================================================
 @import "vendors/gridlex";
 @import "vendors/animate";
+@import "vendors/photoswipe";
+@import "vendors/photoswipe-skin";
 
 /// base
 /// ==========================================================================
@@ -21,7 +23,7 @@
 /// layout
 /// ==========================================================================
 @import "layout/body";
-@import "layout/grid";
+@import "layout/structure";
 @import "layout/background";
 @import "layout/dialogue";
 @import "layout/id";
