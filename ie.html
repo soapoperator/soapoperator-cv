@@ -21,7 +21,7 @@
     <meta name="Copyright" content="jbo">
     <meta name="Author" content="jbo">
     <meta name="Publisher" content="jbo">
-    <meta name="Identifier-Url" content="http://cv.soapoperator.com">
+    <meta name="Identifier-Url" content="https://cv.soapoperator.com">
     <meta name="Revisit-After" content="15 days">
     <meta name="Rating" content="general">
     <meta name="Distribution" content="global">
@@ -68,238 +68,19 @@
 ================================================== -->
 
     <script type="text/javascript" src="vendors/jquery-browser-plugin/dist/jquery.browser.min.js" defer></script>
-    <script type="text/javascript" src="vendors/animatedModal.js/animatedModal.min.js" defer></script>
-    <script type="text/javascript" src="vendors/PhotoSwipe/dist/photoswipe.min.js" defer></script>
-    <script type="text/javascript" src="vendors/PhotoSwipe/dist/photoswipe-ui-default.min.js" defer></script>
-    <link rel="stylesheet" href="vendors/PhotoSwipe/dist/photoswipe.css" media="all">
-    <link rel="stylesheet" href="vendors/PhotoSwipe/dist/default-skin/default-skin.css" media="all">
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.typeit/4.2.3/typeit.min.js" defer></script>
     <script type="text/javascript" src="vendors/I-Miss-You/jquery.iMissYou.min.js" defer></script>
 
 <!-- Custom
 ================================================== -->
 
     <link rel="stylesheet" href="css/main.ie.min.css" media="all">
-    <script type="text/javascript" src="js/custom.ie.js" defer></script>
+    <script type="text/javascript" src="js/custom.ie.min.js" defer></script>
 
-</head>
-
-<body>
-
-<!-- Page Layout
-================================================== -->
-
-    <div id="wrapper" class="">
-
-        <aside id="background" class="container"></aside>
-        <!-- #background -->
-
-        <section id="id" class="container">
-            <article id="perso" class="content-wrapper" itemscope itemtype="http://schema.org/Person">
-                <div id="about-photo" class="content"push-left="">
-                    <div id="photo" class="ratio-240x330">
-                        <object type="image/svg+xml" data="./images/jbo.svg" class="ratio-240x330">
-                            <img src="./images/jbo.png" alt="Le Curriculum vit&aelig; de Jean-Baptiste O."><!-- fallback image in CSS -->
-                        </object>
-                    </div>
-                </div>
-                <div id="about-info" class="content" push-left="">
-                    <div id="about-name">
-                        <h1>
-                            <span class="hide">Le Curriculum vit&aelig; de</span>
-                            <span class="highlight" itemprop="name">Jean-Baptiste O.</span>
-                        </h1>
-                    </div>
-                    <div id="about-telephone">
-                        <span class="hide">CONTACT</span>
-                        <span class="highlight" itemprop="telephone">+33 (0)6 32 67 80 97</span>
-                    </div>
-                    <div id="about-social">
-                        <a class="icon" href="mailto:jbo@soapoperator.com" itemprop="email" data-button="Bouton email" onclick="javascript:_paq.push(['trackEvent', 'Social', 'Clic', 'Email']);">
-                            Pour m'envoyez un courriel
-                        </a>
-                        <a class="icon" href='https://twitter.com/soapoperator/' rel="publisher" target="_blank" data-button="Bouton twitter" onclick="javascript:_paq.push(['trackEvent', 'Social', 'Clic', 'Twitter']);">
-                            Contactez-moi sur Twitter
-                        </a>
-                        <a class="icon" href="http://fr.linkedin.com/in/jbolivier/" target="_blank" data-button="Bouton linkedin" onclick="javascript:_paq.push(['trackEvent', 'Social', 'Clic', 'Linkedin']);">
-                            Rendez-vous sur Linkedin
-                        </a>
-                        <a class="icon" href="#!" target="_blank" data-button="Bouton download" onclick="javascript:_paq.push(['trackEvent', 'Social', 'Clic', 'Download']);">
-                            Télécharger sans attendre mon CV
-                        </a>
-                    </div>
-                </div>
-            </article>
-            <!-- .content-wrapper -->
-        </section>
-        <!-- #container-id -->
-
-        <aside id="dialogue" class="col-5_xs-12 animated">
-            <div id="dial" class="content-wrapper">
-                <div class="sequence sequence-1 hide">
-                    <div class="sequence__content actor__content no-answer"></div>
-                </div>
-                <div class="sequence sequence-2 hide">
-                    <div class="sequence__content actor__content no-answer"></div>
-                    <div class="sequence__content guest__content no-answer hide">
-                        <div class="answer-form">
-                            <span class="answer-input" contentEditable="true"></span>
-                            <pre>Valider avec la touche <b>entrée</b></pre>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- .content-wrapper -->
-        </aside>
-        <!-- #container-dialogue -->
-
-        <aside id="background" class="col-1_xs-12 animated"></aside>
-        <!-- #background -->
-
-    </div>
-    <!-- #wrapper -->
-
-    <footer id="footer" class="container">
-        <a id="toggle-exitModal" href="#exitModal">Hop!</a>
-    </footer>
-    <!-- #footer -->
-
-    <div id="exitModal" class="exitModal-off modal-wrapper animated">
-        <div class="modal grid-column-center">
-            <div class="modal-close col">
-                <div class="icon close-exitModal">
-                    <svg class="icon-cancel-circle" onclick="javascript:_paq.push(['trackEvent', 'Popup', 'Clic', 'Close']);"><use xlink:href="#icon-cancel-circle"></use></svg>
-                </div>
-            </div>
-            <div class="modal-content col-9_md-10_xs-12">
-                <header>
-                    Avant de partir, au choix :
-                </header>
-                <hr>
-                <div class="grid-2">
-                    <div class="nb-wrapper col-2">
-                        <div class="nb">
-                            1
-                        </div>
-                    </div>
-                    <div class="content col-10">
-                        <span>Vous pouvez <a class="icon download" href="#!" target="_blank" data-button="Bouton download exit" onclick="javascript:_paq.push(['trackEvent', 'Popup', 'Clic', 'Download']);" title="Bug free"><i>télécharger mon CV</i></a> gratuitement et sans coup férir.</span>
-                    </div>
-                </div>
-                <div class="grid-2">
-                    <div class="nb-wrapper col-2">
-                        <div class="nb">
-                            2
-                        </div>
-                    </div>
-                    <div class="content col-10">
-                        <span>Laissez-moi <i>vos coordonnées</i> (email ou téléphone), je vous recontacterai sous 48 heures.</span>
-                        <form id="modal-form" class="contact-form">
-                            <input id="contact-form-name" type="text" name="name" value="" placeholder="Nom / Prénom / Pseudo*" required>
-                            <input id="contact-form-contact" type="text" name="contact" value="" placeholder="Email / Téléphone*" required>
-                            <button id="contact-form-button" class="icon" type="submit" name="envoyer">
-                                <svg class="icon-send"><use xlink:href="#icon-send"></use></svg>
-                            </button>
-                            <div class="spinner"></div>
-                            <div class="clear"></div>
-                        </form>
-                        <div id="modal-result" class="result"></div>
-                    </div>
-                </div>
-                <hr>
-                <footer>
-                    Bonne journée
-                    <div class="icon">
-                        <svg class="icon-icecream"><use xlink:href="#icon-icecream"></use></svg>
-                    </div>
-                </footer>
-            </div>
-        </div>
-    </div>
-    <!-- #exitModal -->
-
-    <svg style="position: absolute; width: 0; height: 0;" width="0" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <defs>
-        <symbol id="icon-linkedin" viewBox="0 0 22 26">
-            <title>linkedin</title>
-            <path class="path1" d="M3.439 20.516h3.352v-10.069h-3.352v10.069zM7.008 7.342q-0.014-0.754-0.522-1.248t-1.349-0.493-1.371 0.493-0.53 1.248q0 0.74 0.515 1.241t1.342 0.501h0.014q0.856 0 1.378-0.501t0.522-1.241zM15.496 20.516h3.352v-5.775q0-2.234-1.059-3.381t-2.8-1.146q-1.973 0-3.032 1.698h0.029v-1.465h-3.352q0.044 0.958 0 10.069h3.352v-5.629q0-0.551 0.102-0.813 0.218-0.508 0.653-0.863t1.074-0.355q1.683 0 1.683 2.278v5.383zM22.286 6.036v13.929q0 1.727-1.226 2.953t-2.953 1.226h-13.929q-1.727 0-2.953-1.226t-1.226-2.953v-13.929q0-1.727 1.226-2.953t2.953-1.226h13.929q1.727 0 2.953 1.226t1.226 2.953z"></path>
-        </symbol>
-        <symbol id="icon-twitter" viewBox="0 0 22 26">
-            <title>twitter</title>
-            <path class="path1" d="M18.571 8.85q-0.813 0.363-1.756 0.493 0.987-0.58 1.349-1.698-0.943 0.551-1.944 0.74-0.885-0.958-2.22-0.958-1.262 0-2.155 0.892t-0.892 2.155q0 0.421 0.073 0.696-1.872-0.102-3.511-0.943t-2.786-2.249q-0.421 0.725-0.421 1.538 0 1.654 1.32 2.539-0.682-0.014-1.451-0.377v0.029q0 1.088 0.725 1.937t1.785 1.052q-0.421 0.116-0.74 0.116-0.189 0-0.566-0.058 0.305 0.914 1.081 1.509t1.763 0.609q-1.683 1.306-3.787 1.306-0.377 0-0.725-0.044 2.147 1.364 4.672 1.364 1.625 0 3.047-0.515t2.438-1.378 1.748-1.988 1.088-2.35 0.355-2.445q0-0.261-0.014-0.392 0.914-0.653 1.523-1.581zM22.286 6.036v13.929q0 1.727-1.226 2.953t-2.953 1.226h-13.929q-1.727 0-2.953-1.226t-1.226-2.953v-13.929q0-1.727 1.226-2.953t2.953-1.226h13.929q1.727 0 2.953 1.226t1.226 2.953z"></path>
-        </symbol>
-        <symbol id="icon-email" viewBox="0 0 26 26">
-            <title>email</title>
-            <path class="path1" d="M26 10.301v11.52q0 0.958-0.682 1.639t-1.639 0.682h-21.357q-0.958 0-1.639-0.682t-0.682-1.639v-11.52q0.638 0.711 1.465 1.262 5.252 3.569 7.211 5.006 0.827 0.609 1.342 0.95t1.371 0.696 1.596 0.355h0.029q0.74 0 1.596-0.355t1.371-0.696 1.342-0.95q2.467-1.785 7.225-5.006 0.827-0.566 1.451-1.262zM26 6.036q0 1.146-0.711 2.191t-1.77 1.785q-5.455 3.787-6.79 4.715-0.145 0.102-0.617 0.443t-0.783 0.551-0.754 0.472-0.834 0.392-0.725 0.131h-0.029q-0.334 0-0.725-0.131t-0.834-0.392-0.754-0.472-0.783-0.551-0.617-0.443q-1.32-0.929-3.801-2.648t-2.974-2.068q-0.9-0.609-1.698-1.676t-0.798-1.98q0-1.132 0.602-1.886t1.719-0.754h21.357q0.943 0 1.632 0.682t0.689 1.639z"></path>
-        </symbol>
-        <symbol id="icon-download" viewBox="0 0 26 26">
-            <title>download</title>
-            <path class="path1" d="m 18.688,11.375 -6.5,6.5 -6.5,-6.5 4.063,0 0,-9.75 4.875,0 0,9.75 z m -6.5,6.5 -12.188,0 0,6.5 24.375,0 0,-6.5 -12.188,0 z"></path>
-        </symbol>
-        <symbol id="icon-close" viewBox="0 0 16 16">
-            <title>close</title>
-            <path class="path1" d="M15.854 12.854c-0-0-0-0-0-0l-4.854-4.854 4.854-4.854c0-0 0-0 0-0 0.052-0.052 0.090-0.113 0.114-0.178 0.066-0.178 0.028-0.386-0.114-0.529l-2.293-2.293c-0.143-0.143-0.351-0.181-0.529-0.114-0.065 0.024-0.126 0.062-0.178 0.114 0 0-0 0-0 0l-4.854 4.854-4.854-4.854c-0-0-0-0-0-0-0.052-0.052-0.113-0.090-0.178-0.114-0.178-0.066-0.386-0.029-0.529 0.114l-2.293 2.293c-0.143 0.143-0.181 0.351-0.114 0.529 0.024 0.065 0.062 0.126 0.114 0.178 0 0 0 0 0 0l4.854 4.854-4.854 4.854c-0 0-0 0-0 0-0.052 0.052-0.090 0.113-0.114 0.178-0.066 0.178-0.029 0.386 0.114 0.529l2.293 2.293c0.143 0.143 0.351 0.181 0.529 0.114 0.065-0.024 0.126-0.062 0.178-0.114 0-0 0-0 0-0l4.854-4.854 4.854 4.854c0 0 0 0 0 0 0.052 0.052 0.113 0.090 0.178 0.114 0.178 0.066 0.386 0.029 0.529-0.114l2.293-2.293c0.143-0.143 0.181-0.351 0.114-0.529-0.024-0.065-0.062-0.126-0.114-0.178z"></path>
-        </symbol>
-    </defs>
-</svg>
-
-<!-- Root element of PhotoSwipe. Must have class pswp. -->
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-    <!-- Background of PhotoSwipe.
-         It's a separate element as animating opacity is faster than rgba(). -->
-    <div class="pswp__bg"></div>
-    <!-- Slides wrapper with overflow:hidden. -->
-    <div class="pswp__scroll-wrap">
-        <!-- Container that holds slides.
-            PhotoSwipe keeps only 3 of them in the DOM to save memory.
-            Don't modify these 3 pswp__item elements, data is added later on. -->
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-        <div class="pswp__ui pswp__ui--hidden">
-            <div class="pswp__top-bar">
-                <!--  Controls are self-explanatory. Order can be changed. -->
-                <div class="pswp__counter"></div>
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-                <button class="pswp__button pswp__button--share" title="Share"></button>
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
-                <!-- element will get class pswp__preloader--active when preloader is running -->
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                      <div class="pswp__preloader__cut">
-                        <div class="pswp__preloader__donut"></div>
-                      </div>
-                    </div>
-                </div>
-            </div>
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div>
-            </div>
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- End Document
-================================================== -->
-
-<!-- Piwik
+<!-- Piwik Tracking
 ================================================== -->
 <script type="text/javascript">
   var _paq = _paq || [];
-  _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
-  _paq.push(["setCookieDomain", "*.cv.soapoperator.com"]);
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
   _paq.push(["setDomains", ["*.cv.soapoperator.com","*.cv.soapoperator.com"]]);
   _paq.push(["setDoNotTrack", true]);
   _paq.push(['trackPageView']);
@@ -312,12 +93,104 @@
     g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
   })();
 </script>
-<noscript><p><img src="//analytics.soapoperator.com/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
+<noscript><p><img src="//analytics.soapoperator.com/piwik.php?idsite=1&rec=1" style="border:0;" alt="" /></p></noscript>
+<!-- End Piwik Code -->
+
+</head>
+
+<body>
+
+<!-- Page Layout
+================================================== -->
+
+    <div id="wrapper" class="">
+
+        <section id="id" class=" animated">
+            <article id="perso" class="content-wrapper" itemscope itemtype="http://schema.org/Person">
+                <table width="100%">
+                    <tbody>
+                        <tr>
+                            <td width="148">
+                                <div id="about-photo" class="content " data-push-left="">
+                                    <div id="photo" class="ratio-240x330">
+                                        <img src="./images/jbo.png" alt="Le Curriculum vit&aelig; de Jean-Baptiste O."><!-- fallback image in CSS -->
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div id="about-info" class="content" data-push-left="">
+                                    <div id="about-name">
+                                        <h1>
+                                            <span class="hide">Le Curriculum vit&aelig; de</span>
+                                            <span class="highlight" itemprop="name">Jean-Baptiste O.</span>
+                                        </h1>
+                                    </div>
+                                    <div id="about-telephone">
+                                        <p>
+                                            <span class="hide">CONTACT</span>
+                                            <span class="highlight" itemprop="telephone">+33 (0)6 32 67 80 97</span>
+                                        </p>
+                                    </div>
+                                    <div id="about-social">
+                                        <p>
+                                            <a class="icon" href="mailto:jbo@soapoperator.com" itemprop="email" data-button="Bouton email">
+                                                <i class="">Pour m'envoyez un <b>courriel</b></i>
+                                            </a>
+                                        </p>
+                                        <p>
+                                            <a class="icon" href='https://twitter.com/soapoperator/' rel="publisher" target="_blank" data-button="Bouton twitter">
+                                            <i class="">Contactez-moi sur <b>Twitter</b></i>
+                                        </a>
+                                        </p>
+                                        <p>
+                                            <a class="icon" href="http://fr.linkedin.com/in/jbolivier/" target="_blank" data-button="Bouton linkedin">
+                                            <i class="">Rendez-vous sur <b>Linkedin</b></i>
+                                        </a>
+                                        </p>
+                                        <p>
+                                            <a class="icon" href="https://cloud.soapoperator.com/s/ufaeOux52h6eMth" target="_blank" data-button="Bouton download">
+                                            <i class="">Télécharger sans attendre <b>mon CV</b></i>
+                                        </a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </article>
+            <!-- .content-wrapper -->
+        </section>
+        <!-- #container-id -->
+
+    </div>
+    <!-- #wrapper -->
+
+    <footer id="footer" class="container">
+        <p>
+            Si vous utilisez Internet Explorer comme je le soupçonne, vous n'aurez peut-etre pas l'intention de me contacter... Voilà qui sera de nature à réchauffer l'atmosphère.
+        </p>
+        <iframe src="//giphy.com/embed/ontuGIyllqCRO?html5=true&hideSocial=true" class="giphy-embed" allowfullscreen="" width="480" height="271" frameborder="0"></iframe>
+    </footer>
+    <!-- #footer -->
+
+<!-- End Document
+================================================== -->
+
+<!-- Piwik Exclusion
+================================================== -->
+<!-- <iframe style="border: 0; height: 200px; width: 100%;" src="https://analytics.soapoperator.com/index.php?module=CoreAdminHome&action=optOut&language=fr"></iframe> -->
+
+<!-- Telegram integration
+================================================== -->
+<!-- <script id="intergram-config" type="text/javascript" src="api/intergram/config.js" defer></script>
+<script id="intergram" type="text/javascript" src="https://telegram.soapoperator.com/src/widget/widget.js" defer></script> -->
 
 <!-- Project Honeypot
 ================================================== -->
-<a href="https://cv.soapoperator.com/api/projecthoneypot/vathalt.php"><!-- soupy --></a>
-<div style="display: none;"><a href="https://cv.soapoperator.com/api/projecthoneypot/vathalt.php">soupy</a></div>
+<div style="position: absolute; top: -250px; left: -250px;"><a href="https://cv.soapoperator.com/api/projecthoneypot/vathalt.php">soupy</a></div>
+<!-- <a href="https://cv.soapoperator.com/api/projecthoneypot/vathalt.php">soupy</a> -->
 
 </body>
 

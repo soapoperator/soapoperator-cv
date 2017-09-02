@@ -5,33 +5,33 @@
 @import "utils/functions";
 @import "utils/mixins";
 @import "utils/variables";
-@import "utils/placeholders";
+//@import "utils/placeholders";
 
 /// vendors
 /// ==========================================================================
-@import "vendors/gridlex";
-@import "vendors/animate";
+//@import "vendors/gridlex";
+//@import "vendors/animate";
 
 /// base
 /// ==========================================================================
 @import "base/normalize";
 @import "base/reset";
-@import "base/typography";
+//@import "base/typography";
 
-/// layout
-/// ==========================================================================
-@import "layout/body";
-@import "layout/structure";
-@import "layout/background";
-@import "layout/id";
-@import "layout/footer";
-@import "layout/modal";
-
-/// components
-/// ==========================================================================
-@import "components/photo";
-@import "components/buttons";
-@import "components/spinner";
+// /// layout
+// /// ==========================================================================
+// @import "layout/body";
+// @import "layout/structure";
+// @import "layout/background";
+// @import "layout/id";
+// @import "layout/footer";
+// @import "layout/modal";
+//
+// /// components
+// /// ==========================================================================
+// @import "components/photo";
+// @import "components/buttons";
+// @import "components/spinner";
 
 /// pages
 /// ==========================================================================
@@ -45,13 +45,19 @@
 /// Custom
 /// ==========================================================================
 
+body {
+    background-color: $color-background;
+}
+
+.hide {
+    display: none;
+}
+
 #wrapper {
-    display: table;
+    margin: 30px;
 
     > * {
-        display: table-cell;
-        width: 50%;
-        vertical-align: middle;
+        vertical-align: top;
     }
 
     #id {
@@ -70,21 +76,60 @@
 #photo {
     background-color: $color-primary;
     width: 148px;
-    height:203px;
+
+    img {
+        width: 148px;
+        height: auto;
+    }
 
     &.ie8 {
         display: none;
     }
 }
 
+#about-info {
+    margin-left: 20px;
+    color: $color-primary;
+}
+
+#about-name {
+
+    h1 {
+        margin: 0 0 20px;
+    }
+}
+
+#about-telephone {
+    color: $color-secondary;
+    font-weight: bold;
+}
+
 #about-social {
+    margin-top: 20px;
+
+    p {
+        margin-top: 0;
+        margin-bottom: 7px;
+    }
+
     a {
         text-decoration: none;
+        color: $color-primary;
+
+        &:hover {
+            text-decoration: underline;
+        }
     }
 }
 
 #footer {
-    .content-wrapper {
-        margin-top: 80px;
+    padding: 40px 80px 20px;
+    text-align: center;
+    width: 100%;
+
+    p {
+        margin: 0 auto 20px;
+        font-size: 10px;
+        max-width: 40%;
     }
 }

@@ -76,7 +76,7 @@
 .pswp__button,
 .pswp__button--arrow--left:before,
 .pswp__button--arrow--right:before {
-	background: url(#{$pswp__assets-path}default-skin.png) 0 0 no-repeat;
+	background: rgba(0, 0, 0, 0.2) url(#{$pswp__assets-path}default-skin.png) 0 0 no-repeat;
 	background-size: 352px 88px;
 	width: 44px;
 	height: 44px;
@@ -145,9 +145,9 @@
 .pswp__button--arrow--left,
 .pswp__button--arrow--right {
 	background: none;
-	top: 20%;
+	top: 35%;
 	width: 44px;
-	height: 60%;
+	height: 30%;
 	position: absolute;
 
 	&:hover:before {
@@ -579,7 +579,7 @@ a.pswp__share--download {
 		border-radius: $border-radius-default;
 		padding: 0.5em 0.7em;
 		margin-top: 1em;
-		@include prefix(transition,border-width 0.7s ease-in-out,-webkit);
+		@include prefix(transition,border-width 0.3s ease-in-out,-webkit);
 
 		&:hover {
 			border-width: 20px;

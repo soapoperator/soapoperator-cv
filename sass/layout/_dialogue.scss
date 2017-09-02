@@ -19,7 +19,7 @@
 #dialogue {
     padding: 0;
     font-size: 1.7em;
-    font-size: 3vmin;
+    font-size: 2vmax;
 
     @include mediaqueries(mobile){
         font-size: 1.6em;
@@ -70,6 +70,15 @@
             }
         }
 
+        .link-fake {
+            text-shadow: 2px 2px 0 darken($color-background,10);
+
+            &:before,
+            &:after {
+                text-shadow: none;
+            }
+        }
+
         .sequence__content {
             margin: 0.2em 1em 0 2.2em;
 
@@ -103,13 +112,14 @@
     }
 
     .choose {
-        padding-left: 1em;
+        //padding-left: 1em;
 
         .choose__content {
-            margin: 1em 0;
+            margin: 1em 1.2em 1em 2.4em;
+            align-items: stretch;
 
             @include mediaqueries(mobile){
-                margin: 1.5em 0;
+                margin: 1.5em 1em;
             };
 
             &.no-answer {
@@ -126,9 +136,10 @@
 
         .choose__option {
             position: relative;
+            text-align: center;
             top: 0;
             padding: 0.4em;
-            margin: 0 0.2em;
+            margin: 0;
             color: $black;
             background: transparent;
             border: $border-width-default solid $black;
@@ -136,11 +147,20 @@
             font-size: 0.8em;
             opacity: 1;
             min-height: 3em;
+            backface-visibility: hidden;
             @include prefix(transition,top 0.3s ease-out,-webkit);
             @include option-variation;
 
             span {
                 margin: 0 auto;
+            }
+
+            &:first-child {
+                left: -0.2em;
+            }
+
+            &:last-child {
+                right: -0.2em;
             }
 
             &:not(.ko):hover {
@@ -157,6 +177,22 @@
                 color: $color-primary;
                 background-color: $black;
             }
+
+            // &:not(.ko):before {
+            //     content: "";
+            //     animation-duration: 1s;
+            //     border: $border-width-default solid $black;
+            //     border-radius: $border-radius-default;
+            //     position: absolute;
+            //     bottom: -$border-width-default;
+            //     left: -$border-width-default;
+            //     right: -$border-width-default;
+            //     top: -$border-width-default;
+            // }
+            //
+            // &:hover:before {
+            //     @include prefix(animation-name,button-ripple-out);
+            // }
         }
     }
 }

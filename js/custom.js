@@ -2,7 +2,6 @@
 
 jQuery.noConflict();
 
-
 // ******************************************
 // Redirect Old IE Browser
 // ******************************************
@@ -46,140 +45,321 @@ var session = sessionStorage.id;
 // ******************************************
 var opt = Math.floor(Math.random() * 3) + 1, // 1 -> 3
     scene1 = {
+        scene: "scene1",
         text: [
             {
                 type      :   "string",
-                value     :   readCookie('name')? "Bonjour <i>" + readCookie('name') + "</i>," : "Bonjour,",
+                value     :   readCookie('name') ? "Bonjour <i>" + readCookie('name') + "</i>" : "Bonjour",
             },
         ],
         answer: [
             {
                 type: "next",
-                path: "3",
+                path: readCookie('project_manager') ? "4" : "3",
             },
         ],
     },
     scene2 = {
+        scene: "scene2",
         text: [
             {
                 type      :   "string",
-                value     :   readCookie('name')? "<i>" + readCookie('name') + "</i>, ravi de vous revoir." : "Ravi de vous revoir.",
+                value     :   readCookie('name') ? "Ravi de vous revoir, <i>" + readCookie('name') + "</i>" : "Welcome back !",
+            },
+            {
+                type      :   "pause",
+                value     :   "300",
             },
         ],
         answer: [
             {
                 type: "next",
-                path: "3",
+                path: readCookie('project_manager') ? "4" : "3",
             },
         ],
     },
+    // Séquence : Charger de projets
     scene3 = {
+        scene: "scene3",
         text: [
             {
                 type      :   "string",
-                value     :   "Je travaille actuellement comme <b>charger de project</b>",
+                value     :   readCookie('visit') ? "Je suis toujours en poste et charger de projet." : "Je m'appelle <u>Jean-baptiste</u> et je travaille actuellement comme <b>charger de projects</b> digit",
+            },
+            {
+                type      :   "pause",
+                value     :   "270",
             },
             {
                 type      :   "setting",
                 value     :   "{speed: 50}",
             },
             {
-                type      :   "pause",
-                value     :   "270",
-            },
-            {
                 type      :   "delete",
-                value     :   "3",
+                value     :   "5",
+            },
+            {
+                type      :   "setting",
+                value     :   "{speed: 150}",
             },
             {
                 type      :   "string",
-                value     :   "et numérique.",
+                value     :   "numérique.",
             },
             {
                 type      :   "pause",
-                value     :   "270",
-            },
-            {
-                type      :   "string",
-                value     :   " Voici <a id='gallery-project-current' href='#' class='gallery'>quelques projets</a> auxquels j'ai contribué. <a id='gallery-project-old' href='#' class='gallery'>Ou les vieux</a> .",
-            },
-            {
-                type      :   "pause",
-                value     :   "2570",
-            },
-            {
-                type      :   "break",
-                value     :   " ",
-            },
-            {
-                type      :   "break",
-                value     :   " ",
-            },
-            {
-                type      :   "string",
-                value     :   "C'est tout pour le moment...",
-            },
-            {
-                type      :   "pause",
-                value     :   "1070",
-            },
-            {
-                type      :   "delete",
-                value     :   "3",
-            },
-            {
-                type      :   "string",
-                value     :   ", le site est en construction. ☭",
+                value     :   readCookie('project_manager') ? "0" : "300",
             },
         ],
-        // answer: [
-        //     {
-        //         type: "stop",
-        //     },
-        // ],
         answer: [
             {
                 type: "choose",
-                name: "test",
+                name: "project_manager",
                 option: [
                 {
-                    text: readCookie('test') === "ok" ? "Chout!" : "Shoot!",
-                    path: "3",
-                    value: "ok",
+                    text: "Charger de projets?",
+                    path: "100",
+                    value: "question",
                 },
                 {
-                    text: "Get in touch! Get in touch!",
-                    path: "4",
-                    value: "ko",
+                    text: "Numérique ou digital?",
+                    path: "101",
+                    value: "follow",
+                }
+                ]
+            }
+        ],
+    },
+    scene100 = {
+        scene: "scene100",
+        text: [
+            {
+                type      :   "string",
+                value     :   readCookie('digital_numerique') ? "En dehors des débats jargoneux, être à la fois, <span class='link-fake' data-balloon='Aider à l&apos;ensemble de l&apos;équipe et des intervenants à exprimer leur potentiel et leurs idées' data-balloon-pos='up' data-balloon-length='large'>facilitateur</span>, <span class='link-fake' data-balloon='Les délais, les objectifs, etc.' data-balloon-pos='up' data-balloon-length='large'>garant</span>, <span class='link-fake' data-balloon='Un plus ou moins gros plus!' data-balloon-pos='up' data-balloon-length='large'>inspirateur</span>... En trois mot, s'assurer que le projet se déroule bien." : "<span class='link-fake' data-balloon='Aider à l&apos;ensemble de l&apos;équipe et des intervenants à exprimer leur potentiel et leurs idées' data-balloon-pos='up' data-balloon-length='large'>Facilitateur</span>, <span class='link-fake' data-balloon='Les délais, les objectifs, etc.' data-balloon-pos='up' data-balloon-length='large'>garant</span>, <span class='link-fake' data-balloon='Un plus ou moins gros plus!' data-balloon-pos='up' data-balloon-length='large'>inspirateur</span>... En trois mot, s'assurer que le projet se déroule bien.",
+            },
+            {
+                type      :   "break",
+                value     :   " ",
+            },
+            {
+                type      :   "string",
+                value     :   readCookie('digital_numerique') ? "pause" : "break",
+            },
+        ],
+        answer: [
+            {
+                type: "choose",
+                name: "project_manager_how",
+                option: [
+                {
+                    text: "Quels sont vos projets actuels?",
+                    path: "110",
+                    value: "project",
+                },
+                {
+                    text: "Comment vous contacter?",
+                    path: readCookie('visit') ? "191" : "190",
+                    value: "contact",
+                }
+                ]
+            }
+        ],
+    },
+    scene101 = {
+        scene: "scene101",
+        text: [
+            {
+                type      :   "string",
+                value     :   "J'ai tendance à penser <u>numérique</u> même si ma langue fourche parfois... Cependant je sais me servir de mes 10 doigts.",
+            },
+            {
+                type      :   "break",
+                value     :   " ",
+            },
+            {
+                type      :   "string",
+                value     :   readCookie('visit') ? "" : "<a href='https://www.digitalforallnow.com/digital-numerique/' target='_blank' rel='nofollow'>Mini débat !?</a> &#9787;",
+            },
+        ],
+        answer: [
+            {
+                type: "choose",
+                name: "digital_numerique",
+                option: [
+                {
+                    text: "Pour revenir à votre travail de charger de projet",
+                    path: "100",
+                    value: "project_manager",
+                },
+                {
+                    text: "Quels sont vos projets actuels?",
+                    path: "110",
+                    value: "project",
+                }
+                ]
+            }
+        ],
+    },
+    scene110 = {
+        scene: "scene110",
+        text: [
+            {
+                type      :   "string",
+                value     :   readCookie('again_projet') === 'no' ? "<a id='gallery-project-current' href='#' class='gallery' data-link='quelques projets'>Pas de nouveaux projets</a> depuis votre précédente visite." : "Voici <a id='gallery-project-current' href='#' class='gallery' data-link='quelques projets'>quelques projets récents</a> auxquels je contribue ces temps-ci.",
+            },
+            // {
+            //     type      :   "string",
+            //     value     :   " <a id='gallery-project-old' href='#' class='gallery' data-link='Ou les vieux'>Ou les vieux</a>. <a id='gallery-project-crazy' href='#' class='gallery' data-link='Ou les vieux'>Ou les vieux</a>.",
+            // },
+        ],
+        answer: [
+            {
+                type: "choose",
+                name: "project_new",
+                option: [
+                {
+                    text: "Et précédemment?",
+                    path: "100",
+                    value: "old",
+                },
+                {
+                    text: "Comment vous contacter?",
+                    path: "190",
+                    value: "contact",
                 }
                 ]
             }
         ],
     },
     scene4 = {
+        scene: "scene4",
         text: [
             {
+                type      :   "string",
+                value     :   "Le site est encore en construction... ",
+            },
+            {
                 type      :   "pause",
-                value     :   "1070",
+                value     :   "270",
+            },
+            {
+                type      :   "setting",
+                value     :   "{speed: 80}",
+            },
+            {
+                type      :   "break",
+                value     :   " ",
+            },
+            {
+                type      :   "break",
+                value     :   " ",
             },
             {
                 type      :   "string",
+                value     :   readCookie('name') ? "<i>" + readCookie('name') + "</i>, il me semble que je vous avais déjà présenté mes projets récents." : "Il me semble que je vous avais déjà présenté mes projets récents.",
+            },
+            {
+                type      :   "break",
                 value     :   " ",
+            },
+            {
+                type      :   "setting",
+                value     :   "{speed: 200}",
+            },
+            {
+                type      :   "string",
+                value     :   "Souhaitez-vous les revoir?",
             },
         ],
         answer: [
             {
-                type: "next",
-                path: readCookie('visit')? "5" : "6",
-            },
+                type: "choose",
+                name: "again_projet",
+                option: [
+                {
+                    text: "Oui",
+                    path: "100",
+                    value: "yes",
+                },
+                {
+                    text: "Non",
+                    path: "191",
+                    value: "no",
+                }
+                ]
+            }
         ],
-    };
-    scene5 = {
+    },
+    scene190 = {
+        scene: "scene190",
         text: [
-
             {
                 type      :   "string",
-                value     :   "→ → Le site est toujours en construction. ☭",
+                value     :   "Le site est toujours en construction ☭☭ Mais je reste joignable pendant les travaux :",
+            },
+            {
+                type      :   "break",
+                value     :   " ",
+            },
+            {
+                type      :   "break",
+                value     :   " ",
+            },
+            {
+                type      :   "string",
+                value     :   "<a href='mailto:jbo@soapoperator.com?subject=Après la visite de votre CV'>par email</a>",
+            },
+            {
+                type      :   "break",
+                value     :   " ",
+            },
+            {
+                type      :   "break",
+                value     :   " ",
+            },
+            {
+                type      :   "string",
+                value     :   "<a href='https://twitter.com/soapoperator/'>sur face</a>",
+            },
+            {
+                type      :   "delete",
+                value     :   "8",
+            },
+            {
+                type      :   "setting",
+                value     :   "{speed: 50}",
+            },
+            {
+                type      :   "string",
+                value     :   "<a href='https://twitter.com/soapoperator/'> sur twitter</a>",
+            },
+            {
+                type      :   "break",
+                value     :   " ",
+            },
+            {
+                type      :   "break",
+                value     :   " ",
+            },
+            {
+                type      :   "setting",
+                value     :   "{speed: 350}",
+            },
+            {
+                type      :   "string",
+                value     :   "<a href='https://t.me/j_b_o'>par telegram</a>",
+            },
+            {
+                type      :   "break",
+                value     :   " ",
+            },
+            {
+                type      :   "break",
+                value     :   " ",
+            },
+            {
+                type      :   "string",
+                value     :   "A bientôt.",
             },
         ],
         answer: [
@@ -188,24 +368,76 @@ var opt = Math.floor(Math.random() * 3) + 1, // 1 -> 3
             },
         ],
     },
-    scene6 = {
+    scene191 = {
+        scene: "scene191",
         text: [
-
             {
                 type      :   "string",
-                value     :   "C'est tout pour le moment...",
+                value     :   readCookie('again_projet') === 'no' ? "Si vous souhaitez me contacter, suivez les liens ci-dessous: " : "Pour me contacter : ",
             },
             {
-                type      :   "pause",
-                value     :   "670",
+                type      :   "break",
+                value     :   " ",
+            },
+            {
+                type      :   "break",
+                value     :   " ",
+            },
+            {
+                type      :   "string",
+                value     :   "<a href='mailto:jbo@soapoperator.com?subject=Après la visite de votre CV'>par email</a>",
+            },
+            {
+                type      :   "break",
+                value     :   " ",
+            },
+            {
+                type      :   "break",
+                value     :   " ",
+            },
+            {
+                type      :   "string",
+                value     :   "<a href='https://twitter.com/soapoperator/'>sur face</a>",
             },
             {
                 type      :   "delete",
-                value     :   "3",
+                value     :   "8",
+            },
+            {
+                type      :   "setting",
+                value     :   "{speed: 50}",
             },
             {
                 type      :   "string",
-                value     :   ", le site est en construction. ☭",
+                value     :   "<a href='https://twitter.com/soapoperator/'> sur twitter</a>",
+            },
+            {
+                type      :   "break",
+                value     :   " ",
+            },
+            {
+                type      :   "break",
+                value     :   " ",
+            },
+            {
+                type      :   "setting",
+                value     :   "{speed: 350}",
+            },
+            {
+                type      :   "string",
+                value     :   "<a href='https://t.me/j_b_o'>par telegram</a>",
+            },
+            {
+                type      :   "break",
+                value     :   " ",
+            },
+            {
+                type      :   "break",
+                value     :   " ",
+            },
+            {
+                type      :   "string",
+                value     :   "A bientôt.",
             },
         ],
         answer: [
@@ -223,6 +455,7 @@ readCookie('visit')? sequence(1,scene2) : sequence(1,scene1);
 function sequence(n,sc) {
     // n = id of the sequence
     // sc = question sequence
+    //console.log('answer > ' + JSON.stringify(sc));
 
     // Wrapper
     var w = jQuery('.sequence-wrapper');
@@ -232,7 +465,7 @@ function sequence(n,sc) {
 
     // TypeIt sequence
     s = jQuery('.sequence-' + n).find('.sequence__content').typeIt({
-        speed: 70,
+        speed: 100,
         lifeLike: true,
         cursor: false,
         breakLines: false,
@@ -274,19 +507,33 @@ function answer(n,sc){
     switch (sc.answer[0].type) {
         case "stop":
             console.log('stop');
+
+            var scene = 'Stop - '+sc.scene;
+
+            // Piwik event
+            _paq.push(['trackEvent','Dial','Stop',scene]);
+
             break;
         case "next":
             console.log('next');
+
             var j = sc.answer[0].path,
+                scene = 'Next - '+sc.scene,
                 n = n + 1,
                 sc = eval('scene'+ j); // eval convert string to variable
+
+            // Piwik event
+            _paq.push(['trackEvent','Dial','Next',scene,j]);
+
             sequence(n,sc);
             break;
         case "choose":
-            console.log('option');
+            console.log('choose');
+
             // Add button
             var btn = '',
-                m = n + 1,
+                scene = sc.scene,
+                n = n + 1,
                 cn = sc.answer[0].name, // For cookie
                 opt = sc.answer[0].option;
             for (var i = 0; i < opt.length; i++){
@@ -294,12 +541,18 @@ function answer(n,sc){
                     w = 12 / opt.length,
                     cv = opt[i].value, // For cookie
                     sc = 'scene'+ j; // need string
-                btn = btn + '<button class="choose__option choose__option-'+ (i+1) +' col-'+ (w-1) +' animated zoomIn fadeIn" data-path="'+ sc +'" data-nth="'+ m +'" data-cn="'+ cn +'" data-cv="'+ cv +'"><span>'+ opt[i].text +'</span></button>'
+                btn = btn + '<button class="choose__option choose__option-'+ (i+1) +' col-'+ (w) +' animated zoomIn fadeIn" data-scene="'+ scene +'" data-path="'+ j +'" data-nth="'+ n +'" data-cn="'+ cn +'" data-cv="'+ cv +'"><span>'+ opt[i].text +'</span></button>'
             }
+
+            // Piwik event
+            _paq.push(['trackEvent','Dial','Choose',scene,j]);
+
             // Add a new choose
             var aw = jQuery('.sequence-wrapper').append('<div class="choose choose-' + n + '"><p class="choose__content no-answer grid-row-noGutter-equalHeight-center-middle">'+ btn +'</p></div>');
+
             // Keep to bottom
             updateScroll('body',1000,1);
+
             break;
         default:
             break;
@@ -308,16 +561,27 @@ function answer(n,sc){
 // Answer click Function
 jQuery('#dial').on('click','.choose__option:not(.stop)',function(event){
     event.preventDefault();
-    var sc = eval(jQuery(this).data('path')),
+
+    var j = eval(jQuery(this).data('path')),
+        sc = eval('scene'+ j),
         n = eval(jQuery(this).data('nth')),
+        scene = jQuery(this).data('scene'),
         cn = jQuery(this).data('cn'),
         cv = jQuery(this).data('cv');
+
     jQuery(this).addClass('ok stop')
         .siblings('.choose__option').addClass('ko stop')
         .parents('.choose__content').removeClass('no-answer');
+
+    // Piwik event
+    _paq.push(['trackEvent','Dial','Choose - Clic',scene+' - '+cn,cv]);
+
+    // Cookie
     //console.log(readCookie(cn));
-    eraseCookie(cn);
+    eraseCookie(scene);
     createCookie(cn,cv,'30');
+
+    console.log(cn);
     sequence(n,sc);
 });
 // Keep overflow div scrolled to bottom
@@ -341,141 +605,25 @@ function updateScroll(id,delay,repetitions){
     //console.log(element.prop('scrollHeight')+' = '+element.scrollHeight);
 };
 
-
 // ******************************************
-// Post dial answer Function
+// Piwik tracking
 // ******************************************
-function dial(){
-    // Make my own custom javascript function
-    jQuery.fn.extend({
-        answer: function (n,q,question) {
-            // n = id of the sequence
-            // q = question sequence
-            // question = question label
-            // Get the dom
-            var d = jQuery(this),
-                g = d.find('.guest__content'),
-                answer = g.find( ".answer-input" );
-                // Show the input
-                g.removeClass('hide').find('.answer-input').focus();
-                // Variable to hold request
-                var request;
-                // Bind to the submit event of our form
-                answer.keypress(function(event) {
-                    if ( event.which == 13 ) {
-                        //var answer = jQuery(this); // Remove because called in the function
-
-                        // Get the data for the reponse
-                        var data = {};
-                        data["session"] = session;
-                        data[question] = answer.text();
-
-                        // Abort any pending request
-                        if (request) {
-                            request.abort();
-                        }
-
-                        // Let's disable the inputs for the duration of the Ajax request.
-                        // Note: we disable elements AFTER the form data has been serialized.
-                        // Disabled form elements will not be serialized.
-                        answer.attr('contentEditable','false');
-                        g.removeClass('no-answer');
-
-                        sequence(n,q);
-
-                        // Fire off the request to /form.php
-                        request = jQuery.ajax({
-                            url: "https://script.google.com/macros/s/AKfycbxxFsfN3Oqsvl4SLNmdVqahybsXFTobSpW8iXZfetyhGgB7z28F/exec",
-                            type: "post",
-                            data: data,
-                        });
-
-                        // Callback handler that will be called on success
-                        request.done(function (response, textStatus, jqXHR){
-                            _paq.push(['trackEvent', 'Question', 'Valid', question]);
-                            // Log a message to the console
-                            console.log( session +" // "+ question +" "+ answer.text() +" // OK" ); //Success message
-                            //console.log(response);
-                            //console.log(textStatus);
-                            //console.log(jqXHR);
-                        });
-
-                        // Callback handler that will be called on failure
-                        request.fail(function (jqXHR, textStatus, errorThrown){
-                            // Log the error to the console
-                            console.error( "Erreur: "+ textStatus, errorThrown );
-                        });
-
-                        // Callback handler that will be called regardless
-                        // if the request failed or succeeded
-                        request.always(function () {
-                            console.log( " Go on!" );
-                        });
-
-                        // Prevent default posting of form
-                        event.preventDefault();
-                    }
-                });
-        }
+function piwikEvent(n) {
+    jQuery('.ti-container').on('click touchstart', 'a.gallery', function(event) {
+        var id = jQuery(this).attr('id'),
+            idclean = id.replace('gallery-',''),
+            type = idclean.charAt(0).toUpperCase() + idclean.slice(1);
+        _paq.push(['trackEvent', 'Dial', 'Clic', type]);
+    });
+    jQuery('#about-social').on('click touchstart', 'a', function(event) {
+        var type = jQuery(this).data('button');
+        _paq.push(['trackEvent', 'Social', 'Clic', type]);
+    });
+    jQuery('#exitModal').on('click touchstart', 'a.download', function(event) {
+        var type = jQuery(this).data('button');
+        _paq.push(['trackEvent', 'Modal', 'Clic', 'CV - Download']);
     });
 }
-
-
-// ******************************************
-// Button tracking
-// ******************************************
-function tracking(n) {
-    // n = button id
-    // Variable to hold request
-    var request;
-
-    // Get the data for the reponse
-    var data = {};
-    data["session"] = session;
-    data[n] = 'clic';
-
-    // Abort any pending request
-    if (request) {
-        request.abort();
-    }
-
-    // Fire off the request to /form.php
-    request = jQuery.ajax({
-        url: "https://script.google.com/macros/s/AKfycbxxFsfN3Oqsvl4SLNmdVqahybsXFTobSpW8iXZfetyhGgB7z28F/exec",
-        type: "post",
-        data: data,
-    });
-
-    // Callback handler that will be called on success
-    request.done(function (response, textStatus, jqXHR){
-        _paq.push(['trackEvent', 'Question', 'Valid', question]);
-        // Log a message to the console
-        console.log( session +" // "+ n +" // clic" ); //Success message
-        console.log(response);
-        console.log(textStatus);
-        console.log(jqXHR);
-    });
-
-    // Callback handler that will be called on failure
-    request.fail(function (jqXHR, textStatus, errorThrown){
-        // Log the error to the console
-        console.error( "Erreur: "+ textStatus, errorThrown );
-    });
-
-    // Callback handler that will be called regardless
-    // if the request failed or succeeded
-    request.always(function () {
-        console.log( " Go on!" );
-    });
-
-};
-// Enabled function on click
-jQuery('.button-option').each().click(function() {
-    var button = jQuery(this).data("button"); //.attr("data-id") .data("id")
-    console.log(button);
-    tracking(button);
-});
-
 
 // ******************************************
 // Cookies fortune
@@ -506,11 +654,12 @@ function eraseCookie(name) {
 // ******************************************
 // Modal Exit Banner
 // ******************************************
+// animatedModal is a fork
 function modal(){
     var exitModal = jQuery("#toggle-exitModal").animatedModal({
             modalTarget:        'exitModal',
             animatedIn:         'slideInDown', //bounceIn
-            animatedOut:        'slideOutUp', //bounceOut
+            animatedOut:        'slideOutDown', //bounceOut
             color:              '#76ebff',
             animationDuration:  '0.6s',
             beforeOpen: function() {
@@ -522,21 +671,28 @@ function modal(){
 
                 function addClassNextChild() {
                     if (index == children.length) return;
-                    children.eq(index++).addClass('animated fadeInUp');
-                    window.setTimeout(addClassNextChild, 50);
+                    children.eq(index++).addClass('animated bounce');
+                    window.setTimeout(addClassNextChild, 0);
                 }
 
                 addClassNextChild();
             },
             afterOpen: function() {
+                _paq.push(['trackEvent', 'Modal','Open','Exit']);
             },
             afterClose: function() {
                 //jQuery('#wrapper').removeClass('blured');
-                jQuery('.modal-content > *').removeClass('animated fadeInUp')
+                jQuery('.modal-content > *').removeClass('animated fadeInUp');
+                _paq.push(['trackEvent', 'Modal','Close','Exit']);
             }
         }),
         exit = function() {
-            exitModal.open();
+            jQuery('#toggle-exitModal').trigger('click');
+            console.log(glio.statusTop);
+            if (readCookie('name')) {
+                //console.log(readCookie('name'));
+                jQuery('#modal-result').html('<span>' + readCookie('name') + ', je vous recontacte très vite!!</span>');
+            }
         };
 
     // click for exit
@@ -549,25 +705,13 @@ function modal(){
     });
 
     // launch modal on exit
-    // https://github.com/drei01/jquery-exit-popup
-    var last_position = {};
-    jQuery(document).on('mousemove', function (event) {
-        if (typeof(last_position.x) != 'undefined') {
-            var deltaX = last_position.x - event.offsetX,
-                deltaY = last_position.y - event.offsetY;
-            if (Math.abs(deltaY) > Math.abs(deltaX) && deltaY > 0) {
-                //upward movement
-    			if(event.pageY <= 5){
-    				exit();
-    			}
-            }
-            //console.log(deltaX+' x '+deltaY);
+    glio.init(
+      [ 'top', function () {
+          exit();
         }
-        last_position = {
-            x : event.offsetX,
-            y : event.offsetY
-        };
-    });
+      ]
+    );
+
     // launch exit modal if windows loose focus
     jQuery(window).focus(function() {
         // focus
@@ -626,6 +770,9 @@ function modalFormPushbullet(){
         // Get from elements values
         var values = jQuery(this).serialize() + '&type=note';
 
+        // Piwik event
+        _paq.push(['trackEvent','Modal','Form','Push']);
+
         // Request
         jQuery.ajax({
             url: "./api/pushbullet/pushbullet.php",
@@ -643,6 +790,7 @@ function modalFormPushbullet(){
                         jQuery('.modal-content .spinner').removeClass('loading');
                         jQuery('#modal-form').fadeOut('500', function() {
                             jQuery('#modal-result')
+                                .empty()
                                 .addClass('on')
                                 .typeIt({
                                     speed: 80,
@@ -682,7 +830,8 @@ function missYou(){
 // Photoswipe
 // ******************************************
 var galleryCurrentOpen = document.getElementById('open-gallery-current-btn'), //open-gallery-btn
-    galleryOldOpen = document.getElementById('open-gallery-old-btn'), //open-gallery-btn
+    galleryOldOpen = document.getElementById('open-gallery-old-btn'),
+    galleryCrazyOpen = document.getElementById('open-gallery-crazy'),
     openCurrentGallery = function() {
 
         var pswpElement = document.querySelectorAll('.pswp')[0];
@@ -720,7 +869,7 @@ var galleryCurrentOpen = document.getElementById('open-gallery-current-btn'), //
                 title: '<b>2015</b><br><a href="http://www.produits-laitiers.com" rel="nofollow">Site d\'information complète à déstination du grand public.</a><br/>Gestion de projet. Site réalisé par <a href="https://beapi.fr/" rel="nofollow" class="alt">Beapi</a> sur Wordpress. Mise-en-place de stratégie inbound par <a href="https://www.mychefcom.com/" rel="nofollow" class="alt">mychefcom.com</a> et suivi SEO par <a href="https://www.powertrafic.fr/" rel="nofollow" class="alt">Powertrafic</a>.',
             },
             {
-                html: '<div class="pswp__html grid-column-center"><p class="col-6_xs-10" data-push-left="off-3_xs-1">VOUS SOUHAITEZ ME CONTACTER ?<br/><a class="icon" href="mailto:jbo@soapoperator.com" itemprop="email" data-button="Bouton email" onclick="javascript:_paq.push([\'trackEvent\', \'Gallery - Current\', \'Clic\', \'Email\']);">Envoyez-moi un email</a></p><div class="clear"></div></div>'
+                html: '<div class="pswp__html grid-column-center"><p class="" data-push-left="">VOUS SOUHAITEZ ME CONTACTER ?<br/><a class="icon" href="mailto:jbo@soapoperator.com" itemprop="email" data-button="Bouton email" onclick="javascript:_paq.push([\'trackEvent\', \'Gallery - Current\', \'Clic\', \'Email\']);">Envoyez-moi un email</a></p><div class="clear"></div></div>'
             },
         ];
 
@@ -746,6 +895,11 @@ var galleryCurrentOpen = document.getElementById('open-gallery-current-btn'), //
         // After gallery is closed and closing animation finished.
         galleryCurrent.listen('destroy', function() {
             console.log('Gallery is closed!');
+
+            // Piwik event
+            _paq.push(['trackEvent', 'Gallery','Close','Current']);
+
+
             jQuery('#dialogue').addClass('escapeIn').removeClass('escapeOut');
             jQuery('#id').addClass('escapeIn').removeClass('escapeOut');
         });
@@ -829,7 +983,7 @@ var galleryCurrentOpen = document.getElementById('open-gallery-current-btn'), //
                 title: '<b>2009</b><br>Réalisation de diverses visuels, d\'un site, etc.',
             },
             {
-                html: '<div class="pswp__html grid-column-center"><p class="col-6_xs-10" data-push-left="off-3_xs-1">VOUS SOUHAITEZ ME CONTACTER?<br/><a class="icon" href="mailto:jbo@soapoperator.com" itemprop="email" data-button="Bouton email" onclick="javascript:_paq.push([\'trackEvent\', \'Gallery - Current\', \'Clic\', \'Email\']);">Envoyez-moi un email</a></p><div class="clear"></div></div>'
+                html: '<div class="pswp__html grid-column-center"><p class="" data-push-left="">VOUS SOUHAITEZ ME CONTACTER ?<br/><a class="icon" href="mailto:jbo@soapoperator.com" itemprop="email" data-button="Bouton email" onclick="javascript:_paq.push([\'trackEvent\', \'Gallery - Current\', \'Clic\', \'Email\']);">Envoyez-moi un email</a></p><div class="clear"></div></div>'
             },
         ];
 
@@ -856,6 +1010,55 @@ var galleryCurrentOpen = document.getElementById('open-gallery-current-btn'), //
 
         galleryOld.listen('destroy', function() {
             console.log('Gallery is closed!');
+
+            // Piwik event
+            _paq.push(['trackEvent', 'Gallery','Close','Old']);
+
+            jQuery('#dialogue').addClass('escapeIn').removeClass('escapeOut');
+            jQuery('#id').addClass('escapeIn').removeClass('escapeOut');
+        });
+    };
+    openCrazyGallery = function() {
+
+        var pswpElement = document.querySelectorAll('.pswp')[0];
+
+        // build items array
+        var itemsCrazy = [
+            {
+                html: '<div class="youtub grid-column-center"><div class="video-responsive"><iframe width="853" height="480" src="https://www.youtube-nocookie.com/embed/dly-gMAtu4U?enablejsapi=1" frameborder="0" allowfullscreen></iframe></div></div>'
+            },
+            {
+                html: '<div class="pswp__html grid-column-center"><p class="" data-push-left="">VOUS SOUHAITEZ ME CONTACTER ?<br/><a class="icon" href="mailto:jbo@soapoperator.com" itemprop="email" data-button="Bouton email" onclick="javascript:_paq.push([\'trackEvent\', \'Gallery - Current\', \'Clic\', \'Email\']);">Envoyez-moi un email</a></p><div class="clear"></div></div>'
+            },
+        ];
+
+        // define options (if needed)
+        var options = {
+            index: 0, // start at first slide
+            showHideOpacity: true,
+            bgOpacity: 1,
+            maxSpreadZoom: 3,
+            loop: true,
+            closeOnScroll: false,
+            mouseUsed: true,
+            preload: [1,3],
+            mainClass: '',
+            errorMsg : '<div class="pswp__error-msg"><a href="%url%" target="_blank">L\'image</a> n\'a pas pu être chargée.</div>',
+        };
+
+        // Initializes and opens PhotoSwipe
+        var galleryCrazy = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, itemsCrazy, options);
+
+        galleryCrazy.init();
+
+        // After gallery is closed and closing animation finished.
+
+        galleryCrazy.listen('destroy', function() {
+            console.log('Gallery is closed!');
+
+            // Piwik event
+            _paq.push(['trackEvent', 'Gallery','Close','Crazy']);
+
             jQuery('#dialogue').addClass('escapeIn').removeClass('escapeOut');
             jQuery('#id').addClass('escapeIn').removeClass('escapeOut');
         });
@@ -864,12 +1067,17 @@ var galleryCurrentOpen = document.getElementById('open-gallery-current-btn'), //
 // Button to open the gallery
 galleryCurrentOpen.onclick = openCurrentGallery;
 galleryOldOpen.onclick = openOldGallery;
+galleryCrazyOpen.onclick = openCrazyGallery;
 
 // Open Gallery Function
 jQuery('#dial').on('click','#gallery-project-current',function(event){
     event.preventDefault();
     jQuery('#dialogue').removeClass('escapeIn').addClass('animated escapeOut');
     jQuery('#id').removeClass('escapeIn').addClass('animated escapeOut');
+
+    // Piwik event
+    _paq.push(['trackEvent', 'Gallery','Open - Clic','Current']);
+
     setTimeout(function () {
         jQuery('#open-gallery-current-btn').trigger( 'click' );
     }, 400);
@@ -878,8 +1086,24 @@ jQuery('#dial').on('click','#gallery-project-old',function(event){
     event.preventDefault();
     jQuery('#dialogue').removeClass('escapeIn').addClass('animated escapeOut');
     jQuery('#id').removeClass('escapeIn').addClass('animated escapeOut');
+
+    // Piwik event
+    _paq.push(['trackEvent', 'Gallery','Open - Clic','Old']);
+
     setTimeout(function () {
         jQuery('#open-gallery-old-btn').trigger( 'click' );
+    }, 400);
+});
+jQuery('#dial').on('click','#gallery-project-crazy',function(event){
+    event.preventDefault();
+    jQuery('#dialogue').removeClass('escapeIn').addClass('animated escapeOut');
+    jQuery('#id').removeClass('escapeIn').addClass('animated escapeOut');
+
+    // Piwik event
+    _paq.push(['trackEvent', 'Gallery','Open - Clic','Crazy']);
+
+    setTimeout(function () {
+        jQuery('#open-gallery-crazy').trigger( 'click' );
     }, 400);
 });
 

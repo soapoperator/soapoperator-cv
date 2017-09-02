@@ -21,7 +21,7 @@
     <meta name="Copyright" content="jbo">
     <meta name="Author" content="jbo">
     <meta name="Publisher" content="jbo">
-    <meta name="Identifier-Url" content="http://cv.soapoperator.com">
+    <meta name="Identifier-Url" content="https://cv.soapoperator.com">
     <meta name="Revisit-After" content="15 days">
     <meta name="Rating" content="general">
     <meta name="Distribution" content="global">
@@ -69,16 +69,38 @@
 
     <script type="text/javascript" src="vendors/jquery-browser-plugin/dist/jquery.browser.min.js" defer></script>
     <script type="text/javascript" src="vendors/animatedModal.js/animatedModal.min.js" defer></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/gliojs/0.0.7/glio.min.js" defer></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.typeit/4.2.3/typeit.min.js" defer></script>
-    <script type="text/javascript" src="vendors/PhotoSwipe/dist/photoswipe.min.js" defer></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/photoswipe/4.1.1/photoswipe.min.js" defer></script>
     <script type="text/javascript" src="js/photoswipe/photoswipe-ui-light.min.js" defer></script>
     <script type="text/javascript" src="vendors/I-Miss-You/jquery.iMissYou.min.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/balloon-css/0.4.0/balloon.min.css">
 
 <!-- Custom
 ================================================== -->
 
     <link rel="stylesheet" href="css/main.min.css" media="all">
     <script type="text/javascript" src="js/custom.min.js" defer></script>
+
+<!-- Piwik Tracking
+================================================== -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(["setDomains", ["*.cv.soapoperator.com","*.cv.soapoperator.com"]]);
+  _paq.push(["setDoNotTrack", true]);
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//analytics.soapoperator.com/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript><p><img src="//analytics.soapoperator.com/piwik.php?idsite=1&rec=1" style="border:0;" alt="" /></p></noscript>
+<!-- End Piwik Code -->
 
 </head>
 
@@ -133,21 +155,17 @@
                             <span class="highlight" itemprop="telephone">+33 (0)6 32 67 80 97</span>
                         </div>
                         <div id="about-social">
-                            <a class="icon" href="mailto:jbo@soapoperator.com" itemprop="email" data-button="Bouton email" onclick="javascript:_paq.push(['trackEvent', 'Social', 'Clic', 'Email']);">
+                            <a class="icon" href="mailto:jbo@soapoperator.com?subject=J'ai visité votre CV" itemprop="email" data-button="Bouton email" data-balloon="Pour m'envoyez un courriel" data-balloon-pos="down" data-balloon-length="medium">
                                 <svg class="icon-email"><use xlink:href="#icon-email"></use></svg>
-                                <i class="">Pour m'envoyez un courriel</i>
                             </a>
-                            <a class="icon" href='https://twitter.com/soapoperator/' rel="publisher" target="_blank" data-button="Bouton twitter" onclick="javascript:_paq.push(['trackEvent', 'Social', 'Clic', 'Twitter']);">
+                            <a class="icon" href='https://twitter.com/soapoperator/' rel="publisher" target="_blank" data-button="Bouton twitter" data-balloon="Contactez-moi sur Twitter" data-balloon-pos="down" data-balloon-length="medium">
                                 <svg class="icon-twitter"><use xlink:href="#icon-twitter"></use></svg>
-                                <i class="">Contactez-moi sur Twitter</i>
                             </a>
-                            <a class="icon" href="http://fr.linkedin.com/in/jbolivier/" target="_blank" data-button="Bouton linkedin" onclick="javascript:_paq.push(['trackEvent', 'Social', 'Clic', 'Linkedin']);">
+                            <a class="icon" href="http://fr.linkedin.com/in/jbolivier/" target="_blank" data-button="Bouton linkedin" data-balloon="Rendez-vous sur Linkedin" data-balloon-pos="down" data-balloon-length="medium">
                                 <svg class="icon-linkedin"><use xlink:href="#icon-linkedin"></use></svg>
-                                <i class="">Rendez-vous sur Linkedin</i>
                             </a>
-                            <a class="icon" href="https://cloud.soapoperator.com/s/ufaeOux52h6eMth" target="_blank" data-button="Bouton download" onclick="javascript:_paq.push(['trackEvent', 'Social', 'Clic', 'Download']);">
+                            <a class="icon" href="https://cloud.soapoperator.com/s/ufaeOux52h6eMth" target="_blank" data-button="Bouton download" data-balloon="Télécharger mon CV" data-balloon-pos="down" data-balloon-length="medium">
                                 <svg class="icon-download"><use xlink:href="#icon-download"></use></svg>
-                                <i class="">Télécharger sans attendre mon CV</i>
                             </a>
                         </div>
                     </div>
@@ -176,6 +194,7 @@
         <a id="toggle-exitModal" href="#exitModal">Hop!</a>
         <a id="open-gallery-current-btn" href="#!">Open photoswipe</a>
         <a id="open-gallery-old-btn" href="#!">Open photoswipe</a>
+        <a id="open-gallery-crazy" href="#!">Open photoswipe</a>
     </footer>
     <!-- #footer -->
 
@@ -183,43 +202,54 @@
         <div class="modal animated">
             <div class="modal-close">
                 <div class="icon close-exitModal">
-                    <svg class="icon-cancel-circle" onclick="javascript:_paq.push(['trackEvent', 'Popup', 'Clic', 'Close']);"><use xlink:href="#icon-cancel-circle"></use></svg>
+                    <svg class="icon-cancel-circle"><use xlink:href="#icon-cancel-circle"></use></svg>
                 </div>
+                <div class="close-exitModal-warning">Cette fenêtre ne s'ouvre qu'une fois. Etes-vous sûr de vouloir la fermer?</div>
             </div>
             <div class="modal-content grid-column-center">
-                <header class="col-10_xs-12" data-push-left="off-1_xs-0">
+                <header class="col-10_xs-12 padding-alt" data-push-left="off-1_xs-0">
                     Avant de partir, au choix :
                 </header>
                 <hr>
-                <div class="grid-2 col-10_xs-12" data-push-left="off-1_xs-0">
-                    <div class="nb-wrapper col-2">
-                        <div class="nb">
-                            1
+                <div class="col-10_xs-12" data-push-left="off-1_xs-0">
+                    <div class="grid">
+                        <div class="nb-wrapper col">
+                            <div class="nb">
+                                1
+                            </div>
                         </div>
+                        <div class="content col">
+                            <p>Vous pouvez <a class="icon download" href="https://cloud.soapoperator.com/s/ufaeOux52h6eMth" target="_blank" data-button="Bouton download exit"title="CV Bug free"><i>télécharger mon CV</i></a> gratuitement et sans coup férir.</p>
+                        </div>
+                        <div class="clear"></div>
                     </div>
-                    <div class="content col-10">
-                        <span>Vous pouvez <a class="icon download" href="https://cloud.soapoperator.com/s/ufaeOux52h6eMth" target="_blank" data-button="Bouton download exit" onclick="javascript:_paq.push(['trackEvent', 'Popup', 'Clic', 'Download']);" title="CV Bug free"><i>télécharger mon CV</i></a> gratuitement et sans coup férir.</span>
-                    </div>
-                    <div class="clear"></div>
                 </div>
-                <div class="grid-2 col-10_xs-12 last" data-push-left="off-1_xs-0">
-                    <div class="nb-wrapper col-2">
-                        <div class="nb">
-                            2
+                <div class="col-10_xs-12 padding-alt" data-push-left="off-1_xs-0">
+                    <div class="grid">
+                        <div class="nb-wrapper col">
+                            <div class="nb">
+                                2
+                            </div>
                         </div>
-                    </div>
-                    <div class="content col-10">
-                        <span>Laissez-moi <i>vos coordonnées</i> (email ou téléphone), je vous recontacterai sous 48 heures.</span>
-                        <form id="modal-form" class="contact-form">
-                            <input id="contact-form-name" type="text" name="name" value="" placeholder="Nom / Prénom / Pseudo*" required>
-                            <input id="contact-form-contact" type="text" name="contact" value="" placeholder="Email / Téléphone*" required>
-                            <button id="contact-form-button" class="icon" type="submit" name="envoyer">
-                                <svg class="icon-send"><use xlink:href="#icon-send"></use></svg>
-                            </button>
-                            <div class="spinner spinner-modal"></div>
+                        <div class="content col">
+                            <p>Laissez-moi <i>vos coordonnées</i> (email ou téléphone), je vous recontacterai sous 48 heures.</p>
+                            <form id="modal-form" class="contact-form">
+                                <ul>
+                                    <li>
+                                        <input id="contact-form-name" type="text" name="name" value="" placeholder="Nom / Prénom / Pseudo*" required>
+                                    </li>
+                                    <li>
+                                        <input id="contact-form-contact" type="text" name="contact" value="" placeholder="Email / Téléphone*" required>
+                                        <button id="contact-form-button" class="icon" type="submit" name="envoyer" title="C'est le bon choix!">
+                                            <svg class="icon-send"><use xlink:href="#icon-send"></use></svg>
+                                        </button>
+                                    </li>
+                                </ul>
+                                <div class="spinner spinner-modal"></div>
+                            </form>
+                            <p id="modal-result" class="result"></p>
                             <div class="clear"></div>
-                        </form>
-                        <div id="modal-result" class="result"></div>
+                        </div>
                     </div>
                     <div class="clear"></div>
                 </div>
@@ -299,6 +329,10 @@
         </symbol>
         <symbol id="icon-email" viewBox="0 0 26 26">
             <title>email</title>
+            <path d="M13 11.934l8.684-5.434h-17.367zM21.684 19.5v-10.816l-8.684 5.383-8.684-5.383v10.816h17.367zM21.684 4.316c1.168 0 2.133 1.016 2.133 2.184v13c0 1.168-0.965 2.184-2.133 2.184h-17.367c-1.168 0-2.133-1.016-2.133-2.184v-13c0-1.168 0.965-2.184 2.133-2.184h17.367z"></path>
+        </symbol>
+        <symbol id="icon-email-alt" viewBox="0 0 26 26">
+            <title>email alt</title>
             <path class="path1" d="M26 10.301v11.52q0 0.958-0.682 1.639t-1.639 0.682h-21.357q-0.958 0-1.639-0.682t-0.682-1.639v-11.52q0.638 0.711 1.465 1.262 5.252 3.569 7.211 5.006 0.827 0.609 1.342 0.95t1.371 0.696 1.596 0.355h0.029q0.74 0 1.596-0.355t1.371-0.696 1.342-0.95q2.467-1.785 7.225-5.006 0.827-0.566 1.451-1.262zM26 6.036q0 1.146-0.711 2.191t-1.77 1.785q-5.455 3.787-6.79 4.715-0.145 0.102-0.617 0.443t-0.783 0.551-0.754 0.472-0.834 0.392-0.725 0.131h-0.029q-0.334 0-0.725-0.131t-0.834-0.392-0.754-0.472-0.783-0.551-0.617-0.443q-1.32-0.929-3.801-2.648t-2.974-2.068q-0.9-0.609-1.698-1.676t-0.798-1.98q0-1.132 0.602-1.886t1.719-0.754h21.357q0.943 0 1.632 0.682t0.689 1.639z"></path>
         </symbol>
         <symbol id="icon-download" viewBox="0 0 26 26">
@@ -356,25 +390,14 @@
     </defs>
 </svg>
 
-<!-- Piwik
+<!-- Piwik Exclusion
 ================================================== -->
-<script type="text/javascript">
-  var _paq = _paq || [];
-  _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
-  _paq.push(["setCookieDomain", "*.cv.soapoperator.com"]);
-  _paq.push(["setDomains", ["*.cv.soapoperator.com","*.cv.soapoperator.com"]]);
-  _paq.push(["setDoNotTrack", true]);
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  (function() {
-    var u="//analytics.soapoperator.com/";
-    _paq.push(['setTrackerUrl', u+'piwik.php']);
-    _paq.push(['setSiteId', '1']);
-    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-  })();
-</script>
-<noscript><p><img src="//analytics.soapoperator.com/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
+<!-- <iframe style="border: 0; height: 200px; width: 100%;" src="https://analytics.soapoperator.com/index.php?module=CoreAdminHome&action=optOut&language=fr"></iframe> -->
+
+<!-- Telegram integration
+================================================== -->
+<!-- <script id="intergram-config" type="text/javascript" src="api/intergram/config.js" defer></script>
+<script id="intergram" type="text/javascript" src="https://www.intergram.xyz/js/widget.js" defer></script> -->
 
 <!-- Project Honeypot
 ================================================== -->

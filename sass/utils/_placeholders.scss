@@ -99,3 +99,11 @@
 .center-horizontal {
     @include center(x);
 }
+
+/* Video Responsive Ratio */
+.video-responsive {
+    @include fluid-video(16,9)
+}
+.video-responsive-4-3 {
+    @include fluid-video(4,3)
+}

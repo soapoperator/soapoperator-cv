@@ -2,6 +2,17 @@
 
 $height-button: 1.2em;
 
+@keyframes button-ripple-out {
+    100% {
+        bottom: -2*$border-width-default;
+        left: -2*$border-width-default;
+        right: -2*$border-width-default;
+        top: -2*$border-width-default;
+        opacity: 0;
+        border-color: lighten($black,80%);
+    }
+}
+
 @mixin button-static {
     padding : 0;
     vertical-align: middle;
@@ -50,6 +61,13 @@ $height-button: 1.2em;
 // 	color: red; // works for single-colored icons, because "fill" was set to "currentColor"
 // }
 // ======================================================================================== */
+
+.icon-email {
+    background-color: $white;
+    color: $color-background;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
 
 .icon-linkedin {
 }

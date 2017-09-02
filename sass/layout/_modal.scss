@@ -15,8 +15,8 @@
     }
 
     .modal-content {
-        font-size: 2rem;
         width: 100%;
+        font-size: 2rem;
 
         //@include center(xy);
 
@@ -30,20 +30,63 @@
         };
 
         > * {
-            padding: 5rem;
-            padding: 5vh;
-            opacity: 0;
-            @include prefix(animation-duration,0.3s !important,-webkit);
+            //opacity: 0; // Remove animation
+            @include prefix(animation-duration,1.0s !important,-webkit);
+            @include prefix(animation-timing-function,cubic-bezier(.07,.62,.23,.98) !important,-webkit);
+
+            @for $i from 1 to 5 {
+                &:nth-child(#{$i}) {
+                    @include prefix(animation-delay,(random(10) * $i * 0.1s / 10) - 0.5s,-webkit);
+                }
+            }
+
+            @for $i from 5 to 7 {
+                &:nth-child(#{$i}) {
+                    @include prefix(animation-delay,($i * 0.1s) - 0.5s,-webkit);
+                }
+            }
+        }
+
+        > header {
+            margin-top: 5rem;
+            margin-top: 5vh;
 
             @include mediaqueries(mobile){
-                padding: 4rem 5rem;
-                padding: 4vh 5vh;
+                margin-top: 4rem;
+                margin-top: 4vh;
+            };
+        }
+
+        > footer {
+            margin-bottom: 5rem;
+            margin-bottom: 5vh;
+
+            @include mediaqueries(mobile){
+                margin-bottom: 4rem;
+                margin-bottom: 4vh;
+            };
+        }
+
+        > hr {
+            border: none;
+            border-bottom: $border-width-slim solid $white;
+            width: 100%;
+            margin: 5rem 0;
+            margin: 5vh 0;
+
+            @include mediaqueries(mobile){
+                margin: 4rem 5rem;
+                margin: 4vh 5vh;
             };
         }
 
         a {
             @extend .animated;
             @extend .bounceIn;
+        }
+
+        .padding-alt {
+            padding-bottom: 0;
         }
     }
 
@@ -70,48 +113,59 @@
                 color: $color-background;
             }
         }
+
+        .close-exitModal-warning {
+            display: none;
+            position: absolute;
+            right: 46px;
+            top: 3px;
+            height: 36px;
+            line-height: 36px;
+            color: $black;
+            background: $color-secondary;
+            padding: 0 .5em;
+        }
+
+        .close-exitModal {
+
+            &:hover {
+
+                + .close-exitModal-warning {
+                    display: block;
+                }
+            }
+        }
     }
 }
 
 #exitModal {
 
-    header {
-    }
-
-    hr {
-        border: none;
-        border-bottom: $border-width-slim solid $white;
-        padding: 0;
-        margin: 0;
-
-        &.last {
-        }
-
-        @include mediaqueries(mobile){
-        };
-    }
-
     .modal-content {
         margin: 0;
 
         > div {
+            padding-bottom: 0;
+            margin-bottom: 1rem;
 
             .nb-wrapper,
             .content {
                 padding-bottom: 0;
+                margin-bottom: 0;
             }
 
             .nb-wrapper {
-                padding: 0;
+                padding-left: 1rem;
+                padding-right: 2rem;
+                flex: 0 1 auto;
             }
-        }
-
-        > div.last {
-            padding-top: 0;
         }
     }
 
     .content {
+
+        > p {
+            margin-top: 0;
+        }
 
         .download {
             position: relative;
@@ -155,13 +209,26 @@
 
     .contact-form {
         position: relative;
+        display: block;
 
-        > input,
-        > button {
-            height: 2em;
-            line-height: 2em;
-            margin-top: 0.3em;
-            border-radius: $border-radius-default;
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+
+            li + li {
+                margin-top: 0.4em;
+            }
+
+            li {
+
+                > input,
+                > button {
+                    height: 2em;
+                    line-height: 2em;
+                    border-radius: $border-radius-default;
+                }
+            }
         }
 
         input {
@@ -172,7 +239,7 @@
             width: calc(100% - 2.3em);
         }
 
-        .icon {
+        button {
             color: $white;
             background: $black;
             width: 2em;
@@ -213,12 +280,18 @@
     }
 
     .result {
+        position: absolute;
+        visibility: hidden;
+        margin: 0;
 
         &.on {
+            position: relative;
+            visibility: visible;
             margin-top: 2rem;
         }
 
         span {
+            display: inline-block;
             padding: 0.2em;
             color: $white;
             background: $color-background;
